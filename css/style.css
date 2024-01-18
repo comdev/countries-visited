@@ -1,0 +1,103 @@
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.col a {
+  text-decoration: none;
+  color: black;
+}
+
+.col a:hover {
+  color: #03254c;
+}
+
+.col:hover .iconarea {
+  background-color: #f4bb2c !important;
+}
+
+.iconarea {
+  background-color: #1154a6d6 !important;
+}
+
+.header {
+  background-color: #1167b1 !important;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #03254c;
+  border-color: #2a9df4;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #187bcd;
+  border-color: #187bcd;
+}
+
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.footer .card-body{
+  padding: 0.7rem;
+}
+
+.col:hover .card.footer{
+  background-color: #1167b1 !important; 
+  color:#fff;
+}
+
+.weblink a{
+  color: #03254c;
+}
+.container h5{
+  color: #03254c;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 14pt;
+}
+
+.generated-result h3 {
+  font-size: 20pt;
+}
+
+
+h4 {
+  font-size: 14pt;
+}
+
+.contact {
+  font-size: 14pt;
+  font-weight:600;
+}

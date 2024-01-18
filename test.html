@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bootstrap Tabs with JavaScript</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+    }
+
+    /* Navbar styles for dark mode */
+    .nav-tabs {
+      background-color: #333333;
+      border-color: #292b2c;
+    }
+
+    .nav-tabs .nav-item .nav-link {
+      color: #ffffff;
+    }
+
+    .nav-tabs .nav-item .nav-link.active {
+      background-color: #555555;
+      color: #ffffff;
+      border-color: #555555;
+    }
+
+    /* Dropdown menu styles for dark mode */
+    select {
+      background-color: #333333;
+      color: #ffffff;
+      border: 1px solid #555555;
+    }
+
+    /* Additional styles for responsiveness */
+    @media (max-width: 576px) {
+      .nav-tabs {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-4">
+  <!-- Nav tabs for larger screens -->
+  <ul class="nav nav-tabs" id="myTabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#tab1">Tab 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#tab2">Tab 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#tab3">Tab 3</a>
+    </li>
+  </ul>
+
+  <!-- Dropdown menu for smaller screens -->
+  <select class="form-control mt-2 d-block d-md-none" id="tabDropdown">
+    <option value="#tab1">Tab 1</option>
+    <option value="#tab2">Tab 2</option>
+    <option value="#tab3">Tab 3</option>
+  </select>
+
+  <!-- Tab panes -->
+  <div class="tab-content mt-2">
+    <div class="tab-pane fade show active" id="tab1">
+      <h3>Content of Tab 1</h3>
+      <p>This is the content of the first tab.</p>
+    </div>
+    <div class="tab-pane fade" id="tab2">
+      <h3>Content of Tab 2</h3>
+      <p>This is the content of the second tab.</p>
+    </div>
+    <div class="tab-pane fade" id="tab3">
+      <h3>Content of Tab 3</h3>
+      <p>This is the content of the third tab.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // JavaScript to switch tabs for larger screens
+  $(document).ready(function(){
+    $('#myTabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+  });
+
+  // JavaScript to switch tabs for smaller screens using the dropdown
+  $(document).ready(function(){
+    $('#tabDropdown').change(function () {
+      var selectedTab = $(this).val();
+      $('#myTabs a[href="' + selectedTab + '"]').tab('show');
+    });
+  });
+</script>
+
+</body>
+</html>
