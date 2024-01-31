@@ -1,0 +1,165 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #2e2e2e;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+
+.leaflet-container {
+  height: 900px;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: rgba(255,0,0,0.0);
+}
+
+#map { width: 90vw; max-height: 700px; height: 90vw; }
+
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+#selected-countries {
+    margin-top: 20px;
+}
+#selected-countries button {
+    margin-left: 5px;
+}
+.selected-country {
+    margin-bottom: 5px;
+}
+.selected-country button {
+    margin-left: 5px;
+}
+#search-input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    padding: 5px;
+}
+#counter {
+    font-size: 18px;
+    margin: 20px;
+
+}
+.header-icon{
+    padding: 5px;
+}
+#selected-count, #selected-percentage{
+    font-weight: bold ;
+}
+.introduction{
+    margin-top: 20px;
+}
+
+body {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.cover-container {
+  max-width: 70em;
+}
+
+
+/*
+ * Header
+ */
+.masthead {
+  margin-bottom: 2rem;
+}
+
+.masthead-brand {
+  font-size: 28px;
+  font-weight:500;
+}
+
+.nav-masthead .nav-link {
+  padding: .25rem 0;
+  font-weight: 700;
+  background-color: transparent;
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+  .nav-masthead {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+
+/*
+ * Footer
+ */
+
+
+.link{
+  text-decoration: underline;
+}
+
+.worldmap{
+  width: 90vw;
+  max-width: 800px;
+  height: auto;
+  margin: 5px;
+}
+
+h2{ 
+  font-size: 1.5rem;
+  margin-top: 15px;
+}
+
+.continent{
+  font-size: 1.25rem;
+}

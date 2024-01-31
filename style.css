@@ -1,34 +1,90 @@
-/*
- * Globals
- */
-
-/* Links */
-a,
-a:focus,
-a:hover {
-  color: #fff;
+:root {
+  --jumbotron-padding-y: 1rem;
 }
 
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: .05rem solid #fff;
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #FDF0D5;
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 3);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 3);
+  }
+}
+
+.py-5.map-container {
+  padding-top: 0px !important;
 }
 
 
-/*
- * Base structure
- */
-
-html,
-body {
-  margin: 0;
-  background-color: #333;
+.jumbotron p:last-child {
+  margin-bottom: 0;
 }
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+
+
+
+.navbar {
+  background-color: #003049;
+}
+
+.header-icon{
+  margin-right: 5px;
+}
+
+.counter-box {
+	display: block;
+	background: #f6f6f6;
+	padding: 12px 20px 5px;
+	text-align: center;
+  margin: 10px;
+}
+
+.counter-box p {
+	margin: 5px 0 0;
+	padding: 0;
+	color: #909090;
+	font-size: 18px;
+	font-weight: 500
+}
+
+.counter-box i {
+	font-size: 60px;
+	margin: 0 0 15px;
+	color: #d2d2d2
+}
+
+.counter { 
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
+	color: #666;
+	line-height: 28px
+}
+
 
 .leaflet-container {
   height: 900px;
@@ -39,7 +95,7 @@ body {
 
 #map { width: 90vw; max-height: 700px; height: 90vw; }
 
-.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 15px rgba(165, 165, 165, 0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
 .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
 #selected-countries {
     margin-top: 20px;
@@ -53,110 +109,35 @@ body {
 .selected-country button {
     margin-left: 5px;
 }
-#search-input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 200px;
-    padding: 5px;
-}
-#counter {
-    font-size: 18px;
-    margin: 20px;
 
-}
-.header-icon{
-    padding: 5px;
-}
-#selected-count, #selected-percentage{
-    font-weight: bold ;
-}
-.introduction{
-    margin-top: 20px;
+.accordion-button{
+  font-size: 1.2rem;
 }
 
-body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-pack: center;
-  -webkit-box-pack: center;
-  justify-content: center;
+.accordion-button:not(.collapsed){
+  background-color: #FDF0D5;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+
+.nav-link{
   color: #fff;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
 
-.cover-container {
-  max-width: 70em;
+.nav-link:hover{
+  color: #FDF0D5;
 }
 
-
-/*
- * Header
- */
-.masthead {
-  margin-bottom: 2rem;
+.accordion-button{
+  font-weight: bold;
 }
 
-.masthead-brand {
-  font-size: 28px;
-  font-weight:500;
-  color: #e2e2e2;
-}
-
-.nav-masthead .nav-link {
-  padding: .25rem 0;
-  font-weight: 700;
-  color: rgba(255, 255, 255, .5);
-  background-color: transparent;
-  border-bottom: .25rem solid transparent;
-}
-
-.nav-masthead .nav-link:hover,
-.nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
-}
-
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
-}
-
-.nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
-}
-
-@media (min-width: 48em) {
-  .masthead-brand {
-    float: left;
-  }
-  .nav-masthead {
-    float: right;
-  }
-}
-
-
-/*
- * Cover
- */
-.cover {
-  padding: 0 1.5rem;
-}
-.cover .btn-lg {
-  padding: .75rem 1.25rem;
-  font-weight: 700;
-}
-
-
-/*
- * Footer
- */
-.mastfoot {
-  color: rgba(255, 255, 255, .5);
-}
-
-.link{
-  text-decoration: underline;
+.continent-counter{
+  font-weight:lighter;
+  padding: 5px;
 }
 
 .worldmap{
@@ -164,13 +145,4 @@ body {
   max-width: 800px;
   height: auto;
   margin: 5px;
-}
-
-h2{ 
-  font-size: 1.5rem;
-  margin-top: 15px;
-}
-
-.continent{
-  font-size: 1.25rem;
 }
