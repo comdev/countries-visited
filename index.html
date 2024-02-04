@@ -48,7 +48,7 @@
 <script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
 <script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
-cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express","palette":"dark","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"Countries Visited","website_privacy_policy_url":"https://countries-visited.com/privacy-policy.html"});
+cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express","palette":"light","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"Countries Visited","website_privacy_policy_url":"https://countries-visited.com/privacy-policy.html"});
 });
 </script>
 
@@ -1901,15 +1901,22 @@ cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express",
 
         // Set maximum bounds to ensure the entire world is visible
     const maxBounds = [
-        [-90, -180], // Southwest coordinates
-        [90, 180]    // Northeast coordinates
+        [-60, -110], // Southwest coordinates
+        [90, 110]    // Northeast coordinates
     ];
     map.setMaxBounds(maxBounds);
 
-    // Fit the world to the screen layout
+    // Check the screen size and set the default view accordingly
+if (window.innerWidth > 768) {
+    // Larger screens - set a higher zoom level
+    map.setView([0, 0], 2); // Adjust the zoom level as needed
+} else {
+    // Smaller screens
     map.fitBounds(maxBounds);
+}
 
-    //map.fitWorld();
+
+
 
 
     // Define the custom control
