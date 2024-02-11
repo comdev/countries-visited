@@ -6,7 +6,7 @@
   padding-top: var(--jumbotron-padding-y);
   padding-bottom: var(--jumbotron-padding-y);
   margin-bottom: 0;
-  background-color: #B1D4E0;
+  background-color: #b1d4e0;
 }
 
 @media (min-width: 768px) {
@@ -22,14 +22,14 @@
 }
 
 .py-5 {
-  padding-top: 1rem!important;
-  padding-bottom: 1rem!important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 }
 
 @media (min-width: 768px) {
   .py-5 {
-    padding-top: 2rem!important;
-    padding-bottom: 2rem!important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
   .py-5.map-container {
     padding-top: 0px !important;
@@ -37,20 +37,19 @@
   }
 }
 
-
-
 .jumbotron p:last-child {
   margin-bottom: 0;
 }
 
 .jumbotron-heading {
+  /*font-weight: 300;*/
+  color: #028bc4;
+}
+
+h2.jumbotron-heading {
+  margin-top: 10px;
   font-weight: 300;
 }
-
-h2.jumbotron-heading{
-  margin-top: 10px;
-}
-
 
 .jumbotron .container {
   max-width: 40rem;
@@ -62,58 +61,59 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
 
-
-
-
+/*
 .navbar {
-  background-color: #145DA0;
+  background-color: #145da0;
 }
+*/
 
-.header-icon{
+.header-icon {
   margin-right: 5px;
 }
 
 .counter-box {
-	display: block;
-	background: #f6f6f6;
-	padding: 12px 20px 5px;
-	text-align: center;
+  display: block;
+  background: #f6f6f6;
+  padding: 12px 20px 5px;
+  text-align: center;
   margin: 10px;
+
 }
 
 .counter-box p {
-	margin: 5px 0 0;
-	padding: 0;
-	color: #909090;
-	font-size: 18px;
-	font-weight: 500
+  margin: 5px 0 0;
+  padding: 0;
+  color: #909090;
+  font-size: 18px;
+  font-weight: 500;
+  
 }
 
 .counter-box i {
-	font-size: 60px;
-	margin: 0 0 15px;
-	color: #d2d2d2
+  font-size: 60px;
+  margin: 0 0 15px;
+  color: #d2d2d2;
 }
 
-.counter { 
-	display: block;
-	font-size: 32px;
-	font-weight: 700;
-	color: #028bc4; /* #666 */
-	line-height: 28px
+.counter {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #028bc4; /* #666 */
+  line-height: 28px;
 }
-
-
 
 .leaflet-container {
   max-width: 100%;
-  background-color: rgba(255,0,0,0.0);
-  max-height: 700px; 
+  background-color: rgba(255, 0, 0, 0);
+  max-height: 700px;
   height: 70vw;
 }
 
@@ -121,57 +121,73 @@ footer p {
   color: #666;
 }
 
-
-
-.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 15px rgba(165, 165, 165, 0.2); border-radius: 5px; } 
-.info h4 { margin: 0 0 5px; color: #777; }
-.legend { text-align: left; line-height: 18px; color: #555; } 
-.legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(165, 165, 165, 0.2);
+  border-radius: 5px;
+}
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+.legend {
+  text-align: left;
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
 #selected-countries {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 #selected-countries button {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .selected-country {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .selected-country button {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
-.accordion-button{
+.accordion-button {
   font-size: 1.2rem;
 }
 
-.accordion-button:not(.collapsed){
+.accordion-button:not(.collapsed) {
   background-color: #028bc4;
-  color: #FFF;
+  color: #fff;
 }
 
 .accordion-button:focus {
   box-shadow: none;
 }
 
-
-.nav-link{
-  color: #fff;
+.nav-link {
+  color: #028bc4;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: #d2d2d2;
 }
 
-.accordion-button{
+.accordion-button {
   font-weight: bold;
 }
 
-.continent-counter{
-  font-weight:lighter;
+.continent-counter {
+  font-weight: lighter;
   padding: 5px;
 }
 
-.worldmap{
+.worldmap {
   width: 90vw;
   max-width: 1017px;
   height: auto;
@@ -181,14 +197,28 @@ footer p {
   margin-right: auto;
 }
 
-a{
+.most-visited-worldmap{
+  width: 90vw;
+  max-width: 800px;
+  height: auto;
+  margin: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
   color: #7c7c7c;
 }
 
-a:hover{
+a:hover {
   color: #aaaaaa;
 }
 
-.float-right{
+.float-right {
   float: right;
+}
+
+.table {
+  max-width: 1000px;
 }

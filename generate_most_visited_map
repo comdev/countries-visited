@@ -1,0 +1,43 @@
+  <script type="text/javascript" src="countries_ne.js"></script>
+<script>
+  const map = L.map('map').setView([20, 0], 2);
+
+
+
+// Define colors for each country based on sample values
+const countryColors = {
+  'France': '#08519c',
+    'Spain': '#3182bd',
+    'United States': '#6baed6',
+    'Turkey': '#9ecae1',
+    'Italy': '#9ecae1',
+    'Mexico': '#9ecae1',
+    'United Kingdom': '#6baed6',
+    'Germany': '#6baed6',
+    'Greece': '#9ecae1',
+    'Austria': '#bdd7e7'
+};
+
+function getColor(country) {
+    return countryColors[country] || '#e6e6e6'; // Default color for countries not in the list
+}
+
+function style(feature) {
+    const country = feature.properties.NAME_LONG; // Assuming the country name is stored in 'name' property
+    return {
+      weight: 1,
+          opacity: 0.5,
+          color: "white",
+          dashArray: "",
+          fillOpacity: 1,
+        fillColor: getColor(country)
+    };
+}
+
+/* global countriesData */
+const geojson = L.geoJson(countriesData, {
+    style,
+}).addTo(map);
+
+
+</script>
