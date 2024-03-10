@@ -222,3 +222,13 @@ a:hover {
 .table {
   max-width: 1000px;
 }
+
+.leaflet-control-zoom,.leaflet-control-custom{
+  opacity: 0.5;
+}
+
+.image-description{
+  margin: 5px auto;
+  color: #555;
+  text-align: center;
+}
