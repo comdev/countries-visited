@@ -84,7 +84,6 @@ footer p {
   padding: 12px 20px 5px;
   text-align: center;
   margin: 10px;
-
 }
 
 .counter-box p {
@@ -100,6 +99,13 @@ footer p {
   font-size: 60px;
   margin: 0 0 15px;
   color: #d2d2d2;
+}
+
+.share-box {
+  display: block;
+  background: #f6f6f6;
+  padding: 10px;
+  margin:  10px 0px;
 }
 
 .counter {
