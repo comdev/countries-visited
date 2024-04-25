@@ -37,6 +37,11 @@
   }
 }
 
+#map{
+  background-color: white;
+}
+
+
 .jumbotron p:last-child {
   margin-bottom: 0;
 }
@@ -106,6 +111,11 @@ footer p {
   background: #f6f6f6;
   padding: 10px;
   margin:  10px 0px;
+}
+
+#copyLinkButton{
+  background-color: #028bc4;
+  color: #fff;
 }
 
 .counter {
@@ -237,4 +247,12 @@ a:hover {
   margin: 5px auto;
   color: #555;
   text-align: center;
+}
+
+.social{
+  display: inline;
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 32px;
 }
