@@ -3738,6 +3738,32 @@
         map.fitBounds(maxBounds);
       }
 
+      // Add the watermark control
+      L.Control.Watermark = L.Control.extend({
+        onAdd: function(map) {
+          var watermark = L.DomUtil.create('div');
+          watermark.innerHTML = 'countries-visited.com';
+          watermark.style.opacity = '0.1';
+          watermark.style.position = 'absolute';
+          watermark.style.bottom = '10px';
+          watermark.style.left = '10px'; // Set left position to 0
+          watermark.style.width = '200px'; // Make the watermark span the full width
+          watermark.style.textAlign = 'center'; // Center the text
+          watermark.style.color = '#000';
+          watermark.style.fontSize = '14px';
+          watermark.style.pointerEvents = 'none'; 
+          watermark.style.fontWeight = 'bold';
+
+        return watermark;
+        },
+      });
+
+      L.control.watermark = function(opts) {
+        return new L.Control.Watermark(opts);
+      }
+
+      L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
       // Define the custom control
       const resetViewControl = L.Control.extend({
         options: {
