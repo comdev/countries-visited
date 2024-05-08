@@ -85,6 +85,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Countries Visited",
+        "alternateName": ["CountriesVisited", "Countries-Visited.com"],
         "url": "https://countries-visited.com"
       }
     </script>
@@ -159,7 +160,7 @@
             </li>
             <li class="nav-item">
               <a href="most-visited-countries.html" class="nav-link"
-                >Most Visited</a
+                >Most Visited Countries</a
               >
             </li>
             <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
@@ -173,8 +174,8 @@
         <div class="container">
           <h1 class="jumbotron-heading">Countries Visited Map & Counter</h1>
           <p class="lead">
-            Explore the world on our interactive map! Mark, showcase and count
-            the countries you have visited – your travel story, your way.
+            Explore the world on our interactive map! <br>Mark, showcase and count
+            the countries you have visited.
           </p>
         </div>
       </section>
@@ -182,14 +183,14 @@
       <div class="py-5 map-container bg-white">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-6 col-md-6">
               <div class="counter-box">
                 <i class="fa fa-thumbs-o-up"></i>
                 <span class="counter" id="selected-count">0</span>
-                <p>Number of Countries visited</p>
+                <p>Number of Countries Visited</p>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-6 col-md-6">
               <div class="counter-box">
                 <i class="fa fa-group"></i>
                 <span class="counter" id="selected-percentage">0%</span>
@@ -205,12 +206,11 @@
           <div class="row">
             <div class="col-md-8 mx-auto">
               <div class="share-box d-flex justify-content-between align-items-center">
-                <p class="m-0 me-2">Share the personalized map of the countries you have visited:</p>
-                <button type="button" id="copyLinkButton" class="btn btn-sm ms-auto">
+                <p class="m-0 me-2 share-info-text">Share the personalized map of the countries you have visited:</p>
+                <button type="button" id="copyLinkButton" class="btn btn-sm ms-auto" title="Copy Link">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy me-1" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"></path>
                   </svg>
-                  Copy Link
                 </button>
                 <!--<div class="fb-share-button" data-href="https://countries-visited.com" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcountries-visited.com%2F%3Fcountries%3DGermany&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Teilen</a></div>
                 -->
@@ -218,8 +218,7 @@
             </div>
           </div>
 
-          
-          <!--<button type="button" onclick="captureMap()">Capture Map</button>-->
+        
 
           <h2 class="jumbotron-heading">
             Visualize and count the countries you have visited
@@ -249,7 +248,7 @@
 
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
+              <h3 class="accordion-header" id="headingTwo">
                 <button
                   class="accordion-button"
                   type="button"
@@ -261,7 +260,7 @@
                   Africa
                   <div class="continent-counter">(55)</div>
                 </button>
-              </h2>
+              </h3>
               <div
                 id="collapseAfrica"
                 class="accordion-collapse collapse show"
@@ -1010,7 +1009,7 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
+              <h3 class="accordion-header" id="headingOne">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -1022,7 +1021,7 @@
                   Asia
                   <div class="continent-counter">(51)</div>
                 </button>
-              </h2>
+              </h3>
               <div
                 id="collapseAsia"
                 class="accordion-collapse collapse"
@@ -1709,7 +1708,7 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h3 class="accordion-header" id="headingThree">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -1721,7 +1720,7 @@
                   Europe
                   <div class="continent-counter">(50)</div>
                 </button>
-              </h2>
+              </h3>
               <div
                 id="collapseEurope"
                 class="accordion-collapse collapse"
@@ -2403,7 +2402,7 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h3 class="accordion-header" id="headingThree">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -2415,7 +2414,7 @@
                   North America
                   <div class="continent-counter">(35)</div>
                 </button>
-              </h2>
+              </h3>
               <div
                 id="collapseNorthAmerica"
                 class="accordion-collapse collapse"
@@ -2914,7 +2913,7 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h3 class="accordion-header" id="headingThree">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -2926,7 +2925,7 @@
                   Australia & Oceania
                   <div class="continent-counter">(31)</div>
                 </button>
-              </h2>
+              </h3>
               <div
                 id="collapseAustralia"
                 class="accordion-collapse collapse"
@@ -3355,7 +3354,7 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h3 class="accordion-header" id="headingThree">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -3367,7 +3366,7 @@
                   South America
                   <div class="continent-counter">(15)</div>
                 </button>
-              </h2>
+              </h3>
               <div
                 id="collapseSouthAmerica"
                 class="accordion-collapse collapse"
@@ -3581,7 +3580,7 @@
             </div>
 
             <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
+              <h3 class="accordion-header" id="headingThree">
                 <button
                   class="accordion-button collapsed"
                   type="button"
@@ -3593,7 +3592,7 @@
                   Antarctica
                   <div class="continent-counter">(1)</div>
                 </button>
-              </h2>
+              </h3>
               <div
                 id="collapseAntarctica"
                 class="accordion-collapse collapse"
@@ -3682,7 +3681,7 @@
           <a href="#" id="open_preferences_center">Cookies Preferences</a>
         </p>
         </div>
-        <div class="container social d-flex">
+        <div class="container social d-flex justify-content-center">
         <p>
           <a href="https://www.facebook.com/profile.php?id=61558971358016">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -3719,7 +3718,8 @@
       const map = L.map("map", {
         minZoom: 0,
         maxZoom: 5,
-        renderer: L.canvas()
+        zoomSnap: 0,
+        //renderer: L.canvas()
       });
 
       // Set maximum bounds to ensure the entire world is visible
@@ -3745,12 +3745,12 @@
           watermark.innerHTML = 'countries-visited.com';
           watermark.style.opacity = '0.1';
           watermark.style.position = 'absolute';
-          watermark.style.bottom = '10px';
-          watermark.style.left = '10px'; // Set left position to 0
-          watermark.style.width = '200px'; // Make the watermark span the full width
+          watermark.style.bottom = '5px';
+          watermark.style.left = '5px'; // Set left position to 0
+          watermark.style.width = '150px'; // Make the watermark span the full width
           watermark.style.textAlign = 'center'; // Center the text
           watermark.style.color = '#000';
-          watermark.style.fontSize = '14px';
+          watermark.style.fontSize = '12px';
           watermark.style.pointerEvents = 'none'; 
           watermark.style.fontWeight = 'bold';
 
@@ -4025,28 +4025,15 @@
       // Add event listener to map clicks
       map.on('click', function() {
         updateURL(); // Call updateURL() when map is clicked
-        captureMap();
       });
 
       // Check checkboxes on page load
       window.addEventListener('load', function() {
         checkCheckboxes();
         updateURL(); // Call updateURL() on page load
-        captureMap();
       });
 
 
-      function captureMap() {
-            // Capture map area as an image using html2canvas
-            html2canvas(document.getElementById('map')).then(function(canvas) {
-                // Convert canvas to data URL
-                var dataURL = canvas.toDataURL();
-                console.log("Data URL:", dataURL); // Print data URL in console
-                // Set og:image meta tag to the generated image data URL
-                document.querySelector('meta[property="og:image"]').setAttribute('content', dataURL);
-            });
-      }
-      
     </script>
     
   </body>

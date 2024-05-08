@@ -11,8 +11,8 @@
 
 @media (min-width: 768px) {
   .jumbotron {
-    padding-top: calc(var(--jumbotron-padding-y) * 3);
-    padding-bottom: calc(var(--jumbotron-padding-y) * 3);
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
   }
 }
 
@@ -34,6 +34,7 @@
   .py-5.map-container {
     padding-top: 0px !important;
     padding-bottom: 2rem !important;
+    
   }
 }
 
@@ -86,18 +87,46 @@ footer p {
 .counter-box {
   display: block;
   background: #f6f6f6;
-  padding: 12px 20px 5px;
+  padding: 10px 0px 5px 0px;
   text-align: center;
-  margin: 10px;
+  margin: 10px 0px 10px 0px;
 }
+
+
 
 .counter-box p {
   margin: 5px 0 0;
   padding: 0;
   color: #909090;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 100;
   
+}
+
+
+.counter {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #028bc4; /* #666 */
+  line-height: 12px;
+}
+
+@media (min-width: 768px) {
+  .counter-box p {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .counter {
+    font-size: 32px;
+    line-height: 24px;
+  }
+
+  .counter-box {
+    padding: 12px 20px 5px 0px;
+    margin: 10px;
+  }
 }
 
 .counter-box i {
@@ -118,13 +147,7 @@ footer p {
   color: #fff;
 }
 
-.counter {
-  display: block;
-  font-size: 32px;
-  font-weight: 700;
-  color: #028bc4; /* #666 */
-  line-height: 28px;
-}
+
 
 .leaflet-container {
   max-width: 100%;
@@ -255,4 +278,28 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
   width: 32px;
+}
+
+h1{
+  font-size: 1.4rem;
+}
+
+.lead {
+  font-size: 1rem;
+}
+
+.share-info-text{
+  font-size: 0.8rem;
+}
+
+@media (min-width: 768px) {
+  .lead {
+    font-size: 1.25rem;
+  }
+  h1{
+    font-size: 2.5rem;
+  }
+  .share-info-text{
+    font-size: 1rem;
+  }
 }
