@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Simply click, mark, and showcase the countries you have visited on our interactive map. Discover the joy of tracking your global adventures."
+      content="Simply click, mark, and showcase the countries you have visited on our interactive country map. Discover the joy of tracking your global adventures."
     />
     <meta
       name="keywords"
@@ -19,12 +19,13 @@
     <meta property="og:title" content="Countries Visited Map & Counter" />
     <meta
       property="og:description"
-      content="Simply click, mark, and showcase the countries you have visited on our interactive map. Discover the joy of tracking your global adventures."
+      content="Simply click, mark, and showcase the countries you have visited on our interactive country map. Discover the joy of tracking your global adventures."
     />
     <meta
       property="og:image"
       content="https://countries-visited.com/img/worldmap_colored_countries.png"
     />
+    <meta name="thumbnail" content="https://countries-visited.com/img/worldmap_colored_countries.png" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +34,7 @@
     <meta name="twitter:title" content="Countries Visited Map & Counter" />
     <meta
       name="twitter:description"
-      content="Simply click, mark, and showcase the countries you have visited on our interactive map. Discover the joy of tracking your global adventures."
+      content="Simply click, mark, and showcase the countries you have visited on our interactive country map. Discover the joy of tracking your global adventures."
     />
     <meta
       name="twitter:image"
@@ -47,16 +48,16 @@
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="https://countries-visited.com/img/favicon.ico"
+      href="https://countries-visited.com/img/favicon.svg"
     />
     <link
       rel="icon"
       type="image/x-icon"
-      href="https://countries-visited.com/img/favicon.ico"
+      href="https://countries-visited.com/img/favicon.svg"
     />
     <link
       rel="apple-touch-icon"
-      href="https://countries-visited.com/img/world-country-marker-icon.png"
+      href="https://countries-visited.com/img/countries_visited_icon.png"
     />
     <link
       rel="stylesheet"
@@ -70,10 +71,7 @@
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin=""
     />
-    <link href="style.css" rel="stylesheet" />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
+    <link href="style.css" rel="stylesheet" />  
 
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -146,12 +144,11 @@
         <div class="container d-flex justify-content-between">
           <a href="index.html" class="navbar-brand d-flex align-items-center">
             <img
-              src="img/world-country-marker-icon.png"
+              src="img/countries_visited_icon.svg"
               width="30"
               class="header-icon bi me-2"
               alt="World with Country Marker"
             />
-
             <span class="fs-4">Countries Visited</span>
           </a>
           <ul class="nav nav-pills">
@@ -174,7 +171,7 @@
         <div class="container">
           <h1 class="jumbotron-heading">Countries Visited Map & Counter</h1>
           <p class="lead">
-            Explore the world on our interactive map! <br>Mark, showcase and count
+            Explore the world on our interactive country map! <br>Mark, showcase and count
             the countries you have visited.
           </p>
         </div>
@@ -236,7 +233,7 @@
 
       <div class="py-5 bg-light">
         <div class="container">
-          <h2>Select the Countries</h2>
+          <h2>Countries Visited Checklist</h2>
           <p>
             The following form lists all countries globally, including numerous
             dependent territories, organized by continent. Simply select the
@@ -3646,7 +3643,7 @@
           />
 
           <p>
-            Embark on a visual journey with our interactive world map that lets
+            Embark on a visual journey with our interactive map of the world with all countries that lets
             you explore and highlight the countries you have visited. Whether
             you're a seasoned traveler or just starting your adventures, our
             scratch map feature allows you to mark the countries you've been to,
@@ -3719,6 +3716,7 @@
         minZoom: 0,
         maxZoom: 5,
         zoomSnap: 0,
+        attributionControl: false
         //renderer: L.canvas()
       });
 
@@ -3745,10 +3743,10 @@
           watermark.innerHTML = 'countries-visited.com';
           watermark.style.opacity = '0.1';
           watermark.style.position = 'absolute';
-          watermark.style.bottom = '5px';
-          watermark.style.left = '5px'; // Set left position to 0
+          watermark.style.bottom = '0px';
+          watermark.style.left = '0px'; // Set left position to 0
           watermark.style.width = '150px'; // Make the watermark span the full width
-          watermark.style.textAlign = 'center'; // Center the text
+          watermark.style.textAlign = 'left'; // Center the text
           watermark.style.color = '#000';
           watermark.style.fontSize = '12px';
           watermark.style.pointerEvents = 'none'; 
@@ -3853,7 +3851,7 @@
           color: "white",
           dashArray: "",
           fillOpacity: 1,
-          fillColor: selected ? "#028bc4" : "#e6e6e6",
+          fillColor: selected ? "#2b75a5" : "#e6e6e6",
         };
       }
 
@@ -3865,7 +3863,7 @@
           weight: 1,
           dashArray: "",
           fillOpacity: 0.9,
-          fillColor: "#028bc4",
+          fillColor: "#3389c1",
         });
         layer.bringToFront();
       }
