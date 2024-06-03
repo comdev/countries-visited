@@ -45,20 +45,14 @@
 
     <link rel="canonical" href="https://countries-visited.com/" />
 
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="https://countries-visited.com/img/favicon.svg"
-    />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://countries-visited.com/img/favicon.svg"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="https://countries-visited.com/img/countries_visited_icon.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1">
+    <link rel="manifest" href="/site.webmanifest?v=1">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=1" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon.ico?v=1">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -140,7 +134,7 @@
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v19.0" nonce="iidSQbpb"></script>
 -->
     <header>
-      <div class="navbar navbar-light box-shadow">
+      <nav class="navbar navbar-expand-lg navbar-light box-shadow">
         <div class="container d-flex justify-content-between">
           <a href="index.html" class="navbar-brand d-flex align-items-center">
             <img
@@ -151,19 +145,30 @@
             />
             <span class="fs-4">Countries Visited</span>
           </a>
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a href="index.html" class="nav-link">Map & Counter</a>
-            </li>
-            <li class="nav-item">
-              <a href="most-visited-countries.html" class="nav-link"
-                >Most Visited Countries</a
-              >
-            </li>
-            <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
-          </ul>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link">Map & Counter</a>
+              </li>
+              <li class="nav-item">
+                <a href="most-visited-countries.html" class="nav-link">Most Visited Countries</a>
+              </li>
+              <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
 
     <main role="main">
@@ -183,20 +188,20 @@
             <div class="col-6 col-md-6">
               <div class="counter-box">
                 <i class="fa fa-thumbs-o-up"></i>
-                <span class="counter" id="selected-count">0</span>
-                <p>Number of Countries Visited</p>
+                <span class="counter rotate-text" id="selected-count">0</span>
+                <p>Countries Visited</p>
               </div>
             </div>
             <div class="col-6 col-md-6">
               <div class="counter-box">
                 <i class="fa fa-group"></i>
-                <span class="counter" id="selected-percentage">0%</span>
-                <p>of the World traveled</p>
+                <span class="counter rotate-text" id="selected-percentage">0%</span>
+                <p>Traveled the World</p>
               </div>
             </div>
           </div>
 
-          <div id="map"></div>
+          <div id="map"> <div class="loading"></div></div>
 
           
 
@@ -205,7 +210,7 @@
               <div class="share-box d-flex justify-content-between align-items-center">
                 <p class="m-0 me-2 share-info-text">Share the personalized map of the countries you have visited:</p>
                 <button type="button" id="copyLinkButton" class="btn btn-sm ms-auto" title="Copy Link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy me-1" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"></path>
                   </svg>
                 </button>
@@ -3632,16 +3637,26 @@
         </div>
       </div>
 
+
+      <!-- Start Recommendations -->
+      
       <div class="py-5 bg-white">
         <div class="container">
-          <h2>Share your Travel History</h2>
+            <h2>Countries to Visit</h2>
+            <p>Have you already been to ... ? Based on your countries visited checklist above and the <a href="/most-visited-countries.html">Most Visited Countries in the World</a>, we have the following travel recommendations for you:</p>
+            <div class="container my-4">
+                <div class="row" id="recommended-countries">
+                    <!-- Recommended countries will be inserted here -->
+                </div>
+            </div>
+        </div>
+      </div>
+ 
+      <!-- End Recommendations-->
 
-          <img
-            src="img/worldmap_colored_countries.png"
-            class="worldmap"
-            alt="Countries visited visualized on a map"
-          />
-
+      <div class="py-5 bg-light">
+        <div class="container">
+          <h2>Share your Travel History and explore new Travel Destiations</h2>
           <p>
             Embark on a visual journey with our interactive map of the world with all countries that lets
             you explore and highlight the countries you have visited. Whether
@@ -3658,11 +3673,20 @@
             deserves to be celebrated and remembered on your own personalized
             map of the world.
           </p>
+          <img
+            src="img/worldmap_colored_countries.png"
+            class="worldmap img-thumbnail"
+            alt="Countries visited on a world map"
+          />
+
+          
         </div>
       </div>
+
+      
     </main>
 
-    <footer class="text-muted bg-light">
+    <footer class="text-muted bg-white">
       <div class="container">
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>
@@ -3736,23 +3760,23 @@
         map.fitBounds(maxBounds);
       }
 
-      // Add the watermark control
       L.Control.Watermark = L.Control.extend({
         onAdd: function(map) {
           var watermark = L.DomUtil.create('div');
           watermark.innerHTML = 'countries-visited.com';
           watermark.style.opacity = '0.1';
-          watermark.style.position = 'absolute';
-          watermark.style.bottom = '0px';
-          watermark.style.left = '0px'; // Set left position to 0
-          watermark.style.width = '150px'; // Make the watermark span the full width
-          watermark.style.textAlign = 'left'; // Center the text
+          watermark.style.position = 'relative';
+          watermark.style.bottom = '0px'; // Use positive bottom value to move it up
+          watermark.style.left = '50%'; // Center horizontally
+          watermark.style.transform = 'translateX(-50%)'; // Adjust to truly center
+          watermark.style.width = '150px'; // Width of the watermark
+          watermark.style.textAlign = 'center'; // Center the text
           watermark.style.color = '#000';
           watermark.style.fontSize = '12px';
           watermark.style.pointerEvents = 'none'; 
           watermark.style.fontWeight = 'bold';
 
-        return watermark;
+          return watermark;
         },
       });
 
@@ -3760,7 +3784,8 @@
         return new L.Control.Watermark(opts);
       }
 
-      L.control.watermark({ position: 'bottomleft' }).addTo(map);
+      // Add to map, position it at the bottom
+      L.control.watermark({ position: 'bottomright' }).addTo(map);
 
       // Define the custom control
       const resetViewControl = L.Control.extend({
@@ -3798,8 +3823,54 @@
       // Add the custom control to the map
       map.addControl(new resetViewControl());
 
+      map.whenReady(function() {
+            document.body.classList.add('map-loaded');
+      });
+
       // Create an array to store selected countries
       let selectedCountries = [];
+
+      // Country Recommendations 
+      const possibleCountries = [
+            { name: "France", image: "paris.jpg" },
+            { name: "Spain", image: "barcelona.jpg" },
+            { name: "United States", image: "new-york.jpg" },
+            { name: "Turkey", image: "turkey.jpg" },
+            { name: "Italy", image: "rome.jpg" },
+            { name: "Mexico", image: "mexico.jpg" },
+            {name: "United Kingdom", image: "london.jpg" },
+            { name: "Germany", image: "berlin.jpg" },
+            { name: "Greece", image: "santorini.jpg" },
+            { name: "Austria", image: "austria.jpg" }
+ 
+      ];
+
+      function getRecommendedCountries(selected, possible) {
+          const recommended = possible.filter(country => !selected.includes(country.name));
+          if (recommended.length < 1) {
+              return possibleCountries.slice(0, 3); // Default top 3 countries
+          }
+          return recommended.slice(0, 3);
+      }
+
+      function updateRecommendedCountries() {
+          const recommendations = getRecommendedCountries(selectedCountries, possibleCountries);
+          const container = document.getElementById('recommended-countries');
+          container.innerHTML = '';
+          recommendations.forEach(country => {
+              const countryCard = `
+                  <div class="col-md-4 mb-4">
+                      <div class="card">
+                          <img src="/img/countries/${country.image}" width="300" height="200" class="card-img-top" alt="Country Image of ${country.name}">
+                          <div class="card-body">
+                              <h5 class="card-title">${country.name}</h5>
+                          </div>
+                      </div>
+                  </div>
+              `;
+              container.innerHTML += countryCard;
+          });
+      }
 
       // Define the 'info' control
       const info = L.control();
@@ -3817,22 +3888,21 @@
         return this._div;
       };
 
+      // Function to animate the counter update
+      function updateCounter(element, newValue) {
+        element.classList.remove("rotate-text"); // Remove the class to reset animation
+        void element.offsetWidth; // Trigger a DOM reflow
+        element.classList.add("rotate-text"); // Reapply the class for the animation
+        element.textContent = newValue; // Update the text content
+        updateRecommendedCountries();
+      }
+
+      // Mouseover Update
       info.update = function (props) {
         const contents = props
           ? `<b>${props.NAME_LONG}</b><br />`
           : "Hover over a country";
         this._div.innerHTML = `${contents}`;
-
-        // Update the counter
-        const counterElement = document.getElementById("selected-count");
-        counterElement.textContent = selectedCountries.length;
-
-        /// Update the percentage
-        const percentageElement = document.getElementById(
-          "selected-percentage"
-        );
-        percentageElement.textContent =
-          ((selectedCountries.length / 238) * 100).toFixed(0) + "%";
 
         // Redraw the map
         geojson.setStyle(style);
@@ -3874,6 +3944,19 @@
         info.update();
       }
 
+      function updateCounterElements(){
+          // Update counter and percentage elements
+          const counterElement = document.getElementById("selected-count");
+          const percentageElement = document.getElementById("selected-percentage");
+          const newCount = selectedCountries.length;
+          updateCounter(counterElement, newCount);
+          const newPercentage = ((newCount / 238) * 100).toFixed(0) + "%";
+          // Only update on percentage change
+          if (newPercentage != percentageElement.textContent){
+            updateCounter(percentageElement, newPercentage);
+          }
+      }
+
       // On each feature function
       function onEachFeature(feature, layer) {
         layer.on({
@@ -3894,6 +3977,10 @@
               selectedCountries.push(countryName);
               checkCheckboxByCountry(countryName);
             }
+
+            updateCounterElements();
+
+
 
             // Update the info control
             info.update(e.target.feature.properties);
@@ -3987,6 +4074,7 @@
             updateSelectedCountries(country, isChecked);
             updateCountryHighlight(country, isChecked);
             updateURL();
+            updateCounterElements();
           });
         });
       }
@@ -3995,9 +4083,11 @@
       function updateSelectedCountries(country, isChecked) {
         if (isChecked && !selectedCountries.includes(country)) {
           selectedCountries.push(country);
+          updateRecommendedCountries();
         } else if (!isChecked && selectedCountries.includes(country)) {
           const index = selectedCountries.indexOf(country);
           selectedCountries.splice(index, 1);
+          updateRecommendedCountries();
         }
 
         // Update the info control
@@ -4030,7 +4120,8 @@
         checkCheckboxes();
         updateURL(); // Call updateURL() on page load
       });
-
+      	
+      updateRecommendedCountries();
 
     </script>
     

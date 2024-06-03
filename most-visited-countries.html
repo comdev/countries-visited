@@ -50,20 +50,14 @@
     <title>Most Visited Countries Map</title>
 
     <link rel="canonical" href="https://countries-visited.com/most-visited-countries.html" />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="https://countries-visited.com/img/favicon.svg"
-    />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://countries-visited.com/img/favicon.svg"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="https://countries-visited.com/img/countries_visited_icon.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1">
+    <link rel="manifest" href="/site.webmanifest?v=1">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=1" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon.ico?v=1">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -129,9 +123,8 @@
       <a href="https://www.termsfeed.com/">TermsFeed</a></noscript
     >
     <!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
-
     <header>
-      <div class="navbar navbar-light box-shadow">
+      <nav class="navbar navbar-expand-lg navbar-light box-shadow">
         <div class="container d-flex justify-content-between">
           <a href="index.html" class="navbar-brand d-flex align-items-center">
             <img
@@ -140,23 +133,34 @@
               class="header-icon bi me-2"
               alt="World with Country Marker"
             />
-
             <span class="fs-4">Countries Visited</span>
           </a>
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a href="index.html" class="nav-link">Map & Counter</a>
-            </li>
-            <li class="nav-item">
-              <a href="most-visited-countries.html" class="nav-link"
-                >Most Visited Countries</a
-              >
-            </li>
-           <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
-          </ul>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link">Map & Counter</a>
+              </li>
+              <li class="nav-item">
+                <a href="most-visited-countries.html" class="nav-link">Most Visited Countries</a>
+              </li>
+              <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
+
 
     <main role="main">
       <section class="jumbotron text-center bg-light">
@@ -180,8 +184,6 @@
             global tourism trends, this map has everything you need. Dive in and
             start exploring today!
           </p>
-
-          <div id="map"></div>
 
           <img
             src="img/most-visited-countries-world-map.png"
@@ -288,139 +290,201 @@
             countries in 2022 and why it might be worthwhile for you to visit
             them:
           </p>
-          <h3>France</h3>
-          <p>
-            France tops the list as it boasts iconic landmarks like the Eiffel
-            Tower, Louvre Museum, and Notre-Dame Cathedral, drawing millions of
-            visitors to experience its rich history, art, and culture. From
-            romantic Parisian streets to picturesque vineyards in Provence,
-            France offers diverse attractions for every traveler. France is also
-            celebrated for its world-class cuisine and fine wines, offering
-            gastronomic delights at every turn. Its picturesque countryside and
-            romantic ambiance further enhance its appeal, making it a dream
-            destination for couples and honeymooners.
-          </p>
 
-          <h3>Spain</h3>
-          <p>
-            Spain enchants visitors with its vibrant culture, stunning
-            architecture, and sunny beaches. From the bustling streets of
-            Barcelona to the historic charm of Madrid, Spain's lively cities
-            offer endless opportunities for exploration. Its warm climate and
-            delicious cuisine add to its allure as a top tourist destination. In
-            addition to its famous landmarks, Spain's lively fiestas and
-            flamenco performances showcase its vibrant culture and passion for
-            celebration. The country's rich Moorish heritage is evident in its
-            stunning architecture, adding an exotic flair to its charming
-            streets.
-          </p>
-
-          <h3>United States</h3>
-          <p>
-            The United States attracts travelers with its diverse landscapes,
-            world-renowned attractions, and vibrant cities. From the bustling
-            streets of New York City to the natural wonders of the Grand Canyon,
-            the USA offers something for everyone, whether it's iconic
-            landmarks, breathtaking national parks, or thrilling entertainment.
-            Its vast national parks, such as Yellowstone and Yosemite, showcase
-            the country's stunning natural beauty and outdoor adventures. The
-            United States is a melting pot of cultures, offering a diverse range
-            of experiences from Broadway shows in New York City to jazz
-            festivals in New Orleans.
-          </p>
-
-          <h3>Turkey</h3>
-          <p>
-            Turkey's unique blend of East and West, ancient history, and
-            stunning landscapes make it a top destination. Visitors flock to
-            Istanbul to explore its rich heritage and vibrant markets, while the
-            coastal regions offer beautiful beaches and luxurious resorts.
-            Turkey's hospitality and culinary delights also contribute to its
-            popularity. Visitors to Turkey can indulge in a traditional Turkish
-            bath experience or embark on a hot air balloon ride over the
-            otherworldly landscapes of Cappadocia. The country's vibrant
-            bazaars, ancient ruins, and hospitable locals create an
-            unforgettable travel experience.
-          </p>
-
-          <h3>Italy</h3>
-          <p>
-            Italy's timeless beauty, exquisite cuisine, and wealth of cultural
-            treasures make it a perennial favorite among travelers. From the
-            ancient ruins of Rome to the romantic canals of Venice and the
-            scenic landscapes of Tuscany, Italy offers a wealth of experiences
-            for history buffs, art enthusiasts, and food lovers alike. Italy's
-            charming coastal villages, such as Cinque Terre and Amalfi, offer
-            postcard-perfect views and idyllic seaside retreats. The country's
-            passion for art and fashion is evident in its world-renowned museums
-            and designer boutiques, adding to its allure as a cultural hub.
-          </p>
-
-          <h3>Mexico</h3>
-          <p>
-            Mexico's colorful culture, stunning beaches, and ancient ruins
-            attract millions of visitors each year. From the vibrant streets of
-            Mexico City to the crystal-clear waters of Cancun, Mexico offers a
-            diverse range of attractions, including UNESCO World Heritage sites,
-            lively festivals, and mouthwatering cuisine. From the Mayan ruins of
-            Chichen Itza to the colonial architecture of Puebla, Mexico's rich
-            history is on display at every corner. Its lively street markets,
-            mariachi bands, and colorful festivals provide a glimpse into the
-            country's vibrant cultural heritage.
-          </p>
-
-          <h3>United Kingdom</h3>
-          <p>
-            The United Kingdom entices travelers with its rich history, royal
-            heritage, and charming countryside. From the iconic landmarks of
-            London to the historic castles of Scotland and the rolling hills of
-            the English countryside, the UK offers a wealth of cultural and
-            natural attractions for visitors to explore. England's picturesque
-            countryside, dotted with charming cottages and historic estates,
-            offers a tranquil escape from the hustle and bustle of city life.
-            Scotland's rugged landscapes and whisky distilleries provide a taste
-            of the country's rugged charm and warm hospitality.
-          </p>
-
-          <h3>Germany</h3>
-          <p>
-            Germany's blend of medieval charm, modern innovation, and scenic
-            beauty makes it a top destination in Europe. From the historic
-            streets of Berlin to the fairytale castles of Bavaria and the scenic
-            landscapes of the Black Forest, Germany offers a diverse array of
-            experiences for travelers. Germany's vibrant beer gardens, festive
-            Christmas markets, and lively Oktoberfest celebrations showcase its
-            love for food, drink, and merriment. Its efficient public
-            transportation system and well-preserved medieval towns make it a
-            delight to explore.
-          </p>
-
-          <h3>Greece</h3>
-          <p>
-            Greece's ancient history, stunning islands, and warm hospitality
-            make it a perennial favorite among travelers. From the iconic ruins
-            of Athens to the idyllic beaches of Santorini and Mykonos, Greece
-            offers a perfect blend of cultural immersion and relaxation.
-            Greece's crystal-clear waters and secluded beaches provide the
-            perfect backdrop for relaxation and rejuvenation. Its ancient sites,
-            such as the Acropolis and Delphi, offer a glimpse into the country's
-            rich history and mythical past.
-          </p>
-
-          <h3>Austria</h3>
-          <p>
-            Austria's breathtaking alpine scenery, historic architecture, and
-            rich cultural heritage attract visitors from around the world. From
-            the imperial grandeur of Vienna to the charming villages of the
-            Austrian Alps, Austria offers a wealth of experiences for nature
-            lovers, history enthusiasts, and music aficionados. Austria's
-            classical music heritage, embodied by composers like Mozart and
-            Strauss, can be experienced in the grand concert halls of Vienna and
-            Salzburg. The country's picturesque lakes, such as Lake Hallstatt
-            and Lake Wolfgangsee, offer scenic beauty and outdoor recreational
-            activities.
-          </p>
-
+          <div class="row my-4">
+            <div class="col-md-8">
+              <h3>France</h3>
+              <p>
+                France tops the list as it boasts iconic landmarks like the Eiffel
+                Tower, Louvre Museum, and Notre-Dame Cathedral, drawing millions of
+                visitors to experience its rich history, art, and culture. From
+                romantic Parisian streets to picturesque vineyards in Provence,
+                France offers diverse attractions for every traveler. France is also
+                celebrated for its world-class cuisine and fine wines, offering
+                gastronomic delights at every turn. Its picturesque countryside and
+                romantic ambiance further enhance its appeal, making it a dream
+                destination for couples and honeymooners.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/paris.jpg" alt="Paris" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+              <h3>Spain</h3>
+              <p>
+                Spain enchants visitors with its vibrant culture, stunning
+                architecture, and sunny beaches. From the bustling streets of
+                Barcelona to the historic charm of Madrid, Spain's lively cities
+                offer endless opportunities for exploration. Its warm climate and
+                delicious cuisine add to its allure as a top tourist destination. In
+                addition to its famous landmarks, Spain's lively fiestas and
+                flamenco performances showcase its vibrant culture and passion for
+                celebration. The country's rich Moorish heritage is evident in its
+                stunning architecture, adding an exotic flair to its charming
+                streets.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/barcelona.jpg" alt="Spain" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+              <h3>United States</h3>
+              <p>
+                The United States attracts travelers with its diverse landscapes,
+                world-renowned attractions, and vibrant cities. From the bustling
+                streets of New York City to the natural wonders of the Grand Canyon,
+                the USA offers something for everyone, whether it's iconic
+                landmarks, breathtaking national parks, or thrilling entertainment.
+                Its vast national parks, such as Yellowstone and Yosemite, showcase
+                the country's stunning natural beauty and outdoor adventures. The
+                United States is a melting pot of cultures, offering a diverse range
+                of experiences from Broadway shows in New York City to jazz
+                festivals in New Orleans.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/new-york.jpg" alt="New York" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+              <h3>Turkey</h3>
+              <p>
+                Turkey's unique blend of East and West, ancient history, and
+                stunning landscapes make it a top destination. Visitors flock to
+                Istanbul to explore its rich heritage and vibrant markets, while the
+                coastal regions offer beautiful beaches and luxurious resorts.
+                Turkey's hospitality and culinary delights also contribute to its
+                popularity. Visitors to Turkey can indulge in a traditional Turkish
+                bath experience or embark on a hot air balloon ride over the
+                otherworldly landscapes of Cappadocia. The country's vibrant
+                bazaars, ancient ruins, and hospitable locals create an
+                unforgettable travel experience.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/turkey.jpg" alt="Turkey" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+              <h3>Italy</h3>
+              <p>
+                Italy's timeless beauty, exquisite cuisine, and wealth of cultural
+                treasures make it a perennial favorite among travelers. From the
+                ancient ruins of Rome to the romantic canals of Venice and the
+                scenic landscapes of Tuscany, Italy offers a wealth of experiences
+                for history buffs, art enthusiasts, and food lovers alike. Italy's
+                charming coastal villages, such as Cinque Terre and Amalfi, offer
+                postcard-perfect views and idyllic seaside retreats. The country's
+                passion for art and fashion is evident in its world-renowned museums
+                and designer boutiques, adding to its allure as a cultural hub.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/rome.jpg" alt="Italy" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+              <h3>Mexico</h3>
+              <p>
+                Mexico's colorful culture, stunning beaches, and ancient ruins
+                attract millions of visitors each year. From the vibrant streets of
+                Mexico City to the crystal-clear waters of Cancun, Mexico offers a
+                diverse range of attractions, including UNESCO World Heritage sites,
+                lively festivals, and mouthwatering cuisine. From the Mayan ruins of
+                Chichen Itza to the colonial architecture of Puebla, Mexico's rich
+                history is on display at every corner. Its lively street markets,
+                mariachi bands, and colorful festivals provide a glimpse into the
+                country's vibrant cultural heritage.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/mexico.jpg" alt="Mexico" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+              <h3>United Kingdom</h3>
+              <p>
+                The United Kingdom entices travelers with its rich history, royal
+                heritage, and charming countryside. From the iconic landmarks of
+                London to the historic castles of Scotland and the rolling hills of
+                the English countryside, the UK offers a wealth of cultural and
+                natural attractions for visitors to explore. England's picturesque
+                countryside, dotted with charming cottages and historic estates,
+                offers a tranquil escape from the hustle and bustle of city life.
+                Scotland's rugged landscapes and whisky distilleries provide a taste
+                of the country's rugged charm and warm hospitality.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/london.jpg" alt="United Kingdom" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+            <h3>Germany</h3>
+            <p>
+              Germany's blend of medieval charm, modern innovation, and scenic
+              beauty makes it a top destination in Europe. From the historic
+              streets of Berlin to the fairytale castles of Bavaria and the scenic
+              landscapes of the Black Forest, Germany offers a diverse array of
+              experiences for travelers. Germany's vibrant beer gardens, festive
+              Christmas markets, and lively Oktoberfest celebrations showcase its
+              love for food, drink, and merriment. Its efficient public
+              transportation system and well-preserved medieval towns make it a
+              delight to explore.
+            </p>
+          </div>
+            <div class="col-md-4">
+              <img src="/img/countries/berlin.jpg" alt="Germany" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+            <h3>Greece</h3>
+            <p>
+              Greece's ancient history, stunning islands, and warm hospitality
+              make it a perennial favorite among travelers. From the iconic ruins
+              of Athens to the idyllic beaches of Santorini and Mykonos, Greece
+              offers a perfect blend of cultural immersion and relaxation.
+              Greece's crystal-clear waters and secluded beaches provide the
+              perfect backdrop for relaxation and rejuvenation. Its ancient sites,
+              such as the Acropolis and Delphi, offer a glimpse into the country's
+              rich history and mythical past.
+            </p>
+          </div>
+            <div class="col-md-4">
+              <img src="/img/countries/santorini.jpg" alt="Greece" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-8">
+            <h3>Austria</h3>
+            <p>
+              Austria's breathtaking alpine scenery, historic architecture, and
+              rich cultural heritage attract visitors from around the world. From
+              the imperial grandeur of Vienna to the charming villages of the
+              Austrian Alps, Austria offers a wealth of experiences for nature
+              lovers, history enthusiasts, and music aficionados. Austria's
+              classical music heritage, embodied by composers like Mozart and
+              Strauss, can be experienced in the grand concert halls of Vienna and
+              Salzburg. The country's picturesque lakes, such as Lake Hallstatt
+              and Lake Wolfgangsee, offer scenic beauty and outdoor recreational
+              activities.
+            </p>
+            </div>
+            <div class="col-md-4">
+              <img src="/img/countries/austria.jpg" alt="Austria" class="img-fluid img-thumbnail">
+            </div>
+          </div>
+          
           <br />
           <p>
             Have you already visited all the countries mentioned? Then mark your
@@ -455,8 +519,8 @@
           · <a href="mailto:info@countries-visited.com">Contact</a> ·
           <a href="#" id="open_preferences_center">Cookies Preferences</a>
         </p>
-      </div>
-      <div class="container social d-flex justify-content-center">
+        </div>
+        <div class="container social d-flex justify-content-center">
         <p>
           <a href="https://www.facebook.com/profile.php?id=61558971358016">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -466,6 +530,7 @@
         </p>
       </div>
     </footer>
+
 
     <!-- Bootstrap core JavaScript
   ================================================== -->
