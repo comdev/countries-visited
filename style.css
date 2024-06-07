@@ -329,6 +329,16 @@ footer p {
   margin-right: auto;
 }
 
+.statesmap {
+  width: 90vw;
+  max-width: 1136px;
+  height: auto;
+  margin: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .most-visited-worldmap{
   width: 90vw;
   max-width: 800px;
