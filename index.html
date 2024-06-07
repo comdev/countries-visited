@@ -159,7 +159,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a href="index.html" class="nav-link">Map & Counter</a>
+                <a href="index.html" class="nav-link">Countries Map & Counter</a>
+              </li>
+              <li class="nav-item">
+                <a href="states-visited.html" class="nav-link">States Map & Counter</a>
               </li>
               <li class="nav-item">
                 <a href="most-visited-countries.html" class="nav-link">Most Visited Countries</a>
@@ -4044,22 +4047,8 @@
             if (checkbox) {
               checkbox.checked = true;
               updateSelectedCountries(value, true); // Update selected countries array
-              updateCountryHighlight(value, true); // Highlight corresponding country on the map
-      
             }
           });
-        }
-      }
-
-      // Function to highlight or reset highlight on the map based on checkbox state
-      function updateCountryHighlight(country, isChecked) {
-        const layer = geojson.getLayers().find(layer => layer.feature.properties.NAME_LONG === country);
-        if (layer) {
-          if (isChecked) {
-            highlightFeature({ target: layer });
-          } else {
-            resetHighlight({ target: layer });
-          }
         }
       }
 
@@ -4072,7 +4061,6 @@
             const country = this.value;
             const isChecked = this.checked;
             updateSelectedCountries(country, isChecked);
-            updateCountryHighlight(country, isChecked);
             updateURL();
             updateCounterElements();
           });
@@ -4119,9 +4107,11 @@
       window.addEventListener('load', function() {
         checkCheckboxes();
         updateURL(); // Call updateURL() on page load
+        updateRecommendedCountries();
+        updateCounterElements();
       });
       	
-      updateRecommendedCountries();
+      
 
     </script>
     
