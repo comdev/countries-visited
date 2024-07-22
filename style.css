@@ -304,10 +304,14 @@ footer p {
 
 .nav-link {
   color: #3389c1;
+  border-radius: 20px;
+  padding: 5px;
 }
 
 .nav-link:hover {
-  color: #d2d2d2;
+  color: #ffffff;
+  background-color: #028bc4;
+  border-radius: 20px;
 }
 
 .accordion-button {
