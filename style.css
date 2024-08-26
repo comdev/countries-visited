@@ -1,3 +1,6 @@
+body {
+  height: auto;
+}
 :root {
   --jumbotron-padding-y: 1rem;
 }
@@ -222,6 +225,26 @@ footer p {
   border-radius: 40px;
 }
 
+#states-row {
+  transition: opacity 0.6s ease, height 0.6s ease;
+  overflow: hidden; /* Ensure content is not shown when height is limited */
+  opacity: 0;
+  height: 1px;
+}
+#states-row.visible {
+  opacity: 1;
+  height: auto; /* Alternatively, you can specify a specific height value */
+}
+
+.states-box {
+  color: #fff;
+  display: block;
+  background: #3389c1;
+  padding: 10px;
+  margin:  10px 0px;
+  border-radius: 40px;
+}
+
 #copyLinkButton{
   background-color: #028bc4;
   color: #fff;
@@ -231,7 +254,21 @@ footer p {
   align-items: center;
 }
 
+#statesLinkButton{
+  background-color: #fff;
+  color: #fff;
+  border-radius: 30px;
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
 
+#statesLinkButton a{
+  color: #028bc4;
+}
+#statesLinkButton a:hover{
+  color: #000;
+}
 
 .leaflet-container {
   max-width: 100%;
@@ -380,11 +417,14 @@ a:hover {
 }
 
 .social{
-  display: inline;
   padding: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 32px;
+}
+
+.social-links {
+  display: flex; /* Use Flexbox for horizontal alignment */
+  gap: 10px; /* Adjust the space between icons */
+  margin: 0; /* Remove default margin from <p> */
+  padding: 0; /* Remove default padding from <p> */
 }
 
 h1{
@@ -426,4 +466,87 @@ h1{
 .leaflet-top .leaflet-control{
   margin-right: 3px;
   margin-top: 3px;
+}
+
+header {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 3000; /* Ensures it stays on top of other content */
+  background-color: white; /* Ensure the header has a background */
+}
+
+/* Additional optional styling for better appearance */
+.header-icon {
+  margin-right: 10px;
+}
+
+.navbar-brand span {
+  font-size: 1.25rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+}
+
+/* Make the specific row sticky */
+main {
+  position: relative; /* Ensure the container is properly positioned */
+}
+
+
+.sticky-row {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 60px; /* Adjust this value to ensure it sits correctly below the header */
+  z-index: 2000; /* Ensures it stays on top of other content but below the header */
+  background-color: white; /* Ensure the row has a background */
+  box-shadow: 0 2px 5px #fff;
+}
+
+.btn-social {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  background-color: #4b4b4b;
+  padding: 3px;
+  margin: 2px;
+}
+
+.btn-social svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
+.btn-social:hover {
+  background-color: #028bc4; 
+}
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .btn-social {
+    width: 30px ;
+    height: 30px ;
+    border-radius: 50px;
+    padding: 0px;
+    margin: 1px; /* Adjust margin for smaller screens */
+  }
+
+  .btn-social svg {
+    width: 18px;
+    height: 18px;
+  }
+
+}
+
+.share-social-btn{
+  display: flex;
 }

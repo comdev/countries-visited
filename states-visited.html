@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Simply click, mark, and showcase the states you have visited on our interactive state map. Discover the joy of tracking your global adventures."
+      content="Simply track and count the states you have visited on our interactive state map. Discover the joy of tracking your global adventures."
     />
     <meta
       name="keywords"
       content="states visited, states visited map, count states visited, states i ve visited"
     />
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-T5W6TZRD');</script>
+      <!-- End Google Tag Manager -->
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://countries-visited.com" />
@@ -19,7 +27,7 @@
     <meta property="og:title" content="States Visited Map & Counter" />
     <meta
       property="og:description"
-      content="Simply click, mark, and showcase the states you have visited on our interactive US map. Discover the joy of tracking your global adventures."
+      content="Simply track and count the states you have visited on our interactive US map. Discover the joy of tracking your global adventures."
     />
     <meta
       property="og:image"
@@ -34,7 +42,7 @@
     <meta name="twitter:title" content="States Visited Map & Counter" />
     <meta
       name="twitter:description"
-      content="Simply click, mark, and showcase the states you have visited on our interactive US map. Discover the joy of tracking your global adventures."
+      content="Simply track and count the states you have visited on our interactive US map. Discover the joy of tracking your global adventures."
     />
     <meta
       name="twitter:image"
@@ -65,11 +73,6 @@
     />
     <link href="style.css" rel="stylesheet" />  
 
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -79,6 +82,15 @@
         "url": "https://countries-visited.com"
       }
     </script>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <meta name="google-adsense-account" content="ca-pub-7607877614179487">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7607877614179487"
+     crossorigin="anonymous"></script>
   </head>
   <body>
     <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
@@ -105,6 +117,11 @@
       });
     </script>
 
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5W6TZRD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
     <!-- Google Analytics -->
     <script
       type="text/plain"
@@ -127,14 +144,10 @@
     >
     <!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
 
-    <!--
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v19.0" nonce="iidSQbpb"></script>
--->
     <header>
       <nav class="navbar navbar-expand-lg navbar-light box-shadow">
         <div class="container d-flex justify-content-between">
-          <a href="index.html" class="navbar-brand d-flex align-items-center">
+          <a href="index.html" class="navbar-brand d-flex align-items-center" title="Countries Visited Startpage">
             <img
               src="img/countries_visited_icon.svg"
               width="30"
@@ -157,13 +170,13 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a href="index.html" class="nav-link">Countries Map & Counter</a>
+                <a href="index.html" class="nav-link" title="Countries Map & Counter">Countries Map & Counter</a>
               </li>
               <li class="nav-item">
-                <a href="states-visited.html" class="nav-link">States Map & Counter</a>
+                <a href="states-visited.html" class="nav-link" title="States Map & Counter">States Map & Counter</a>
               </li>
               <li class="nav-item">
-                <a href="most-visited-countries.html" class="nav-link">Most Visited Countries</a>
+                <a href="most-visited-countries.html" class="nav-link" title="Most Visited Countries">Most Visited Countries</a>
               </li>
               <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
             </ul>
@@ -183,7 +196,7 @@
         </div>
       </section>
 
-      <div class="py-5 map-container bg-white">
+      <div class="sticky-row">
         <div class="container">
           <div class="row">
             <div class="col-6 col-md-6">
@@ -201,6 +214,12 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="py-5 map-container bg-white">
+        <div class="container">
+          
 
           <div id="map"> <div class="loading"></div></div>
 
@@ -210,13 +229,41 @@
             <div class="col-md-8 mx-auto">
               <div class="share-box d-flex justify-content-between align-items-center">
                 <p class="m-0 me-2 share-info-text">Share the personalized map of the states you have visited:</p>
-                <button type="button" id="copyLinkButton" class="btn btn-sm ms-auto" title="Copy Link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"></path>
-                  </svg>
-                </button>
-                <!--<div class="fb-share-button" data-href="https://countries-visited.com" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcountries-visited.com%2F%3Fcountries%3DGermany&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Teilen</a></div>
-                -->
+                
+                <div class="share-social-btn">
+                  <a id="facebook-link" href="https://www.facebook.com/sharer/sharer.php?u=countries-visited.com/states-visited.html&quote=Simply%20mark%20and%20count%20the%20states%20you%20have%20visited%20on%20the%20interactive%20map.%20%23CountriesVisited"
+                    class="btn btn-social" target="_blank" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                    </svg>
+                  </a>
+                  <a id="x-twitter-link" href="https://x.com/intent/tweet?text=Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at&url=countries-visited.com/states-visited.html&hashtags=StatesVisited"
+                    class="btn btn-social" target="_blank" aria-label="X.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                      <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                    </svg>
+                  </a>
+                  <a id="whatsapp-link" href="whatsapp://send?text=Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20Explore%20more%20at%20https%3A%2F%2Fcountries-visited.com/states-visited.html"
+                    class="btn btn-social" aria-label="WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                    </svg>
+                  </a>
+                  <a id="copy-to-clipboard" href="javascript:void(0);"
+                    class="btn btn-social" aria-label="Link" onclick="copyToClipboard()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                      <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
+                      <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
+                    </svg>
+                  </a>
+                  <a id="mail-link" href="mailto:?subject=Check%20out%20this%20states%20tracker%20and%20counter&body=Track%20and%20count%20all%20the%20united%20states%20you've%20visited%20with%20the%20interactive%20map.%20Explore%20more%20at%20countries-visited.com%2Fstates-visited.html"
+                    class="btn btn-social" aria-label="Mail">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                    </svg>
+                  </a>
+                </div>
+ 
               </div>
             </div>
           </div>
@@ -879,33 +926,75 @@
         </div>
       </div>
 
+
+      <div class="py-5 bg-light">
+        <div class="container">
+          <h2>United States: Key Facts and Travel Highlights</h2>
+          <p>The United States is made up of 50 states, each with its own unique identity and features. Collectively, the states encompass diverse landscapes, ranging from sunny beaches and vast deserts to towering mountains and dense forests.</p>
+          <ul>
+            <li><strong>Population:</strong> The combined population of the U.S. states is approximately 331 million people, with California being the most populous state and Wyoming the least.</li>
+            <li><strong>Land Area:</strong> The total land area of the U.S. is about 3.8 million square miles, with Alaska being the largest state by land area and Rhode Island the smallest.</li>
+            <li><strong>Geographical Features:</strong> The U.S. boasts a wide variety of geographical features including the Rocky Mountains, the Great Plains, the Appalachian Mountains, and extensive coastlines along both the Atlantic and Pacific Oceans.</li>
+            <li><strong>Climate:</strong> The climate varies widely across states, from the temperate rainforests of the Pacific Northwest to the arid deserts of the Southwest. States like Florida and Hawaii enjoy tropical climates, while states like Minnesota and Maine experience cold winters.</li>
+            <li><strong>Economy:</strong> Each state contributes to the nation's economy in unique ways. For instance, California is a global hub for technology and entertainment, Texas is a leader in energy production, and New York is a financial powerhouse.</li>
+            <li><strong>Tourism:</strong> Major tourist attractions span across the states, including national parks like Yellowstone and the Grand Canyon, iconic landmarks like the Statue of Liberty, and popular destinations such as Las Vegas and Walt Disney World.</li>
+            <li><strong>Cultural Highlights:</strong> The U.S. states are rich in cultural diversity, offering a variety of festivals, historical sites, and regional cuisines. For example, New Orleans in Louisiana is famous for its Mardi Gras celebrations, while Kentucky is renowned for its bourbon and horse racing.</li>
+        </ul>
+
+        </div>
+      </div>
+
+
+      <div class="py-5 bg-white">
+        <div class="container">
+          <h2>Exploring U.S. Travel Trends: Most and Least Visited States</h2>
+          <p>When exploring travel trends across the United States, it's fascinating to see which states attract the most and least visitors, as well as how many states the average tourist tends to visit.</p>
+
+          <h3>Most Visited State</h3>
+          <p>Among the 50 states, <strong>California</strong> stands out as the most visited. Its allure is largely due to its diverse attractions and iconic landmarks. Visitors flock to California for a mix of experiences: the bustling entertainment scene of Los Angeles, the picturesque landscapes of San Francisco, and the world-famous Disneyland Resort in Anaheim. Additionally, California’s natural wonders, including Yosemite National Park and the breathtaking coastline of Big Sur, draw millions of nature enthusiasts and adventure seekers each year. The state's varied climate and geography offer something for every type of traveler, from urban explorers to beach lovers and mountain hikers.</p>
+
+          <h3>Least Visited State</h3>
+          <p>On the flip side, <strong>Wyoming</strong> is often recognized as one of the least visited states in the U.S. Despite its stunning natural beauty, including Yellowstone National Park and Grand Teton National Park, Wyoming has a relatively low population density and fewer major urban centers, which contributes to its lower visitor numbers. However, for those seeking solitude and a chance to experience some of America’s most pristine landscapes without the crowds, Wyoming offers a unique and serene travel experience.</p>
+
+          <h3>Average State Visits</h3>
+          <p>For the average American traveler, the typical number of states visited varies significantly based on individual travel habits and interests. On average, many Americans visit around 10 to 15 states in their lifetime. This number can be influenced by factors such as family vacations, work-related travel, and personal exploration. For international tourists, the trend might differ slightly. Many international visitors tend to focus on major metropolitan areas and key tourist attractions, often visiting a handful of states that offer a representative experience of American culture and landscapes.</p>
+
+          <p>In summary, while California’s vibrant cities and natural wonders make it the most visited state, Wyoming’s less-traveled paths provide a quieter alternative. Whether you're an American or an international traveler, the number of states visited will vary based on your travel preferences and goals.</p>
+
+        </div>
+      </div>
+
     </main>
 
     <footer class="text-muted bg-light">
       <div class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
+        <p class="float-right"><a href="#" title="Back to top">Back to top</a></p>
         <p>
           Countries visited © 2024 ·
-          <a href="https://countries-visited.com/privacy-policy.html"
+          <a href="https://countries-visited.com/privacy-policy.html" title="Privacy Policy"
             >Privacy Policy</a
           >
           ·
-          <a href="https://countries-visited.com/legal-notice.html"
+          <a href="https://countries-visited.com/legal-notice.html" title="Legal Notice / Impressum"
             >Legal Notice / Impressum</a
           >
-          · <a href="mailto:info@countries-visited.com">Contact</a> ·
-          <a href="#" id="open_preferences_center">Cookies Preferences</a>
+          · <a href="mailto:info@countries-visited.com" title="Mail Contact">Contact</a> ·
+          <a href="#" id="open_preferences_center" title="Cookies Preferences">Cookies Preferences</a>
         </p>
         </div>
         <div class="container social d-flex justify-content-center">
-        <p>
-          <a href="https://www.facebook.com/profile.php?id=61558971358016">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-          </svg>
-        </a>
-        </p>
-      </div>
+          <p class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61558971358016" title="Facebook Page"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+            </svg>
+            </a>
+            <a href="https://x.com/CountriesVstd" title="X.com Page">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 512"><path d="M256 0c141.385 0 256 114.615 256 256S397.385 512 256 512 0 397.385 0 256 114.615 0 256 0z"/><path fill="#fff" fill-rule="nonzero" d="M318.64 157.549h33.401l-72.973 83.407 85.85 113.495h-67.222l-52.647-68.836-60.242 68.836h-33.423l78.052-89.212-82.354-107.69h68.924l47.59 62.917 55.044-62.917zm-11.724 176.908h18.51L205.95 176.493h-19.86l120.826 157.964z"/>
+              </svg>     
+            </a>
+          </p>
+        </div>
     </footer>
 
     <!-- Bootstrap core JavaScript
@@ -1230,6 +1319,8 @@
           url += '?states=' + encodeURIComponent(params.join(','));
         }
         history.pushState(null, '', url);
+
+        updateSocialLinks();
       }
 
       // Function to check checkboxes based on URL parameters
@@ -1281,15 +1372,51 @@
         info.update();
       }
 
-      document.getElementById("copyLinkButton").addEventListener("click", function() {
-        const url = window.location.href;
-        
-        navigator.clipboard.writeText(url).then(function() {
-          // Optional: Add any post-copy behavior here if needed
-        }, function(err) {
-          console.error('Failed to copy: ', err);
-        });
-      });
+      function updateSocialLinks() {
+          
+          const currentUrl = window.location.href;
+          
+          const facebookLink = document.getElementById('facebook-link');
+          if (facebookLink) {
+              const quote = "Simply%20mark%20and%20count%20the%20states%20you%20have%20visited%20on%20the%20interactive%20states%20map";
+              facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}&quote=${quote}`;
+          } 
+
+          const xLink = document.getElementById('x-twitter-link');
+          if (xLink) {
+              const text = "Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at";
+              const hashtags = "StatesVisited"
+              xLink.href = `https://x.com/intent/tweet?text=${text}&url=${encodeURIComponent(currentUrl)}&hashtags=${hashtags}`;
+          } 
+
+          const whatsappLink = document.getElementById('whatsapp-link');
+          if (whatsappLink) {
+              const text = "Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at%20";
+              whatsappLink.href = `whatsapp://send?text=${text}${currentUrl}`;
+          }
+
+          const mailLink = document.getElementById('mail-link');
+          if (mailLink) {
+              const subject = 'Check out this states tracker and counter';
+              const body = `Track and count all the united states you\'ve visited with the interactive map. Explore more at ${(currentUrl)}`;
+
+              mailLink.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          }
+          
+      }
+
+      function copyToClipboard() {
+          // Get the current page URL
+          const currentUrl = window.location.href;
+
+          // Use the Clipboard API to copy text
+          navigator.clipboard.writeText(currentUrl).then(() => {
+              //alert('Link copied to clipboard!');
+          }).catch(err => {
+              console.error('Failed to copy: ', err);
+          });
+      }
+
 
 
 
