@@ -362,7 +362,7 @@ footer p {
 
 .worldmap {
   width: 90vw;
-  max-width: 1020px;
+  max-width: 600px;
   height: auto;
   margin: 5px;
   display: block;
@@ -372,7 +372,7 @@ footer p {
 
 .statesmap {
   width: 90vw;
-  max-width: 1136px;
+  max-width: 600px;
   height: auto;
   margin: 5px;
   display: block;
@@ -549,4 +549,34 @@ main {
 
 .share-social-btn{
   display: flex;
+}
+
+.ad-container-leaderboard{
+  background-color: red;
+}
+
+
+.ad-container {
+  max-width: 550px;
+  margin: 0 auto; /* Center the container */
+}
+.ad-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Keeps the image aspect ratio intact */
+}
+/* Make the entire card clickable */
+.ad-card {
+  display: block;
+  text-decoration: none;
+  color: inherit; /* Ensure text color is not affected */
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.card-img-top{
+  width: 100%;
 }

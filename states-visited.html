@@ -1,71 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Simply track and count the states you have visited on our interactive state map. Discover the joy of tracking your global adventures."
-    />
-    <meta
-      name="keywords"
-      content="states visited, states visited map, count states visited, states i ve visited"
-    />
 
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://countries-visited.com" />
-    <meta property="og:site_name" content="Countries Visited" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="States Visited Map & Counter" />
-    <meta
-      property="og:description"
-      content="Simply track and count the states you have visited on our interactive US map. Discover the joy of tracking your global adventures."
-    />
-    <meta
-      property="og:image"
-      content="https://countries-visited.com/img/us_colored_states.png"
-    />
-    <meta name="thumbnail" content="https://countries-visited.com/img/us_colored_states.png" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Simply track and count the states you have visited on our interactive state map. Discover the joy of tracking your global adventures." />
+  <meta name="keywords" content="states visited, states visited map, count states visited, states i ve visited" />
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="countries-visited.com" />
-    <meta property="twitter:url" content="https://countries-visited.com" />
-    <meta name="twitter:title" content="States Visited Map & Counter" />
-    <meta
-      name="twitter:description"
-      content="Simply track and count the states you have visited on our interactive US map. Discover the joy of tracking your global adventures."
-    />
-    <meta
-      name="twitter:image"
-      content="https://countries-visited.com/img/us_colored_states.png"
-    />
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://countries-visited.com" />
+  <meta property="og:site_name" content="Countries Visited" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="States Visited Map & Counter" />
+  <meta property="og:description"
+    content="Simply track and count the states you have visited on our interactive US map. Discover the joy of tracking your global adventures." />
+  <meta property="og:image" content="https://countries-visited.com/img/us_colored_states.png" />
+  <meta name="thumbnail" content="https://countries-visited.com/img/us_colored_states.png" />
 
-    <title>States Visited Map & Counter</title>
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content="countries-visited.com" />
+  <meta property="twitter:url" content="https://countries-visited.com" />
+  <meta name="twitter:title" content="States Visited Map & Counter" />
+  <meta name="twitter:description"
+    content="Simply track and count the states you have visited on our interactive US map. Discover the joy of tracking your global adventures." />
+  <meta name="twitter:image" content="https://countries-visited.com/img/us_colored_states.png" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1">
-    <link rel="manifest" href="/site.webmanifest?v=1">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=1" color="#5bbad5">
-    <link rel="shortcut icon" href="/favicon.ico?v=1">
-    <meta name="msapplication-TileColor" content="#00aba9">
-    <meta name="theme-color" content="#ffffff">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
-    <link href="style.css" rel="stylesheet" />  
+  <title>States Visited Map & Counter</title>
 
-    <script type="application/ld+json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1">
+  <link rel="manifest" href="/site.webmanifest?v=1">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=1" color="#5bbad5">
+  <link rel="shortcut icon" href="/favicon.ico?v=1">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link href="style.css" rel="stylesheet" />
+
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -74,809 +52,617 @@
         "url": "https://countries-visited.com"
       }
     </script>
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-  </head>
-  <body>
-    <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
-    <script
-      type="text/javascript"
-      src="//www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js"
-      charset="UTF-8"
-    ></script>
-    <script type="text/javascript" charset="UTF-8">
-      document.addEventListener("DOMContentLoaded", function () {
+</head>
+
+<body>
+  <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+  <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js"
+    charset="UTF-8"></script>
+  <script type="text/javascript" charset="UTF-8">
+    document.addEventListener("DOMContentLoaded", function () {
+      const BANNER_COUNTRIES = [
+        "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK", "NO", "IS", "LI", "GB"
+      ];
+
+      function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith(`${name}=`)) {
+            return cookie.split('=')[1];
+          }
+        }
+        return null;
+      }
+
+      function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        const expires = `expires=${date.toUTCString()}`;
+        document.cookie = `${name}=${value}; ${expires}; path=/`;
+      }
+
+
+      function handleNonEUUser() {
         cookieconsent.run({
-          notice_banner_type: "interstitial",
           consent_type: "express",
-          palette: "light",
-          language: "en",
-          page_load_consent_levels: ["strictly-necessary"],
-          notice_banner_reject_button_hide: false,
-          preferences_center_close_button_hide: false,
-          page_refresh_confirmation_buttons: false,
-          website_name: "Countries Visited",
-          website_privacy_policy_url:
-            "https://countries-visited.com/privacy-policy.html",
+          page_load_consent_levels: ["strictly-necessary", "functionality", "tracking", "targeting"],
         });
-      });
-    </script>
 
-    <!-- Google Analytics -->
-    <script
-      type="text/plain"
-      data-cookie-consent="tracking"
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZC5NL66GC3"
-    ></script>
-    <script type="text/plain" data-cookie-consent="tracking">
+        const style = document.createElement("style");
+        style.innerHTML = `
+                  .termsfeed-com---palette-light.termsfeed-com---nb {
+                      visibility: hidden !important;
+                      display: none !important;
+                  }
+              `;
+        document.head.appendChild(style);
+      }
+
+      const isOutsideEU = getCookie('outside_eu');
+
+      if (isOutsideEU) {
+        handleNonEUUser();
+      } else {
+        fetch('https://ipinfo.io/json?token=60c37d874cf039')
+          .then(response => response.json())
+          .then(data => {
+            const userCountry = data.country;
+
+            if (BANNER_COUNTRIES.includes(userCountry)) {
+
+              cookieconsent.run({
+                notice_banner_type: "interstitial",
+                consent_type: "express",
+                palette: "light",
+                language: "en",
+                page_load_consent_levels: ["strictly-necessary"],
+                notice_banner_reject_button_hide: false,
+                preferences_center_close_button_hide: false,
+                page_refresh_confirmation_buttons: false,
+                website_name: "Countries Visited",
+                website_privacy_policy_url: "https://countries-visited.com/privacy-policy.html",
+              });
+            } else {
+
+              setCookie('outside_eu', 'true', 1);
+              handleNonEUUser();
+
+            }
+          })
+          .catch(error => console.error('Error fetching user location:', error));
+
+      }
+    });
+  </script>
+
+
+  <!-- Google Analytics -->
+  <script type="text/plain" data-cookie-consent="tracking" async
+    src="https://www.googletagmanager.com/gtag/js?id=G-ZC5NL66GC3"></script>
+  <script type="text/plain" data-cookie-consent="tracking">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'G-ZC5NL66GC3');
     </script>
-    <!-- end of Google Analytics-->
+  <!-- end of Google Analytics-->
 
-    <!-- Google Adsense -->
-    <script type="text/plain" data-cookie-consent="targeting" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7607877614179487"
+  <!-- Google Adsense -->
+  <script type="text/plain" data-cookie-consent="targeting" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7607877614179487"
     crossorigin="anonymous"></script>
-    <!-- end of Google Adsense-->
+   <!-- end of Google Adsense-->
 
-    <noscript
-      >Free cookie consent management tool by
-      <a href="https://www.termsfeed.com/">TermsFeed</a></noscript
-    >
-    <!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+  <noscript>Free cookie consent management tool by
+    <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+  <!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
 
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="index.html" class="navbar-brand d-flex align-items-center" title="Countries Visited Startpage">
-            <img
-              src="img/countries_visited_icon.svg"
-              width="30"
-              class="header-icon bi me-2"
-              alt="World with Country Marker"
-            />
-            <span class="fs-4">Countries Visited</span>
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a href="index.html" class="nav-link" title="Countries Map & Counter">Countries Map & Counter</a>
-              </li>
-              <li class="nav-item">
-                <a href="states-visited.html" class="nav-link" title="States Map & Counter">States Map & Counter</a>
-              </li>
-              <li class="nav-item">
-                <a href="most-visited-countries.html" class="nav-link" title="Most Visited Countries">Most Visited Countries</a>
-              </li>
-              <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
-            </ul>
-          </div>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light box-shadow">
+      <div class="container d-flex justify-content-between">
+        <a href="index.html" class="navbar-brand d-flex align-items-center" title="Countries Visited Startpage">
+          <img src="img/countries_visited_icon.svg" width="30" class="header-icon bi me-2"
+            alt="World with Country Marker" />
+          <span class="fs-4">Countries Visited</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link" title="Countries Map & Counter">Countries Map & Counter</a>
+            </li>
+            <li class="nav-item">
+              <a href="states-visited.html" class="nav-link" title="States Map & Counter">States Map & Counter</a>
+            </li>
+            <li class="nav-item">
+              <a href="most-visited-countries.html" class="nav-link" title="Most Visited Countries">Most Visited
+                Countries</a>
+            </li>
+            <!-- <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li> -->
+          </ul>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-    <main role="main">
-      <section class="jumbotron text-center bg-light">
-        <div class="container">
-          <h1 class="jumbotron-heading">States Visited Map & Counter</h1>
-          <p class="lead">
-            Explore the united states on our interactive map! <br>Mark, showcase and count
-            the states you have visited.
-          </p>
-        </div>
-      </section>
+  <main role="main">
+    <section class="jumbotron text-center bg-light">
+      <div class="container">
+        <h1 class="jumbotron-heading">States Visited Map & Counter</h1>
+        <p class="lead">
+          Explore the united states on our interactive map! <br>Mark, showcase and count
+          the states you have visited.
+        </p>
+      </div>
+    </section>
 
-      <div class="sticky-row">
-        <div class="container">
-          <div class="row">
-            <div class="col-6 col-md-6">
-              <div class="counter-box">
-                <i class="fa fa-thumbs-o-up"></i>
-                <span class="counter rotate-text" id="selected-count">0</span>
-                <p>States Visited</p>
-              </div>
+    <div class="sticky-row">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-6">
+            <div class="counter-box">
+              <i class="fa fa-thumbs-o-up"></i>
+              <span class="counter rotate-text" id="selected-count">0</span>
+              <p>States Visited</p>
             </div>
-            <div class="col-6 col-md-6">
-              <div class="counter-box">
-                <i class="fa fa-group"></i>
-                <span class="counter rotate-text" id="selected-percentage">0%</span>
-                <p>Traveled the US</p>
-              </div>
+          </div>
+          <div class="col-6 col-md-6">
+            <div class="counter-box">
+              <i class="fa fa-group"></i>
+              <span class="counter rotate-text" id="selected-percentage">0%</span>
+              <p>Traveled the US</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="py-5 map-container bg-white">
-        <div class="container">
-          
+    <div class="ad">
 
-          <div id="map"> <div class="loading"></div></div>
 
-          
+    </div>
 
-          <div class="row">
-            <div class="col-md-8 mx-auto">
-              <div class="share-box d-flex justify-content-between align-items-center">
-                <p class="m-0 me-2 share-info-text">Share the personalized map of the states you have visited:</p>
-                
-                <div class="share-social-btn">
-                  <a id="facebook-link" href="https://www.facebook.com/sharer/sharer.php?u=countries-visited.com/states-visited.html&quote=Simply%20mark%20and%20count%20the%20states%20you%20have%20visited%20on%20the%20interactive%20map.%20%23CountriesVisited"
-                    class="btn btn-social" target="_blank" aria-label="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                    </svg>
-                  </a>
-                  <a id="x-twitter-link" href="https://x.com/intent/tweet?text=Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at&url=countries-visited.com/states-visited.html&hashtags=StatesVisited"
-                    class="btn btn-social" target="_blank" aria-label="X.com">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
-                      <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
-                    </svg>
-                  </a>
-                  <a id="whatsapp-link" href="whatsapp://send?text=Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20Explore%20more%20at%20https%3A%2F%2Fcountries-visited.com/states-visited.html"
-                    class="btn btn-social" aria-label="WhatsApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
-                      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-                    </svg>
-                  </a>
-                  <a id="copy-to-clipboard" href="javascript:void(0);"
-                    class="btn btn-social" aria-label="Link" onclick="copyToClipboard()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                      <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
-                      <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
-                    </svg>
-                  </a>
-                  <a id="mail-link" href="mailto:?subject=Check%20out%20this%20states%20tracker%20and%20counter&body=Track%20and%20count%20all%20the%20united%20states%20you've%20visited%20with%20the%20interactive%20map.%20Explore%20more%20at%20countries-visited.com%2Fstates-visited.html"
-                    class="btn btn-social" aria-label="Mail">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
-                    </svg>
-                  </a>
-                </div>
- 
+
+
+    <div class="py-5 map-container bg-white">
+      <div class="container">
+
+
+        <div id="map">
+          <div class="loading"></div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-md-8 mx-auto">
+            <div class="share-box d-flex justify-content-between align-items-center">
+              <p class="m-0 me-2 share-info-text">Share the personalized map of the states you have visited:</p>
+
+              <div class="share-social-btn">
+                <a id="facebook-link"
+                  href="https://www.facebook.com/sharer/sharer.php?u=countries-visited.com/states-visited.html&quote=Simply%20mark%20and%20count%20the%20states%20you%20have%20visited%20on%20the%20interactive%20map.%20%23CountriesVisited"
+                  class="btn btn-social" target="_blank" aria-label="Facebook">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-facebook" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                  </svg>
+                </a>
+                <a id="x-twitter-link"
+                  href="https://x.com/intent/tweet?text=Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at&url=countries-visited.com/states-visited.html&hashtags=StatesVisited"
+                  class="btn btn-social" target="_blank" aria-label="X.com">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-twitter-x" viewBox="0 0 16 16">
+                    <path
+                      d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                  </svg>
+                </a>
+                <a id="whatsapp-link"
+                  href="whatsapp://send?text=Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20Explore%20more%20at%20https%3A%2F%2Fcountries-visited.com/states-visited.html"
+                  class="btn btn-social" aria-label="WhatsApp">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-whatsapp" viewBox="0 0 16 16">
+                    <path
+                      d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                  </svg>
+                </a>
+                <a id="copy-to-clipboard" href="javascript:void(0);" class="btn btn-social" aria-label="Link"
+                  onclick="copyToClipboard()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-link-45deg" viewBox="0 0 16 16">
+                    <path
+                      d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
+                    <path
+                      d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
+                  </svg>
+                </a>
+                <a id="mail-link"
+                  href="mailto:?subject=Check%20out%20this%20states%20tracker%20and%20counter&body=Track%20and%20count%20all%20the%20united%20states%20you've%20visited%20with%20the%20interactive%20map.%20Explore%20more%20at%20countries-visited.com%2Fstates-visited.html"
+                  class="btn btn-social" aria-label="Mail">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-envelope" viewBox="0 0 16 16">
+                    <path
+                      d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+                  </svg>
+                </a>
               </div>
+
             </div>
           </div>
-
-        
-
-          <h2 class="jumbotron-heading">
-            Visualize and count the states you have visited
-          </h2>
-          <p>
-            Use the united states map as a digital scratch map and mark all the
-            states you have already visited with a few simple mouse clicks.
-            Whether it was a brief city excursion, an extensive vacation, or a
-            phase of living abroad, you can capture and visualize those
-            experiences on this map. If you're unable to locate the states
-            you have been on the map, the states checklist beneath it is your guide.
-          </p>
         </div>
+
+
+
+        <h2 class="jumbotron-heading">
+          Visualize and count the states you have visited
+        </h2>
+        <p>
+          Use the united states map as a digital scratch map and mark all the
+          states you have already visited with a few simple mouse clicks.
+          Whether it was a brief city excursion, an extensive vacation, or a
+          phase of living abroad, you can capture and visualize those
+          experiences on this map. If you're unable to locate the states
+          you have been on the map, the states checklist beneath it is your guide.
+        </p>
       </div>
+    </div>
 
-      <div class="py-5 bg-light">
-        <div class="container">
-          <h2>States Visited Checklist</h2>
-          <p>
-            The following form lists all 50 states of the United States of America. Simply select the
-            state by checking the box, and watch as it automatically fills
-            with color on the map. This action will also increase the states
-            counter by one. Additionally, you can directly observe the
-            percentage of the United States you have already traveled.
-          </p>
+    <div class="py-5 bg-light">
+      <div class="container">
+        <h2>States Visited Checklist</h2>
+        <p>
+          The following form lists all 50 states of the United States of America. Simply select the
+          state by checking the box, and watch as it automatically fills
+          with color on the map. This action will also increase the states
+          counter by one. Additionally, you can directly observe the
+          percentage of the United States you have already traveled.
+        </p>
 
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h3 class="accordion-header" id="headingTwo">
-                <button
-                  class="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseUS"
-                  aria-expanded="false"
-                  aria-controls="collapseUS"
-                >
-                  United States
-                  <div class="continent-counter">(50)</div>
-                </button>
-              </h3>
-              <div
-                id="collapseUS"
-                class="accordion-collapse collapse show"
-                aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample"
-              >
-                <div class="accordion-body">
-                  <div id="checkboxes" class="row">
-                    
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Alabama"
-                          id="checkboxAlabama"
-                        />
-                        <label class="form-check-label" for="checkboxAlabama">Alabama</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Alaska"
-                          id="checkboxAlaska"
-                        />
-                        <label class="form-check-label" for="checkboxAlaska">Alaska</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Arizona"
-                          id="checkboxArizona"
-                        />
-                        <label class="form-check-label" for="checkboxArizona">Arizona</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Arkansas"
-                          id="checkboxArkansas"
-                        />
-                        <label class="form-check-label" for="checkboxArkansas">Arkansas</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="California"
-                          id="checkboxCalifornia"
-                        />
-                        <label class="form-check-label" for="checkboxCalifornia">California</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Colorado"
-                          id="checkboxColorado"
-                        />
-                        <label class="form-check-label" for="checkboxColorado">Colorado</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Connecticut"
-                          id="checkboxConnecticut"
-                        />
-                        <label class="form-check-label" for="checkboxConnecticut">Connecticut</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Delaware"
-                          id="checkboxDelaware"
-                        />
-                        <label class="form-check-label" for="checkboxDelaware">Delaware</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Florida"
-                          id="checkboxFlorida"
-                        />
-                        <label class="form-check-label" for="checkboxFlorida">Florida</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Georgia"
-                          id="checkboxGeorgia"
-                        />
-                        <label class="form-check-label" for="checkboxGeorgia">Georgia</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Hawaii"
-                          id="checkboxHawaii"
-                        />
-                        <label class="form-check-label" for="checkboxHawaii">Hawaii</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Idaho"
-                          id="checkboxIdaho"
-                        />
-                        <label class="form-check-label" for="checkboxIdaho">Idaho</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Illinois"
-                          id="checkboxIllinois"
-                        />
-                        <label class="form-check-label" for="checkboxIllinois">Illinois</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Indiana"
-                          id="checkboxIndiana"
-                        />
-                        <label class="form-check-label" for="checkboxIndiana">Indiana</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Iowa"
-                          id="checkboxIowa"
-                        />
-                        <label class="form-check-label" for="checkboxIowa">Iowa</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Kansas"
-                          id="checkboxKansas"
-                        />
-                        <label class="form-check-label" for="checkboxKansas">Kansas</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Kentucky"
-                          id="checkboxKentucky"
-                        />
-                        <label class="form-check-label" for="checkboxKentucky">Kentucky</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Louisiana"
-                          id="checkboxLouisiana"
-                        />
-                        <label class="form-check-label" for="checkboxLouisiana">Louisiana</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Maine"
-                          id="checkboxMaine"
-                        />
-                        <label class="form-check-label" for="checkboxMaine">Maine</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Maryland"
-                          id="checkboxMaryland"
-                        />
-                        <label class="form-check-label" for="checkboxMaryland">Maryland</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Massachusetts"
-                          id="checkboxMassachusetts"
-                        />
-                        <label class="form-check-label" for="checkboxMassachusetts">Massachusetts</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Michigan"
-                          id="checkboxMichigan"
-                        />
-                        <label class="form-check-label" for="checkboxMichigan">Michigan</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Minnesota"
-                          id="checkboxMinnesota"
-                        />
-                        <label class="form-check-label" for="checkboxMinnesota">Minnesota</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Mississippi"
-                          id="checkboxMississippi"
-                        />
-                        <label class="form-check-label" for="checkboxMississippi">Mississippi</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Missouri"
-                          id="checkboxMissouri"
-                        />
-                        <label class="form-check-label" for="checkboxMissouri">Missouri</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Montana"
-                          id="checkboxMontana"
-                        />
-                        <label class="form-check-label" for="checkboxMontana">Montana</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Nebraska"
-                          id="checkboxNebraska"
-                        />
-                        <label class="form-check-label" for="checkboxNebraska">Nebraska</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Nevada"
-                          id="checkboxNevada"
-                        />
-                        <label class="form-check-label" for="checkboxNevada">Nevada</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="New Hampshire"
-                          id="checkboxNewHampshire"
-                        />
-                        <label class="form-check-label" for="checkboxNewHampshire">New Hampshire</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="New Jersey"
-                          id="checkboxNewJersey"
-                        />
-                        <label class="form-check-label" for="checkboxNewJersey">New Jersey</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="New Mexico"
-                          id="checkboxNewMexico"
-                        />
-                        <label class="form-check-label" for="checkboxNewMexico">New Mexico</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="New York"
-                          id="checkboxNewYork"
-                        />
-                        <label class="form-check-label" for="checkboxNewYork">New York</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="North Carolina"
-                          id="checkboxNorthCarolina"
-                        />
-                        <label class="form-check-label" for="checkboxNorthCarolina">North Carolina</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="North Dakota"
-                          id="checkboxNorthDakota"
-                        />
-                        <label class="form-check-label" for="checkboxNorthDakota">North Dakota</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Ohio"
-                          id="checkboxOhio"
-                        />
-                        <label class="form-check-label" for="checkboxOhio">Ohio</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Oklahoma"
-                          id="checkboxOklahoma"
-                        />
-                        <label class="form-check-label" for="checkboxOklahoma">Oklahoma</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Oregon"
-                          id="checkboxOregon"
-                        />
-                        <label class="form-check-label" for="checkboxOregon">Oregon</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Pennsylvania"
-                          id="checkboxPennsylvania"
-                        />
-                        <label class="form-check-label" for="checkboxPennsylvania">Pennsylvania</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Rhode Island"
-                          id="checkboxRhodeIsland"
-                        />
-                        <label class="form-check-label" for="checkboxRhodeIsland">Rhode Island</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="South Carolina"
-                          id="checkboxSouthCarolina"
-                        />
-                        <label class="form-check-label" for="checkboxSouthCarolina">South Carolina</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="South Dakota"
-                          id="checkboxSouthDakota"
-                        />
-                        <label class="form-check-label" for="checkboxSouthDakota">South Dakota</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Tennessee"
-                          id="checkboxTennessee"
-                        />
-                        <label class="form-check-label" for="checkboxTennessee">Tennessee</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Texas"
-                          id="checkboxTexas"
-                        />
-                        <label class="form-check-label" for="checkboxTexas">Texas</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Utah"
-                          id="checkboxUtah"
-                        />
-                        <label class="form-check-label" for="checkboxUtah">Utah</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Vermont"
-                          id="checkboxVermont"
-                        />
-                        <label class="form-check-label" for="checkboxVermont">Vermont</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Virginia"
-                          id="checkboxVirginia"
-                        />
-                        <label class="form-check-label" for="checkboxVirginia">Virginia</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Washington"
-                          id="checkboxWashington"
-                        />
-                        <label class="form-check-label" for="checkboxWashington">Washington</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="West Virginia"
-                          id="checkboxWestVirginia"
-                        />
-                        <label class="form-check-label" for="checkboxWestVirginia">West Virginia</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Wisconsin"
-                          id="checkboxWisconsin"
-                        />
-                        <label class="form-check-label" for="checkboxWisconsin">Wisconsin</label>
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-2">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="Wyoming"
-                          id="checkboxWyoming"
-                        />
-                        <label class="form-check-label" for="checkboxWyoming">Wyoming</label>
-                      </div>
-                    </div>
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingTwo">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUS"
+                aria-expanded="false" aria-controls="collapseUS">
+                United States
+                <div class="continent-counter">(50)</div>
+              </button>
+            </h3>
+            <div id="collapseUS" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div id="checkboxes" class="row">
 
-                    
-                    
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Alabama" id="checkboxAlabama" />
+                      <label class="form-check-label" for="checkboxAlabama">Alabama</label>
+                    </div>
                   </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Alaska" id="checkboxAlaska" />
+                      <label class="form-check-label" for="checkboxAlaska">Alaska</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Arizona" id="checkboxArizona" />
+                      <label class="form-check-label" for="checkboxArizona">Arizona</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Arkansas" id="checkboxArkansas" />
+                      <label class="form-check-label" for="checkboxArkansas">Arkansas</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="California" id="checkboxCalifornia" />
+                      <label class="form-check-label" for="checkboxCalifornia">California</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Colorado" id="checkboxColorado" />
+                      <label class="form-check-label" for="checkboxColorado">Colorado</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Connecticut" id="checkboxConnecticut" />
+                      <label class="form-check-label" for="checkboxConnecticut">Connecticut</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Delaware" id="checkboxDelaware" />
+                      <label class="form-check-label" for="checkboxDelaware">Delaware</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Florida" id="checkboxFlorida" />
+                      <label class="form-check-label" for="checkboxFlorida">Florida</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Georgia" id="checkboxGeorgia" />
+                      <label class="form-check-label" for="checkboxGeorgia">Georgia</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Hawaii" id="checkboxHawaii" />
+                      <label class="form-check-label" for="checkboxHawaii">Hawaii</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Idaho" id="checkboxIdaho" />
+                      <label class="form-check-label" for="checkboxIdaho">Idaho</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Illinois" id="checkboxIllinois" />
+                      <label class="form-check-label" for="checkboxIllinois">Illinois</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Indiana" id="checkboxIndiana" />
+                      <label class="form-check-label" for="checkboxIndiana">Indiana</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Iowa" id="checkboxIowa" />
+                      <label class="form-check-label" for="checkboxIowa">Iowa</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Kansas" id="checkboxKansas" />
+                      <label class="form-check-label" for="checkboxKansas">Kansas</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Kentucky" id="checkboxKentucky" />
+                      <label class="form-check-label" for="checkboxKentucky">Kentucky</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Louisiana" id="checkboxLouisiana" />
+                      <label class="form-check-label" for="checkboxLouisiana">Louisiana</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Maine" id="checkboxMaine" />
+                      <label class="form-check-label" for="checkboxMaine">Maine</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Maryland" id="checkboxMaryland" />
+                      <label class="form-check-label" for="checkboxMaryland">Maryland</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Massachusetts"
+                        id="checkboxMassachusetts" />
+                      <label class="form-check-label" for="checkboxMassachusetts">Massachusetts</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Michigan" id="checkboxMichigan" />
+                      <label class="form-check-label" for="checkboxMichigan">Michigan</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Minnesota" id="checkboxMinnesota" />
+                      <label class="form-check-label" for="checkboxMinnesota">Minnesota</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Mississippi" id="checkboxMississippi" />
+                      <label class="form-check-label" for="checkboxMississippi">Mississippi</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Missouri" id="checkboxMissouri" />
+                      <label class="form-check-label" for="checkboxMissouri">Missouri</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Montana" id="checkboxMontana" />
+                      <label class="form-check-label" for="checkboxMontana">Montana</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Nebraska" id="checkboxNebraska" />
+                      <label class="form-check-label" for="checkboxNebraska">Nebraska</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Nevada" id="checkboxNevada" />
+                      <label class="form-check-label" for="checkboxNevada">Nevada</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="New Hampshire" id="checkboxNewHampshire" />
+                      <label class="form-check-label" for="checkboxNewHampshire">New Hampshire</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="New Jersey" id="checkboxNewJersey" />
+                      <label class="form-check-label" for="checkboxNewJersey">New Jersey</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="New Mexico" id="checkboxNewMexico" />
+                      <label class="form-check-label" for="checkboxNewMexico">New Mexico</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="New York" id="checkboxNewYork" />
+                      <label class="form-check-label" for="checkboxNewYork">New York</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="North Carolina"
+                        id="checkboxNorthCarolina" />
+                      <label class="form-check-label" for="checkboxNorthCarolina">North Carolina</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="North Dakota" id="checkboxNorthDakota" />
+                      <label class="form-check-label" for="checkboxNorthDakota">North Dakota</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Ohio" id="checkboxOhio" />
+                      <label class="form-check-label" for="checkboxOhio">Ohio</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Oklahoma" id="checkboxOklahoma" />
+                      <label class="form-check-label" for="checkboxOklahoma">Oklahoma</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Oregon" id="checkboxOregon" />
+                      <label class="form-check-label" for="checkboxOregon">Oregon</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Pennsylvania" id="checkboxPennsylvania" />
+                      <label class="form-check-label" for="checkboxPennsylvania">Pennsylvania</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Rhode Island" id="checkboxRhodeIsland" />
+                      <label class="form-check-label" for="checkboxRhodeIsland">Rhode Island</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="South Carolina"
+                        id="checkboxSouthCarolina" />
+                      <label class="form-check-label" for="checkboxSouthCarolina">South Carolina</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="South Dakota" id="checkboxSouthDakota" />
+                      <label class="form-check-label" for="checkboxSouthDakota">South Dakota</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Tennessee" id="checkboxTennessee" />
+                      <label class="form-check-label" for="checkboxTennessee">Tennessee</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Texas" id="checkboxTexas" />
+                      <label class="form-check-label" for="checkboxTexas">Texas</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Utah" id="checkboxUtah" />
+                      <label class="form-check-label" for="checkboxUtah">Utah</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Vermont" id="checkboxVermont" />
+                      <label class="form-check-label" for="checkboxVermont">Vermont</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Virginia" id="checkboxVirginia" />
+                      <label class="form-check-label" for="checkboxVirginia">Virginia</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Washington" id="checkboxWashington" />
+                      <label class="form-check-label" for="checkboxWashington">Washington</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="West Virginia" id="checkboxWestVirginia" />
+                      <label class="form-check-label" for="checkboxWestVirginia">West Virginia</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Wisconsin" id="checkboxWisconsin" />
+                      <label class="form-check-label" for="checkboxWisconsin">Wisconsin</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Wyoming" id="checkboxWyoming" />
+                      <label class="form-check-label" for="checkboxWyoming">Wyoming</label>
+                    </div>
+                  </div>
+
+
+
                 </div>
               </div>
             </div>
           </div>
-
-          <br />
-
-          <p>
-            Have you gone through the list and marked all your visited places?
-            Which states are still missing?
         </div>
+
+        <br />
+
+        <p>
+          Have you gone through the list and marked all your visited places?
+          Which states are still missing?
       </div>
+    </div>
 
 
-      <!-- Start Recommendations 
+    <!-- Start Recommendations 
       
       <div class="py-5 bg-white">
         <div class="container">
@@ -891,542 +677,579 @@
       </div>
 
       -->
- 
-      <!-- End Recommendations-->
 
-      <div class="py-5 bg-white">
-        <div class="container">
-          <h2>Share and Showcase your Travel Journey and Discover new Places</h2>
-          <p>
-            Explore the United States in a new and exciting way with our "States Visited Map & Counter." This interactive tool allows you to track and highlight the states you've visited, creating a personalized visual representation of your travels across the country. Whether you're an avid traveler or just starting to explore, our map makes it easy to document your journey.
+    <!-- End Recommendations-->
 
-            With a simple and intuitive interface, you can quickly select states by name and see them come to life with vibrant colors on the map. The "States Visited" feature enables you to effortlessly keep track of where you've been, creating a unique travel history that you can share with others.
-            
-            Our platform also offers a counter that tallies the number of states you've explored, giving you a clear picture of your travel milestones. Sharing your custom "States Visited Map" is easy, allowing you to inspire friends and family to embark on their own adventures.
-            
-            Celebrate your travel experiences and showcase your adventures with our "States I've Been To Map." Start highlighting and sharing your journey today, and create a lasting memory of the states you've explored across the USA.
-          </p>
-          <img
-            src="img/us_colored_states.png"
-            class="statesmap img-thumbnail"
-            alt="United States visited Map"
-          />
+    <div class="py-5 bg-white">
+      <div class="container">
+        <h2>Share and Showcase your Travel Journey and Discover new Places</h2>
+        <p>
+          Explore the United States in a new and exciting way with our "States Visited Map & Counter." This interactive
+          tool allows you to track and highlight the states you've visited, creating a personalized visual
+          representation of your travels across the country. Whether you're an avid traveler or just starting to
+          explore, our map makes it easy to document your journey.
 
-        </div>
+          With a simple and intuitive interface, you can quickly select states by name and see them come to life with
+          vibrant colors on the map. The "States Visited" feature enables you to effortlessly keep track of where you've
+          been, creating a unique travel history that you can share with others.
+
+          Our platform also offers a counter that tallies the number of states you've explored, giving you a clear
+          picture of your travel milestones. Sharing your custom "States Visited Map" is easy, allowing you to inspire
+          friends and family to embark on their own adventures.
+
+          Celebrate your travel experiences and showcase your adventures with our "States I've Been To Map." Start
+          highlighting and sharing your journey today, and create a lasting memory of the states you've explored across
+          the USA.
+        </p>
+        <img src="img/us_colored_states.png" class="statesmap img-thumbnail" alt="United States visited Map" />
+
       </div>
+    </div>
 
 
-      <div class="py-5 bg-light">
-        <div class="container">
-          <h2>United States: Key Facts and Travel Highlights</h2>
-          <p>The United States is made up of 50 states, each with its own unique identity and features. Collectively, the states encompass diverse landscapes, ranging from sunny beaches and vast deserts to towering mountains and dense forests.</p>
-          <ul>
-            <li><strong>Population:</strong> The combined population of the U.S. states is approximately 331 million people, with California being the most populous state and Wyoming the least.</li>
-            <li><strong>Land Area:</strong> The total land area of the U.S. is about 3.8 million square miles, with Alaska being the largest state by land area and Rhode Island the smallest.</li>
-            <li><strong>Geographical Features:</strong> The U.S. boasts a wide variety of geographical features including the Rocky Mountains, the Great Plains, the Appalachian Mountains, and extensive coastlines along both the Atlantic and Pacific Oceans.</li>
-            <li><strong>Climate:</strong> The climate varies widely across states, from the temperate rainforests of the Pacific Northwest to the arid deserts of the Southwest. States like Florida and Hawaii enjoy tropical climates, while states like Minnesota and Maine experience cold winters.</li>
-            <li><strong>Economy:</strong> Each state contributes to the nation's economy in unique ways. For instance, California is a global hub for technology and entertainment, Texas is a leader in energy production, and New York is a financial powerhouse.</li>
-            <li><strong>Tourism:</strong> Major tourist attractions span across the states, including national parks like Yellowstone and the Grand Canyon, iconic landmarks like the Statue of Liberty, and popular destinations such as Las Vegas and Walt Disney World.</li>
-            <li><strong>Cultural Highlights:</strong> The U.S. states are rich in cultural diversity, offering a variety of festivals, historical sites, and regional cuisines. For example, New Orleans in Louisiana is famous for its Mardi Gras celebrations, while Kentucky is renowned for its bourbon and horse racing.</li>
+    <div class="py-5 bg-light">
+      <div class="container">
+        <h2>United States: Key Facts and Travel Highlights</h2>
+        <p>The United States is made up of 50 states, each with its own unique identity and features. Collectively, the
+          states encompass diverse landscapes, ranging from sunny beaches and vast deserts to towering mountains and
+          dense forests.</p>
+        <ul>
+          <li><strong>Population:</strong> The combined population of the U.S. states is approximately 331 million
+            people, with California being the most populous state and Wyoming the least.</li>
+          <li><strong>Land Area:</strong> The total land area of the U.S. is about 3.8 million square miles, with Alaska
+            being the largest state by land area and Rhode Island the smallest.</li>
+          <li><strong>Geographical Features:</strong> The U.S. boasts a wide variety of geographical features including
+            the Rocky Mountains, the Great Plains, the Appalachian Mountains, and extensive coastlines along both the
+            Atlantic and Pacific Oceans.</li>
+          <li><strong>Climate:</strong> The climate varies widely across states, from the temperate rainforests of the
+            Pacific Northwest to the arid deserts of the Southwest. States like Florida and Hawaii enjoy tropical
+            climates, while states like Minnesota and Maine experience cold winters.</li>
+          <li><strong>Economy:</strong> Each state contributes to the nation's economy in unique ways. For instance,
+            California is a global hub for technology and entertainment, Texas is a leader in energy production, and New
+            York is a financial powerhouse.</li>
+          <li><strong>Tourism:</strong> Major tourist attractions span across the states, including national parks like
+            Yellowstone and the Grand Canyon, iconic landmarks like the Statue of Liberty, and popular destinations such
+            as Las Vegas and Walt Disney World.</li>
+          <li><strong>Cultural Highlights:</strong> The U.S. states are rich in cultural diversity, offering a variety
+            of festivals, historical sites, and regional cuisines. For example, New Orleans in Louisiana is famous for
+            its Mardi Gras celebrations, while Kentucky is renowned for its bourbon and horse racing.</li>
         </ul>
 
-        </div>
       </div>
+    </div>
 
 
-      <div class="py-5 bg-white">
-        <div class="container">
-          <h2>Exploring U.S. Travel Trends: Most and Least Visited States</h2>
-          <p>When exploring travel trends across the United States, it's fascinating to see which states attract the most and least visitors, as well as how many states the average tourist tends to visit.</p>
-
-          <h3>Most Visited State</h3>
-          <p>Among the 50 states, <strong>California</strong> stands out as the most visited. Its allure is largely due to its diverse attractions and iconic landmarks. Visitors flock to California for a mix of experiences: the bustling entertainment scene of Los Angeles, the picturesque landscapes of San Francisco, and the world-famous Disneyland Resort in Anaheim. Additionally, California’s natural wonders, including Yosemite National Park and the breathtaking coastline of Big Sur, draw millions of nature enthusiasts and adventure seekers each year. The state's varied climate and geography offer something for every type of traveler, from urban explorers to beach lovers and mountain hikers.</p>
-
-          <h3>Least Visited State</h3>
-          <p>On the flip side, <strong>Wyoming</strong> is often recognized as one of the least visited states in the U.S. Despite its stunning natural beauty, including Yellowstone National Park and Grand Teton National Park, Wyoming has a relatively low population density and fewer major urban centers, which contributes to its lower visitor numbers. However, for those seeking solitude and a chance to experience some of America’s most pristine landscapes without the crowds, Wyoming offers a unique and serene travel experience.</p>
-
-          <h3>Average State Visits</h3>
-          <p>For the average American traveler, the typical number of states visited varies significantly based on individual travel habits and interests. On average, many Americans visit around 10 to 15 states in their lifetime. This number can be influenced by factors such as family vacations, work-related travel, and personal exploration. For international tourists, the trend might differ slightly. Many international visitors tend to focus on major metropolitan areas and key tourist attractions, often visiting a handful of states that offer a representative experience of American culture and landscapes.</p>
-
-          <p>In summary, while California’s vibrant cities and natural wonders make it the most visited state, Wyoming’s less-traveled paths provide a quieter alternative. Whether you're an American or an international traveler, the number of states visited will vary based on your travel preferences and goals.</p>
-
-        </div>
-      </div>
-
-    </main>
-
-    <footer class="text-muted bg-light">
+    <div class="py-5 bg-white">
       <div class="container">
-        <p class="float-right"><a href="#" title="Back to top">Back to top</a></p>
-        <p>
-          Countries visited © 2024 ·
-          <a href="https://countries-visited.com/privacy-policy.html" title="Privacy Policy"
-            >Privacy Policy</a
-          >
-          ·
-          <a href="https://countries-visited.com/legal-notice.html" title="Legal Notice / Impressum"
-            >Legal Notice / Impressum</a
-          >
-          · <a href="mailto:info@countries-visited.com" title="Mail Contact">Contact</a> ·
-          <a href="#" id="open_preferences_center" title="Cookies Preferences">Cookies Preferences</a>
-        </p>
-        </div>
-        <div class="container social d-flex justify-content-center">
-          <p class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=61558971358016" title="Facebook Page"> 
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-            </svg>
-            </a>
-            <a href="https://x.com/CountriesVstd" title="X.com Page">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 512"><path d="M256 0c141.385 0 256 114.615 256 256S397.385 512 256 512 0 397.385 0 256 114.615 0 256 0z"/><path fill="#fff" fill-rule="nonzero" d="M318.64 157.549h33.401l-72.973 83.407 85.85 113.495h-67.222l-52.647-68.836-60.242 68.836h-33.423l78.052-89.212-82.354-107.69h68.924l47.59 62.917 55.044-62.917zm-11.724 176.908h18.51L205.95 176.493h-19.86l120.826 157.964z"/>
-              </svg>     
-            </a>
-          </p>
-        </div>
-    </footer>
+        <h2>Exploring U.S. Travel Trends: Most and Least Visited States</h2>
+        <p>When exploring travel trends across the United States, it's fascinating to see which states attract the most
+          and least visitors, as well as how many states the average tourist tends to visit.</p>
 
-    <!-- Bootstrap core JavaScript
+        <h3>Most Visited State</h3>
+        <p>Among the 50 states, <strong>California</strong> stands out as the most visited. Its allure is largely due to
+          its diverse attractions and iconic landmarks. Visitors flock to California for a mix of experiences: the
+          bustling entertainment scene of Los Angeles, the picturesque landscapes of San Francisco, and the world-famous
+          Disneyland Resort in Anaheim. Additionally, California’s natural wonders, including Yosemite National Park and
+          the breathtaking coastline of Big Sur, draw millions of nature enthusiasts and adventure seekers each year.
+          The state's varied climate and geography offer something for every type of traveler, from urban explorers to
+          beach lovers and mountain hikers.</p>
+
+        <h3>Least Visited State</h3>
+        <p>On the flip side, <strong>Wyoming</strong> is often recognized as one of the least visited states in the U.S.
+          Despite its stunning natural beauty, including Yellowstone National Park and Grand Teton National Park,
+          Wyoming has a relatively low population density and fewer major urban centers, which contributes to its lower
+          visitor numbers. However, for those seeking solitude and a chance to experience some of America’s most
+          pristine landscapes without the crowds, Wyoming offers a unique and serene travel experience.</p>
+
+        <h3>Average State Visits</h3>
+        <p>For the average American traveler, the typical number of states visited varies significantly based on
+          individual travel habits and interests. On average, many Americans visit around 10 to 15 states in their
+          lifetime. This number can be influenced by factors such as family vacations, work-related travel, and personal
+          exploration. For international tourists, the trend might differ slightly. Many international visitors tend to
+          focus on major metropolitan areas and key tourist attractions, often visiting a handful of states that offer a
+          representative experience of American culture and landscapes.</p>
+
+        <p>In summary, while California’s vibrant cities and natural wonders make it the most visited state, Wyoming’s
+          less-traveled paths provide a quieter alternative. Whether you're an American or an international traveler,
+          the number of states visited will vary based on your travel preferences and goals.</p>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-muted bg-light">
+    <div class="container">
+      <p class="float-right"><a href="#" title="Back to top">Back to top</a></p>
+      <p>
+        Countries visited © 2024 ·
+        <a href="https://countries-visited.com/privacy-policy.html" title="Privacy Policy">Privacy Policy</a>
+        ·
+        <a href="https://countries-visited.com/legal-notice.html" title="Legal Notice / Impressum">Legal Notice /
+          Impressum</a>
+        · <a href="mailto:info@countries-visited.com" title="Mail Contact">Contact</a> ·
+        <a href="#" id="open_preferences_center" title="Cookies Preferences">Cookies Preferences</a>
+      </p>
+    </div>
+    <div class="container social d-flex justify-content-center">
+      <p class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61558971358016" title="Facebook Page">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+          </svg>
+        </a>
+        <a href="https://x.com/CountriesVstd" title="X.com Page">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+            shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality"
+            fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 512">
+            <path d="M256 0c141.385 0 256 114.615 256 256S397.385 512 256 512 0 397.385 0 256 114.615 0 256 0z" />
+            <path fill="#fff" fill-rule="nonzero"
+              d="M318.64 157.549h33.401l-72.973 83.407 85.85 113.495h-67.222l-52.647-68.836-60.242 68.836h-33.423l78.052-89.212-82.354-107.69h68.924l47.59 62.917 55.044-62.917zm-11.724 176.908h18.51L205.95 176.493h-19.86l120.826 157.964z" />
+          </svg>
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript
   ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      window.jQuery ||
-        document.write(
-          '<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>'
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script>
+    window.jQuery ||
+      document.write(
+        '<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>'
+      );
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="us-states.js"></script>
+
+  <script type="text/javascript">
+    const map = L.map("map", {
+      minZoom: 3,
+      maxZoom: 5,
+      zoomSnap: 0,
+      attributionControl: false
+      //renderer: L.canvas()
+    });
+
+    // Set maximum bounds to ensure the entire world is visible
+    const maxBounds = [
+      [24.396308, -125.0],  // Southwest coordinates (Hawaii)
+      [49.384358, -66.93457] // Northeast coordinates (Maine)
+    ];
+    map.setMaxBounds(maxBounds);
+
+    // Check the screen size and set the default view accordingly
+    if (window.innerWidth > 768) {
+      // Larger screens - set a higher zoom level
+      //map.setView([37.8, -96.9], 5); // Center of the contiguous United States
+      map.fitBounds(maxBounds);
+    } else {
+      // Smaller screens
+      map.fitBounds(maxBounds);
+    }
+
+    L.Control.Watermark = L.Control.extend({
+      onAdd: function (map) {
+        var watermark = L.DomUtil.create('div');
+        watermark.innerHTML = 'countries-visited.com';
+        watermark.style.opacity = '0.1';
+        watermark.style.position = 'relative';
+        watermark.style.bottom = '0px'; // Use positive bottom value to move it up
+        watermark.style.left = '50%'; // Center horizontally
+        watermark.style.transform = 'translateX(-50%)'; // Adjust to truly center
+        watermark.style.width = '150px'; // Width of the watermark
+        watermark.style.textAlign = 'center'; // Center the text
+        watermark.style.color = '#000';
+        watermark.style.fontSize = '12px';
+        watermark.style.pointerEvents = 'none';
+        watermark.style.fontWeight = 'bold';
+
+        return watermark;
+      },
+    });
+
+    L.control.watermark = function (opts) {
+      return new L.Control.Watermark(opts);
+    }
+
+    // Add to map, position it at the bottom
+    L.control.watermark({ position: 'bottomright' }).addTo(map);
+
+    // Define the custom control
+    const resetViewControl = L.Control.extend({
+      options: {
+        position: "topleft", // You can change the position as needed
+      },
+
+      onAdd: function (map) {
+        const container = L.DomUtil.create(
+          "div",
+          "leaflet-bar leaflet-control leaflet-control-custom"
         );
-    </script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
 
-    <script type="text/javascript" src="us-states.js"></script>
+        // Add a button with the reset view icon
+        const button = L.DomUtil.create(
+          "a",
+          "leaflet-control-zoom-in leaflet-bar-part",
+          container
+        );
+        button.href = "#";
+        button.title = "Reset View";
+        button.innerHTML = "&#8634;"; // Unicode character for refresh icon
 
-    <script type="text/javascript">
-      const map = L.map("map", {
-        minZoom: 3,
-        maxZoom: 5,
-        zoomSnap: 0,
-        attributionControl: false
-        //renderer: L.canvas()
-      });
+        // Add a click event listener to the button
+        L.DomEvent.on(button, "click", function (e) {
+          //map.setView([42, 0], 1);
+          map.fitBounds(maxBounds);
+          L.DomEvent.stopPropagation(e);
+        });
 
-      // Set maximum bounds to ensure the entire world is visible
-      const maxBounds = [
-        [24.396308, -125.0],  // Southwest coordinates (Hawaii)
-        [49.384358, -66.93457] // Northeast coordinates (Maine)
-      ];
-      map.setMaxBounds(maxBounds);
+        return container;
+      },
+    });
 
-      // Check the screen size and set the default view accordingly
-      if (window.innerWidth > 768) {
-        // Larger screens - set a higher zoom level
-        //map.setView([37.8, -96.9], 5); // Center of the contiguous United States
-        map.fitBounds(maxBounds);
-      } else {
-        // Smaller screens
-        map.fitBounds(maxBounds);
+    // Add the custom control to the map
+    map.addControl(new resetViewControl());
+
+    map.whenReady(function () {
+      document.body.classList.add('map-loaded');
+    });
+
+    // Create an array to store selected states
+    let selectedStates = [];
+
+    // State Recommendations 
+    const possibleStates = [
+      { name: "France", image: "paris.jpg" },
+      { name: "Spain", image: "barcelona.jpg" },
+      { name: "United States", image: "new-york.jpg" },
+      { name: "Turkey", image: "turkey.jpg" },
+      { name: "Italy", image: "rome.jpg" },
+      { name: "Mexico", image: "mexico.jpg" },
+      { name: "United Kingdom", image: "london.jpg" },
+      { name: "Germany", image: "berlin.jpg" },
+      { name: "Greece", image: "santorini.jpg" },
+      { name: "Austria", image: "austria.jpg" }
+
+    ];
+
+
+    function getRecommendedStates(selected, possible) {
+      const recommended = possible.filter(state => !selected.includes(state.name));
+      if (recommended.length < 1) {
+        return possibleStates.slice(0, 3); // Default top 3 states
       }
+      return recommended.slice(0, 3);
+    }
 
-      L.Control.Watermark = L.Control.extend({
-        onAdd: function(map) {
-          var watermark = L.DomUtil.create('div');
-          watermark.innerHTML = 'countries-visited.com';
-          watermark.style.opacity = '0.1';
-          watermark.style.position = 'relative';
-          watermark.style.bottom = '0px'; // Use positive bottom value to move it up
-          watermark.style.left = '50%'; // Center horizontally
-          watermark.style.transform = 'translateX(-50%)'; // Adjust to truly center
-          watermark.style.width = '150px'; // Width of the watermark
-          watermark.style.textAlign = 'center'; // Center the text
-          watermark.style.color = '#000';
-          watermark.style.fontSize = '12px';
-          watermark.style.pointerEvents = 'none'; 
-          watermark.style.fontWeight = 'bold';
-
-          return watermark;
-        },
-      });
-
-      L.control.watermark = function(opts) {
-        return new L.Control.Watermark(opts);
-      }
-
-      // Add to map, position it at the bottom
-      L.control.watermark({ position: 'bottomright' }).addTo(map);
-
-      // Define the custom control
-      const resetViewControl = L.Control.extend({
-        options: {
-          position: "topleft", // You can change the position as needed
-        },
-
-        onAdd: function (map) {
-          const container = L.DomUtil.create(
-            "div",
-            "leaflet-bar leaflet-control leaflet-control-custom"
-          );
-
-          // Add a button with the reset view icon
-          const button = L.DomUtil.create(
-            "a",
-            "leaflet-control-zoom-in leaflet-bar-part",
-            container
-          );
-          button.href = "#";
-          button.title = "Reset View";
-          button.innerHTML = "&#8634;"; // Unicode character for refresh icon
-
-          // Add a click event listener to the button
-          L.DomEvent.on(button, "click", function (e) {
-            //map.setView([42, 0], 1);
-            map.fitBounds(maxBounds);
-            L.DomEvent.stopPropagation(e);
-          });
-
-          return container;
-        },
-      });
-
-      // Add the custom control to the map
-      map.addControl(new resetViewControl());
-
-      map.whenReady(function() {
-            document.body.classList.add('map-loaded');
-      });
-
-      // Create an array to store selected states
-      let selectedStates = [];
-
-      // State Recommendations 
-      const possibleStates = [
-            { name: "France", image: "paris.jpg" },
-            { name: "Spain", image: "barcelona.jpg" },
-            { name: "United States", image: "new-york.jpg" },
-            { name: "Turkey", image: "turkey.jpg" },
-            { name: "Italy", image: "rome.jpg" },
-            { name: "Mexico", image: "mexico.jpg" },
-            {name: "United Kingdom", image: "london.jpg" },
-            { name: "Germany", image: "berlin.jpg" },
-            { name: "Greece", image: "santorini.jpg" },
-            { name: "Austria", image: "austria.jpg" }
- 
-      ];
-    
-
-      function getRecommendedStates(selected, possible) {
-          const recommended = possible.filter(state => !selected.includes(state.name));
-          if (recommended.length < 1) {
-              return possibleStates.slice(0, 3); // Default top 3 states
-          }
-          return recommended.slice(0, 3);
-      }
-
-      function updateRecommendedStates() {
-          /*
-          const recommendations = getRecommendedStates(selectedStates, possibleStates);
-          const container = document.getElementById('recommended-states');
-          container.innerHTML = '';
-          recommendations.forEach(state => {
-              const stateCard = `
-                  <div class="col-md-4 mb-4">
-                      <div class="card">
-                          <img src="/img/states/${state.image}" width="300" height="200" class="card-img-top" alt="state Image of ${state.name}">
-                          <div class="card-body">
-                              <h5 class="card-title">${state.name}</h5>
-                          </div>
+    function updateRecommendedStates() {
+      /*
+      const recommendations = getRecommendedStates(selectedStates, possibleStates);
+      const container = document.getElementById('recommended-states');
+      container.innerHTML = '';
+      recommendations.forEach(state => {
+          const stateCard = `
+              <div class="col-md-4 mb-4">
+                  <div class="card">
+                      <img src="/img/states/${state.image}" width="300" height="200" class="card-img-top" alt="state Image of ${state.name}">
+                      <div class="card-body">
+                          <h5 class="card-title">${state.name}</h5>
                       </div>
                   </div>
-              `;
-              container.innerHTML += stateCard;
-          });
-          */
-      }
+              </div>
+          `;
+          container.innerHTML += stateCard;
+      });
+      */
+    }
 
-      // Define the 'info' control
-      const info = L.control();
+    // Define the 'info' control
+    const info = L.control();
 
-      // Define the 'geojson' layer
-      const geojson = L.geoJson(statesData, {
-        style: style,
-        onEachFeature: onEachFeature,
-      }).addTo(map);
+    // Define the 'geojson' layer
+    const geojson = L.geoJson(statesData, {
+      style: style,
+      onEachFeature: onEachFeature,
+    }).addTo(map);
 
-      // 'info' control methods
-      info.onAdd = function (map) {
-        this._div = L.DomUtil.create("div", "info");
-        this.update();
-        return this._div;
+    // 'info' control methods
+    info.onAdd = function (map) {
+      this._div = L.DomUtil.create("div", "info");
+      this.update();
+      return this._div;
+    };
+
+    // Function to animate the counter update
+    function updateCounter(element, newValue) {
+      element.classList.remove("rotate-text"); // Remove the class to reset animation
+      void element.offsetWidth; // Trigger a DOM reflow
+      element.classList.add("rotate-text"); // Reapply the class for the animation
+      element.textContent = newValue; // Update the text content
+      updateRecommendedStates();
+    }
+
+    // Mouseover Update
+    info.update = function (props) {
+      const contents = props
+        ? `<b>${props.name}</b><br />`
+        : "Hover over a state";
+      this._div.innerHTML = `${contents}`;
+
+      // Redraw the map
+      geojson.setStyle(style);
+    };
+
+    info.addTo(map);
+
+    // Style function
+    function style(feature) {
+      const selected = selectedStates.includes(
+        feature.properties.name
+      );
+      return {
+        weight: 1,
+        opacity: 0.5,
+        color: "white",
+        dashArray: "",
+        fillOpacity: 1,
+        fillColor: selected ? "#2b75a5" : "#e6e6e6",
       };
+    }
 
-      // Function to animate the counter update
-      function updateCounter(element, newValue) {
-        element.classList.remove("rotate-text"); // Remove the class to reset animation
-        void element.offsetWidth; // Trigger a DOM reflow
-        element.classList.add("rotate-text"); // Reapply the class for the animation
-        element.textContent = newValue; // Update the text content
-        updateRecommendedStates();
+    // Highlight feature function
+    function highlightFeature(e) {
+      const layer = e.target;
+      info.update(layer.feature.properties);
+      layer.setStyle({
+        weight: 1,
+        dashArray: "",
+        fillOpacity: 0.9,
+        fillColor: "#3389c1",
+      });
+      layer.bringToFront();
+    }
+
+    // Reset highlight function
+    function resetHighlight(e) {
+      geojson.resetStyle(e.target);
+      info.update();
+    }
+
+    function updateCounterElements() {
+      // Update counter and percentage elements
+      const counterElement = document.getElementById("selected-count");
+      const percentageElement = document.getElementById("selected-percentage");
+      const newCount = selectedStates.length;
+      updateCounter(counterElement, newCount);
+      const newPercentage = ((newCount / 50) * 100).toFixed(0) + "%";
+      // Only update on percentage change
+      if (newPercentage != percentageElement.textContent) {
+        updateCounter(percentageElement, newPercentage);
       }
+    }
 
-      // Mouseover Update
-      info.update = function (props) {
-        const contents = props
-          ? `<b>${props.name}</b><br />`
-          : "Hover over a state";
-        this._div.innerHTML = `${contents}`;
+    // On each feature function
+    function onEachFeature(feature, layer) {
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: function (e) {
+          const stateName = e.target.feature.properties.name;
 
-        // Redraw the map
-        geojson.setStyle(style);
-      };
-
-      info.addTo(map);
-
-      // Style function
-      function style(feature) {
-        const selected = selectedStates.includes(
-          feature.properties.name
-        );
-        return {
-          weight: 1,
-          opacity: 0.5,
-          color: "white",
-          dashArray: "",
-          fillOpacity: 1,
-          fillColor: selected ? "#2b75a5" : "#e6e6e6",
-        };
-      }
-
-      // Highlight feature function
-      function highlightFeature(e) {
-        const layer = e.target;
-        info.update(layer.feature.properties);
-        layer.setStyle({
-          weight: 1,
-          dashArray: "",
-          fillOpacity: 0.9,
-          fillColor: "#3389c1",
-        });
-        layer.bringToFront();
-      }
-
-      // Reset highlight function
-      function resetHighlight(e) {
-        geojson.resetStyle(e.target);
-        info.update();
-      }
-
-      function updateCounterElements(){
-          // Update counter and percentage elements
-          const counterElement = document.getElementById("selected-count");
-          const percentageElement = document.getElementById("selected-percentage");
-          const newCount = selectedStates.length;
-          updateCounter(counterElement, newCount);
-          const newPercentage = ((newCount / 50) * 100).toFixed(0) + "%";
-          // Only update on percentage change
-          if (newPercentage != percentageElement.textContent){
-            updateCounter(percentageElement, newPercentage);
-          }
-      }
-
-      // On each feature function
-      function onEachFeature(feature, layer) {
-        layer.on({
-          mouseover: highlightFeature,
-          mouseout: resetHighlight,
-          click: function (e) {
-            const stateName = e.target.feature.properties.name;
-
-            if (selectedStates.includes(stateName)) {
-              // state is already selected, remove it
-              const index = selectedStates.indexOf(stateName);
-              if (index !== -1) {
-                selectedStates.splice(index, 1);
-              }
-              uncheckCheckboxByState(stateName);
-            } else {
-              // state is not selected, add it
-              selectedStates.push(stateName);
-              checkCheckboxByState(stateName);
+          if (selectedStates.includes(stateName)) {
+            // state is already selected, remove it
+            const index = selectedStates.indexOf(stateName);
+            if (index !== -1) {
+              selectedStates.splice(index, 1);
             }
+            uncheckCheckboxByState(stateName);
+          } else {
+            // state is not selected, add it
+            selectedStates.push(stateName);
+            checkCheckboxByState(stateName);
+          }
 
-            updateCounterElements();
+          updateCounterElements();
 
 
 
-            // Update the info control
-            info.update(e.target.feature.properties);
-          },
+          // Update the info control
+          info.update(e.target.feature.properties);
+        },
+      });
+    }
+
+    // Function to uncheck a checkbox by state name
+    function uncheckCheckboxByState(state) {
+      const checkboxId = `checkbox${state.replace(/\s+/g, "")}`;
+      const checkbox = document.getElementById(checkboxId);
+
+      if (checkbox) {
+        checkbox.checked = false;
+      }
+    }
+
+    // Function to check a checkbox by state name
+    function checkCheckboxByState(state) {
+      const checkboxId = `checkbox${state.replace(/\s+/g, "")}`;
+      const checkbox = document.getElementById(checkboxId);
+
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    }
+
+    // Function to remove a state from the list
+    function removeState(state) {
+      const index = selectedStates.indexOf(state);
+      if (index !== -1) {
+        selectedStates.splice(index, 1);
+      }
+
+      // Update the info control and redraw the map
+      info.update();
+    }
+
+    // Function to update URL when checkbox is clicked
+    function updateURL() {
+      let checkedCheckboxes = document.querySelectorAll('.form-check-input:checked');
+      let params = [];
+      checkedCheckboxes.forEach(function (checkbox) {
+        params.push(checkbox.value);
+      });
+      let url = window.location.href.split('?')[0]; // remove existing parameters
+      if (params.length > 0) {
+        url += '?states=' + encodeURIComponent(params.join(','));
+      }
+      history.pushState(null, '', url);
+
+      updateSocialLinks();
+    }
+
+    // Function to check checkboxes based on URL parameters
+    function checkCheckboxes() {
+      let urlParams = new URLSearchParams(window.location.search);
+      let checkedCheckboxes = urlParams.get('states');
+      if (checkedCheckboxes) {
+        let checkedValues = checkedCheckboxes.split(',');
+        checkedValues.forEach(function (value) {
+          let checkbox = document.querySelector('input[value="' + value + '"]');
+          if (checkbox) {
+            checkbox.checked = true;
+            updateselectedStates(value, true); // Update selected states array
+
+          }
         });
       }
+    }
 
-      // Function to uncheck a checkbox by state name
-      function uncheckCheckboxByState(state) {
-        const checkboxId = `checkbox${state.replace(/\s+/g, "")}`;
-        const checkbox = document.getElementById(checkboxId);
 
-        if (checkbox) {
-          checkbox.checked = false;
-        }
-      }
 
-      // Function to check a checkbox by state name
-      function checkCheckboxByState(state) {
-        const checkboxId = `checkbox${state.replace(/\s+/g, "")}`;
-        const checkbox = document.getElementById(checkboxId);
+    // Function to initialize event listeners for checkboxes
+    function initializeCheckboxListeners() {
+      const checkboxes = document.querySelectorAll(".form-check-input");
 
-        if (checkbox) {
-          checkbox.checked = true;
-        }
-      }
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", function () {
+          const state = this.value;
+          const isChecked = this.checked;
+          updateselectedStates(state, isChecked);
+          updateURL();
+          updateCounterElements();
+        });
+      });
+    }
 
-      // Function to remove a state from the list
-      function removeState(state) {
+    // Function to update the selected states based on checkbox state
+    function updateselectedStates(state, isChecked) {
+      if (isChecked && !selectedStates.includes(state)) {
+        selectedStates.push(state);
+        updateRecommendedStates();
+      } else if (!isChecked && selectedStates.includes(state)) {
         const index = selectedStates.indexOf(state);
-        if (index !== -1) {
-          selectedStates.splice(index, 1);
-        }
-
-        // Update the info control and redraw the map
-        info.update();
-      }
-
-      // Function to update URL when checkbox is clicked
-      function updateURL() {
-        let checkedCheckboxes = document.querySelectorAll('.form-check-input:checked');
-        let params = [];
-        checkedCheckboxes.forEach(function(checkbox) {
-          params.push(checkbox.value);
-        });
-        let url = window.location.href.split('?')[0]; // remove existing parameters
-        if (params.length > 0) {
-          url += '?states=' + encodeURIComponent(params.join(','));
-        }
-        history.pushState(null, '', url);
-
-        updateSocialLinks();
-      }
-
-      // Function to check checkboxes based on URL parameters
-      function checkCheckboxes() {
-        let urlParams = new URLSearchParams(window.location.search);
-        let checkedCheckboxes = urlParams.get('states');
-        if (checkedCheckboxes) {
-          let checkedValues = checkedCheckboxes.split(',');
-          checkedValues.forEach(function(value) {
-            let checkbox = document.querySelector('input[value="' + value + '"]');
-            if (checkbox) {
-              checkbox.checked = true;
-              updateselectedStates(value, true); // Update selected states array
-              
-            }
-          });
-        }
-      }
-
-
-
-      // Function to initialize event listeners for checkboxes
-      function initializeCheckboxListeners() {
-        const checkboxes = document.querySelectorAll(".form-check-input");
-
-        checkboxes.forEach((checkbox) => {
-          checkbox.addEventListener("change", function () {
-            const state = this.value;
-            const isChecked = this.checked;
-            updateselectedStates(state, isChecked);
-            updateURL();
-            updateCounterElements();
-          });
-        });
-      }
-
-      // Function to update the selected states based on checkbox state
-      function updateselectedStates(state, isChecked) {
-        if (isChecked && !selectedStates.includes(state)) {
-          selectedStates.push(state);
-          updateRecommendedStates();
-        } else if (!isChecked && selectedStates.includes(state)) {
-          const index = selectedStates.indexOf(state);
-          selectedStates.splice(index, 1);
-          updateRecommendedStates();
-        }
-
-        // Update the info control
-        info.update();
-      }
-
-      function updateSocialLinks() {
-          
-          const currentUrl = window.location.href;
-          
-          const facebookLink = document.getElementById('facebook-link');
-          if (facebookLink) {
-              const quote = "Simply%20mark%20and%20count%20the%20states%20you%20have%20visited%20on%20the%20interactive%20states%20map";
-              facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}&quote=${quote}`;
-          } 
-
-          const xLink = document.getElementById('x-twitter-link');
-          if (xLink) {
-              const text = "Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at";
-              const hashtags = "StatesVisited"
-              xLink.href = `https://x.com/intent/tweet?text=${text}&url=${encodeURIComponent(currentUrl)}&hashtags=${hashtags}`;
-          } 
-
-          const whatsappLink = document.getElementById('whatsapp-link');
-          if (whatsappLink) {
-              const text = "Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at%20";
-              whatsappLink.href = `whatsapp://send?text=${text}${currentUrl}`;
-          }
-
-          const mailLink = document.getElementById('mail-link');
-          if (mailLink) {
-              const subject = 'Check out this states tracker and counter';
-              const body = `Track and count all the united states you\'ve visited with the interactive map. Explore more at ${(currentUrl)}`;
-
-              mailLink.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          }
-          
-      }
-
-      function copyToClipboard() {
-          // Get the current page URL
-          const currentUrl = window.location.href;
-
-          // Use the Clipboard API to copy text
-          navigator.clipboard.writeText(currentUrl).then(() => {
-              //alert('Link copied to clipboard!');
-          }).catch(err => {
-              console.error('Failed to copy: ', err);
-          });
-      }
-
-
-
-
-
-      // Initialize the checkbox listeners
-      initializeCheckboxListeners();
-
-      // Add event listener to map clicks
-      map.on('click', function() {
-        updateURL(); // Call updateURL() when map is clicked
-      });
-
-      // Check checkboxes on page load
-      window.addEventListener('load', function() {
-        checkCheckboxes();
-        updateURL(); // Call updateURL() on page load
+        selectedStates.splice(index, 1);
         updateRecommendedStates();
-        updateCounterElements();
+      }
+
+      // Update the info control
+      info.update();
+    }
+
+    function updateSocialLinks() {
+
+      const currentUrl = window.location.href;
+
+      const facebookLink = document.getElementById('facebook-link');
+      if (facebookLink) {
+        const quote = "Simply%20mark%20and%20count%20the%20states%20you%20have%20visited%20on%20the%20interactive%20states%20map";
+        facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}&quote=${quote}`;
+      }
+
+      const xLink = document.getElementById('x-twitter-link');
+      if (xLink) {
+        const text = "Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at";
+        const hashtags = "StatesVisited"
+        xLink.href = `https://x.com/intent/tweet?text=${text}&url=${encodeURIComponent(currentUrl)}&hashtags=${hashtags}`;
+      }
+
+      const whatsappLink = document.getElementById('whatsapp-link');
+      if (whatsappLink) {
+        const text = "Track%20and%20count%20all%20the%20states%20you%27ve%20visited%20with%20the%20interactive%20map.%20See%20more%20at%20";
+        whatsappLink.href = `whatsapp://send?text=${text}${currentUrl}`;
+      }
+
+      const mailLink = document.getElementById('mail-link');
+      if (mailLink) {
+        const subject = 'Check out this states tracker and counter';
+        const body = `Track and count all the united states you\'ve visited with the interactive map. Explore more at ${(currentUrl)}`;
+
+        mailLink.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+
+    }
+
+    function copyToClipboard() {
+      // Get the current page URL
+      const currentUrl = window.location.href;
+
+      // Use the Clipboard API to copy text
+      navigator.clipboard.writeText(currentUrl).then(() => {
+        //alert('Link copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
       });
-      	
-    </script>
-    
-  </body>
+    }
+
+
+
+
+
+    // Initialize the checkbox listeners
+    initializeCheckboxListeners();
+
+    // Add event listener to map clicks
+    map.on('click', function () {
+      updateURL(); // Call updateURL() when map is clicked
+    });
+
+    // Check checkboxes on page load
+    window.addEventListener('load', function () {
+      checkCheckboxes();
+      updateURL(); // Call updateURL() on page load
+      updateRecommendedStates();
+      updateCounterElements();
+    });
+
+  </script>
+
+</body>
+
 </html>
