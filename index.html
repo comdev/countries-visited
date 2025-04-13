@@ -60,6 +60,8 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -296,55 +298,295 @@
             </div>
           </div>
 
-          </div>
+        </div>
 
-          <div class="row" id="states-row">
-            <div class="col-md-8 mx-auto">
-              <div class="states-box d-flex justify-content-between align-items-center">
-                <svg clip-rule="evenodd" width="48" height="24" fill="currentColor" stroke-linejoin="round"
-                  stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="m12.002 2.005c5.518 0 9.998 4.48 9.998 9.997 0 5.518-4.48 9.998-9.998 9.998-5.517 0-9.997-4.48-9.997-9.998 0-5.517 4.48-9.997 9.997-9.997zm0 8c-.414 0-.75.336-.75.75v5.5c0 .414.336.75.75.75s.75-.336.75-.75v-5.5c0-.414-.336-.75-.75-.75zm-.002-3c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z"
-                    fill-rule="nonzero" />
-                </svg>
-                <p class="m-0 me-2 share-info-text">Mark all the United States you have visited here:</p>
-                <button type="button" id="statesLinkButton" class="btn btn-sm ms-auto" title="States Map & Counter">
-                  <a href="/states-visited.html" title="States Visited">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="16" fill="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
-                    </svg>
-                  </a>
-                </button>
-              </div>
+        <div class="row" id="states-row">
+          <div class="col-md-8 mx-auto">
+            <div class="states-box d-flex justify-content-between align-items-center">
+              <svg clip-rule="evenodd" width="48" height="24" fill="currentColor" stroke-linejoin="round"
+                stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m12.002 2.005c5.518 0 9.998 4.48 9.998 9.997 0 5.518-4.48 9.998-9.998 9.998-5.517 0-9.997-4.48-9.997-9.998 0-5.517 4.48-9.997 9.997-9.997zm0 8c-.414 0-.75.336-.75.75v5.5c0 .414.336.75.75.75s.75-.336.75-.75v-5.5c0-.414-.336-.75-.75-.75zm-.002-3c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z"
+                  fill-rule="nonzero" />
+              </svg>
+              <p class="m-0 me-2 share-info-text">Mark all the United States you have visited here:</p>
+              <button type="button" id="statesLinkButton" class="btn btn-sm ms-auto" title="States Map & Counter">
+                <a href="/states-visited.html" title="States Visited">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="16" fill="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
+                  </svg>
+                </a>
+              </button>
             </div>
           </div>
-
-
-
-          <h2 class="jumbotron-heading">
-            Visualize and count the countries you have visited
-          </h2>
-          <p>
-            Use the world map as a digital scratch map and mark all the
-            countries you have already visited with a few simple mouse clicks.
-            Whether it was a brief city excursion, an extensive vacation, or a
-            phase of living abroad, you can capture and visualize those
-            experiences on this map. If you're unable to locate the countries
-            you have visited on the map, the list beneath it is your guide.
-          </p>
         </div>
 
 
-        <div class="container">
+
+        <div class="row justify-content-center g-3 py-5">
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartWorld" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelWorld"></div>
+            </div>
+            <div class="chart-title" id="titleWorld"></div>
+          </div>
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartEurope" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelEurope"></div>
+            </div>
+            <div class="chart-title" id="titleEurope"></div>
+          </div>
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartAsia" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelAsia"></div>
+            </div>
+            <div class="chart-title" id="titleAsia"></div>
+          </div>
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartAfrica" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelAfrica"></div>
+            </div>
+            <div class="chart-title" id="titleAfrica"></div>
+          </div>
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartNorthAmerica" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelNorthAmerica"></div>
+            </div>
+            <div class="chart-title" id="titleNorthAmerica"></div>
+          </div>
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartSouthAmerica" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelSouthAmerica"></div>
+            </div>
+            <div class="chart-title" id="titleSouthAmerica"></div>
+          </div>
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartOceania" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelOceania"></div>
+            </div>
+            <div class="chart-title" id="titleOceania"></div>
+          </div>
+
+          <div class="col-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartAntarctica" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelAntarctica"></div>
+            </div>
+            <div class="chart-title" id="titleAntarctica"></div>
+          </div>
+        </div>
+
+
+        <script>
+
+          const countryToContinent = {
+            // Africa (55)
+            "Algeria": "Africa", "Angola": "Africa", "Benin": "Africa", "Botswana": "Africa", "Burkina Faso": "Africa",
+            "Burundi": "Africa", "Cabo Verde": "Africa", "Cameroon": "Africa", "Central African Republic": "Africa",
+            "Chad": "Africa", "Comoros": "Africa", "Congo (Brazzaville)": "Africa", "Congo (Kinshasa)": "Africa",
+            "Côte d'Ivoire": "Africa", "Djibouti": "Africa", "Egypt": "Africa", "Equatorial Guinea": "Africa",
+            "Eritrea": "Africa", "Eswatini": "Africa", "Ethiopia": "Africa", "Gabon": "Africa", "Gambia": "Africa",
+            "Ghana": "Africa", "Guinea": "Africa", "Guinea-Bissau": "Africa", "Kenya": "Africa", "Lesotho": "Africa",
+            "Liberia": "Africa", "Libya": "Africa", "Madagascar": "Africa", "Malawi": "Africa", "Mali": "Africa",
+            "Mauritania": "Africa", "Mauritius": "Africa", "Morocco": "Africa", "Mozambique": "Africa", "Namibia": "Africa",
+            "Niger": "Africa", "Nigeria": "Africa", "Rwanda": "Africa", "Sao Tome and Principe": "Africa", "Senegal": "Africa",
+            "Seychelles": "Africa", "Sierra Leone": "Africa", "Somalia": "Africa", "South Africa": "Africa", "South Sudan": "Africa",
+            "Sudan": "Africa", "Tanzania": "Africa", "Togo": "Africa", "Tunisia": "Africa", "Uganda": "Africa",
+            "Zambia": "Africa", "Zimbabwe": "Africa",
+
+            // Asia (51)
+            "Afghanistan": "Asia", "Armenia": "Asia", "Azerbaijan": "Asia", "Bahrain": "Asia", "Bangladesh": "Asia",
+            "Bhutan": "Asia", "Brunei": "Asia", "Cambodia": "Asia", "China": "Asia", "Cyprus": "Asia",
+            "Georgia": "Asia", "India": "Asia", "Indonesia": "Asia", "Iran": "Asia", "Iraq": "Asia",
+            "Israel": "Asia", "Japan": "Asia", "Jordan": "Asia", "Kazakhstan": "Asia", "Kuwait": "Asia",
+            "Kyrgyzstan": "Asia", "Laos": "Asia", "Lebanon": "Asia", "Malaysia": "Asia", "Maldives": "Asia",
+            "Mongolia": "Asia", "Myanmar": "Asia", "Nepal": "Asia", "North Korea": "Asia", "Oman": "Asia",
+            "Pakistan": "Asia", "Palestine": "Asia", "Philippines": "Asia", "Qatar": "Asia", "Saudi Arabia": "Asia",
+            "Singapore": "Asia", "South Korea": "Asia", "Sri Lanka": "Asia", "Syria": "Asia", "Tajikistan": "Asia",
+            "Thailand": "Asia", "Timor-Leste": "Asia", "Turkey": "Asia", "Turkmenistan": "Asia", "United Arab Emirates": "Asia",
+            "Uzbekistan": "Asia", "Vietnam": "Asia", "Yemen": "Asia", "Russia": "Asia", // Russia is transcontinental
+
+            // Europe (50)
+            "Albania": "Europe", "Andorra": "Europe", "Austria": "Europe", "Belarus": "Europe", "Belgium": "Europe",
+            "Bosnia and Herzegovina": "Europe", "Bulgaria": "Europe", "Croatia": "Europe", "Czech Republic": "Europe",
+            "Denmark": "Europe", "Estonia": "Europe", "Finland": "Europe", "France": "Europe", "Germany": "Europe",
+            "Greece": "Europe", "Hungary": "Europe", "Iceland": "Europe", "Ireland": "Europe", "Italy": "Europe",
+            "Kosovo": "Europe", "Latvia": "Europe", "Liechtenstein": "Europe", "Lithuania": "Europe", "Luxembourg": "Europe",
+            "Malta": "Europe", "Moldova": "Europe", "Monaco": "Europe", "Montenegro": "Europe", "Netherlands": "Europe",
+            "North Macedonia": "Europe", "Norway": "Europe", "Poland": "Europe", "Portugal": "Europe", "Romania": "Europe",
+            "San Marino": "Europe", "Serbia": "Europe", "Slovakia": "Europe", "Slovenia": "Europe", "Spain": "Europe",
+            "Sweden": "Europe", "Switzerland": "Europe", "Ukraine": "Europe", "United Kingdom": "Europe", "Vatican City": "Europe",
+
+            // North America (35)
+            "Antigua and Barbuda": "North America", "Bahamas": "North America", "Barbados": "North America", "Belize": "North America",
+            "Canada": "North America", "Costa Rica": "North America", "Cuba": "North America", "Dominica": "North America",
+            "Dominican Republic": "North America", "El Salvador": "North America", "Grenada": "North America", "Guatemala": "North America",
+            "Haiti": "North America", "Honduras": "North America", "Jamaica": "North America", "Mexico": "North America",
+            "Nicaragua": "North America", "Panama": "North America", "Saint Kitts and Nevis": "North America", "Saint Lucia": "North America",
+            "Saint Vincent and the Grenadines": "North America", "Trinidad and Tobago": "North America", "United States": "North America",
+
+            // Additional territories sometimes included:
+            "Greenland": "North America", "Bermuda": "North America", "Aruba": "North America", "Curacao": "North America",
+            "Saint Pierre and Miquelon": "North America", "Martinique": "North America", "Guadeloupe": "North America",
+
+            // South America (15)
+            "Argentina": "South America", "Bolivia": "South America", "Brazil": "South America", "Chile": "South America",
+            "Colombia": "South America", "Ecuador": "South America", "Guyana": "South America", "Paraguay": "South America",
+            "Peru": "South America", "Suriname": "South America", "Uruguay": "South America", "Venezuela": "South America",
+            "French Guiana": "South America", // technically part of France, but geographically SA
+            "Falkland Islands": "South America", "South Georgia and the South Sandwich Islands": "South America",
+
+            // Oceania (31)
+            "Australia": "Oceania", "Fiji": "Oceania", "Kiribati": "Oceania", "Marshall Islands": "Oceania", "Micronesia": "Oceania",
+            "Nauru": "Oceania", "New Zealand": "Oceania", "Palau": "Oceania", "Papua New Guinea": "Oceania", "Samoa": "Oceania",
+            "Solomon Islands": "Oceania", "Tonga": "Oceania", "Tuvalu": "Oceania", "Vanuatu": "Oceania",
+
+            // Territories often included:
+            "New Caledonia": "Oceania", "French Polynesia": "Oceania", "Guam": "Oceania", "American Samoa": "Oceania",
+            "Cook Islands": "Oceania", "Niue": "Oceania", "Tokelau": "Oceania", "Wallis and Futuna": "Oceania",
+            "Northern Mariana Islands": "Oceania", "Pitcairn Islands": "Oceania",
+
+            // Antarctica (1)
+            "Antarctica": "Antarctica"
+          };
+
+
+          // Global data for totals and visited counts
+          const continentData = {
+            "Africa": { total: 55, visited: 0 },
+            "Asia": { total: 51, visited: 0 },
+            "Europe": { total: 50, visited: 0 },
+            "North America": { total: 35, visited: 0 },
+            "South America": { total: 15, visited: 0 },
+            "Oceania": { total: 31, visited: 0 },
+            "Antarctica": { total: 1, visited: 0 }
+          };
+
+          // Calculate World as sum of all continents
+          function calculateWorldData() {
+            let totalVisited = 0, totalTotal = 0;
+            for (const key in continentData) {
+              totalVisited += continentData[key].visited;
+              totalTotal += continentData[key].total;
+            }
+            return { visited: totalVisited, total: totalTotal };
+          }
+
+          // Store chart instances
+          const charts = {};
+
+          // List of all chart names (including World)
+          const chartNames = ["World", "Europe", "Asia", "Africa", "North America", "South America", "Oceania", "Antarctica"];
+
+          // Initialize charts
+          chartNames.forEach(name => {
+            let data;
+            if (name === "World") {
+              data = calculateWorldData();
+            } else {
+              data = continentData[name];
+            }
+
+            // Set the label and title
+            document.getElementById("label" + name.replace(/\s+/g, '')).innerText = ((data.visited / data.total) * 100).toFixed(1) + '%';
+            document.getElementById("title" + name.replace(/\s+/g, '')).innerText = name;
+
+            // Create the doughnut chart
+            charts[name] = new Chart(document.getElementById("chart" + name.replace(/\s+/g, '')), {
+              type: 'doughnut',
+              data: {
+                labels: ['Visited', 'Not Visited'],
+                datasets: [{
+                  data: [data.visited, data.total - data.visited],
+                  backgroundColor: ['#2b75a5', '#e6e6e6'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                plugins: {
+                  legend: { display: false }
+                },
+                responsive: false, // fixed canvas size
+                maintainAspectRatio: false,
+                cutout: '70%',
+                layout: { padding: 0 },
+                animation: {
+                  duration: 1000, // smooth transition duration in ms
+                  easing: 'easeOutQuart'
+                }
+              }
+            });
+          });
+
+          // Function to update visited count for a given continent and refresh its chart
+          function updateVisited(continentName, newVisited) {
+            // Update data for individual continents
+            if (continentName !== "World" && continentData[continentName]) {
+              continentData[continentName].visited = newVisited;
+            }
+
+            // Update the specific chart if it's not World
+            if (continentName !== "World") {
+              let data = continentData[continentName];
+              let chart = charts[continentName];
+              chart.data.datasets[0].data = [data.visited, data.total - data.visited];
+              document.getElementById("label" + continentName.replace(/\s+/g, '')).innerText = ((data.visited / data.total) * 100).toFixed(1) + '%';
+              chart.update();
+            }
+
+            // Recalculate and update World chart
+            let worldData = calculateWorldData();
+            let worldChart = charts["World"];
+            worldChart.data.datasets[0].data = [worldData.visited, worldData.total - worldData.visited];
+            document.getElementById("labelWorld").innerText = ((worldData.visited / worldData.total) * 100).toFixed(1) + '%';
+            worldChart.update();
+          }
+
+          // Example: update the visited count for Europe after 2 seconds
+          setTimeout(() => {
+            updateVisited("Europe", 1);
+          }, 2000);
+        </script>
+
+
+
+        <h2 class="jumbotron-heading">
+          Visualize and count the countries you have visited
+        </h2>
+        <p>
+          Use the world map as a digital scratch map and mark all the
+          countries you have already visited with a few simple mouse clicks.
+          Whether it was a brief city excursion, an extensive vacation, or a
+          phase of living abroad, you can capture and visualize those
+          experiences on this map. If you're unable to locate the countries
+          you have visited on the map, the list beneath it is your guide.
+        </p>
+      </div>
+
+      <!--
+      <div class="container py-5">
         <a href="https://amzn.to/43kATiS" class="ad-card">
           <div class="ad-container border rounded shadow-sm p-2">
             <div class="d-flex align-items-center">
               <div class="flex-shrink-0">
                 <img src="img/amazon/scratch_map.jpg" alt="Travel Scratch Map" class="ad-img">
               </div>
-              <!-- Text on the right -->
               <div class="ms-3">
                 <p class="mb-1"><strong>Turn Your Digital Journey into a Real Scratch Map!</strong></p>
                 <p class="small">For Those Who Love to Travel: Explore and discover the world with this deluxe scratch
@@ -358,8 +600,9 @@
           </div>
         </a>
       </div>
+    -->
 
-      </div>
+    </div>
 
 
     </div>
@@ -1992,7 +2235,7 @@
             <!--Recommended countries will be inserted here -->
           </div>
 
-      
+
         </div>
       </div>
     </div>
@@ -2062,9 +2305,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -2081,129 +2322,221 @@
   <script type="text/javascript" src="countries_ne.js"></script>
 
   <script type="text/javascript">
-    const map = L.map("map", {
-      minZoom: 0,
-      maxZoom: 5,
-      zoomSnap: 0,
-      attributionControl: false
-      //renderer: L.canvas()
-    });
 
-    // Set maximum bounds to ensure the entire world is visible
-    const maxBounds = [
-      [-60, -180], // Southwest coordinates
-      [90, 180], // Northeast coordinates
-    ];
-    map.setMaxBounds(maxBounds);
+    document.addEventListener('DOMContentLoaded', () => {
 
-    // Check the screen size and set the default view accordingly
-    if (window.innerWidth > 768) {
-      // Larger screens - set a higher zoom level
-      map.setView([0, 0], 2); // Adjust the zoom level as needed
-    } else {
-      // Smaller screens
-      map.fitBounds(maxBounds);
-    }
+      let selectedCountries = [];
+      // const selectedCountries = new Set();
 
-    L.Control.Watermark = L.Control.extend({
-      onAdd: function (map) {
-        var watermark = L.DomUtil.create('div');
-        watermark.innerHTML = 'countries-visited.com';
-        watermark.style.opacity = '0.1';
-        watermark.style.position = 'relative';
-        watermark.style.bottom = '0px'; // Use positive bottom value to move it up
-        watermark.style.left = '50%'; // Center horizontally
-        watermark.style.transform = 'translateX(-50%)'; // Adjust to truly center
-        watermark.style.width = '150px'; // Width of the watermark
-        watermark.style.textAlign = 'center'; // Center the text
-        watermark.style.color = '#000';
-        watermark.style.fontSize = '12px';
-        watermark.style.pointerEvents = 'none';
-        watermark.style.fontWeight = 'bold';
+      /* --- Start Map --- */
 
-        return watermark;
-      },
-    });
+      const map = L.map("map", {
+        minZoom: 0,
+        maxZoom: 5,
+        zoomSnap: 0,
+        attributionControl: false
+        //renderer: L.canvas()
+      });
 
-    L.control.watermark = function (opts) {
-      return new L.Control.Watermark(opts);
-    }
+      // Set maximum bounds to ensure the entire world is visible
+      const maxBounds = [[-60, -180], [90, 180]];
+      map.setMaxBounds(maxBounds);
 
-    // Add to map, position it at the bottom
-    L.control.watermark({ position: 'bottomright' }).addTo(map);
-
-    // Define the custom control
-    const resetViewControl = L.Control.extend({
-      options: {
-        position: "topleft", // You can change the position as needed
-      },
-
-      onAdd: function (map) {
-        const container = L.DomUtil.create(
-          "div",
-          "leaflet-bar leaflet-control leaflet-control-custom"
-        );
-
-        // Add a button with the reset view icon
-        const button = L.DomUtil.create(
-          "a",
-          "leaflet-control-zoom-in leaflet-bar-part",
-          container
-        );
-        button.href = "#";
-        button.title = "Reset View";
-        button.innerHTML = "&#8634;"; // Unicode character for refresh icon
-
-        // Add a click event listener to the button
-        L.DomEvent.on(button, "click", function (e) {
-          //map.setView([42, 0], 1);
-          map.fitBounds(maxBounds);
-          L.DomEvent.stopPropagation(e);
-        });
-
-        return container;
-      },
-    });
-
-    // Add the custom control to the map
-    map.addControl(new resetViewControl());
-
-    map.whenReady(function () {
-      document.body.classList.add('map-loaded');
-    });
-
-    // Create an array to store selected countries
-    let selectedCountries = [];
-
-    // Country Recommendations 
-    const possibleCountries = [
-      { name: "France", image: "paris.jpg" },
-      { name: "Spain", image: "barcelona.jpg" },
-      { name: "United States", image: "new-york.jpg" },
-      { name: "Turkey", image: "turkey.jpg" },
-      { name: "Italy", image: "rome.jpg" },
-      { name: "Mexico", image: "mexico.jpg" },
-      { name: "United Kingdom", image: "london.jpg" },
-      { name: "Germany", image: "berlin.jpg" },
-      { name: "Greece", image: "santorini.jpg" },
-      { name: "Austria", image: "austria.jpg" }
-
-    ];
-
-    function getRecommendedCountries(selected, possible) {
-      const recommended = possible.filter(country => !selected.includes(country.name));
-      if (recommended.length < 1) {
-        return possibleCountries.slice(0, 3); // Default top 3 countries
+      // Check the screen size and set the default view accordingly
+      if (window.innerWidth > 768) {
+        // Larger screens - set a higher zoom level
+        map.setView([0, 0], 2); // Adjust the zoom level as needed
+      } else {
+        // Smaller screens
+        map.fitBounds(maxBounds);
       }
-      return recommended.slice(0, 3);
-    }
+     
+      
+      L.Control.Watermark = L.Control.extend({
+        onAdd: function (map) {
+          var watermark = L.DomUtil.create('div');
+          watermark.innerHTML = 'countries-visited.com';
+          watermark.style.opacity = '0.1';
+          watermark.style.position = 'relative';
+          watermark.style.bottom = '0px'; // Use positive bottom value to move it up
+          watermark.style.left = '50%'; // Center horizontally
+          watermark.style.transform = 'translateX(-50%)'; // Adjust to truly center
+          watermark.style.width = '150px'; // Width of the watermark
+          watermark.style.textAlign = 'center'; // Center the text
+          watermark.style.color = '#000';
+          watermark.style.fontSize = '12px';
+          watermark.style.pointerEvents = 'none';
+          watermark.style.fontWeight = 'bold';
 
-    function updateRecommendedCountries() {
-      const recommendations = getRecommendedCountries(selectedCountries, possibleCountries);
-      const container = document.getElementById('recommended-countries');
-      container.innerHTML = '';
-      recommendations.forEach(country => {
-        const countryCard = `
+          return watermark;
+        },
+      });
+
+      L.control.watermark = function (opts) { return new L.Control.Watermark(opts); }
+      L.control.watermark({ position: 'bottomright' }).addTo(map);
+      
+
+      // Define the custom control
+      const resetViewControl = L.Control.extend({
+        options: {
+          position: "topleft", 
+        },
+        onAdd: function (map) {
+          const container = L.DomUtil.create(
+            "div",
+            "leaflet-bar leaflet-control leaflet-control-custom"
+          );
+          // Add a button with the reset view icon
+          const button = L.DomUtil.create(
+            "a",
+            "leaflet-control-zoom-in leaflet-bar-part",
+            container
+          );
+          button.href = "#";
+          button.title = "Reset View";
+          button.innerHTML = "&#8634;"; // Unicode character for refresh icon
+
+          // Add a click event listener to the button
+          L.DomEvent.on(button, "click", function (e) {
+            //map.setView([42, 0], 1);
+            map.fitBounds(maxBounds);
+            L.DomEvent.stopPropagation(e);
+          });
+
+          return container;
+        },
+      });
+
+      // Add the custom control to the map
+      map.addControl(new resetViewControl());
+
+      map.whenReady(function () {
+        document.body.classList.add('map-loaded');
+      });
+
+
+      const info = L.control();
+      info.onAdd = () => {
+        const div = L.DomUtil.create("div", "info");
+        div.innerHTML = "Hover over a country";
+        info._div = div;
+        return div;
+      };
+      info.update = props => {
+        info._div.innerHTML = props ? `<b>${props.NAME_LONG}</b><br />` : "Hover over a country";
+        geojson.setStyle(style);
+      };
+      info.addTo(map);
+
+
+      const geojson = L.geoJson(countriesData, {
+        style,
+        onEachFeature
+      }).addTo(map);
+
+      // Style function
+      function style(feature) {
+        const selected = selectedCountries.includes(
+          feature.properties.NAME_LONG
+        );
+        return {
+          weight: 1,
+          opacity: 0.5,
+          color: "white",
+          dashArray: "",
+          fillOpacity: 1,
+          fillColor: selected ? "#2b75a5" : "#e6e6e6",
+        };
+      }
+      
+
+      // Highlight feature function
+      function highlightFeature(e) {
+        const layer = e.target;
+        info.update(layer.feature.properties);
+        layer.setStyle({
+          weight: 1,
+          dashArray: "",
+          fillOpacity: 0.9,
+          fillColor: "#3389c1",
+        });
+        layer.bringToFront();
+      }
+
+      // Reset highlight function
+      function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+        info.update();
+      }
+
+      
+
+      // On each feature function
+      function onEachFeature(feature, layer) {
+        layer.on({
+          mouseover: highlightFeature,
+          mouseout: resetHighlight,
+          click: function (e) {
+            const countryName = e.target.feature.properties.NAME_LONG;
+
+            if (selectedCountries.includes(countryName)) {
+              // Country is already selected, remove it
+              const index = selectedCountries.indexOf(countryName);
+              if (index !== -1) {
+                selectedCountries.splice(index, 1);
+              }
+              uncheckCheckboxByCountry(countryName);
+            } else {
+              // Country is not selected, add it
+              selectedCountries.push(countryName);
+              checkCheckboxByCountry(countryName);
+            }
+
+            updateCounterElements();
+            updateStatesLinkInfo();
+
+
+            // Update the info control
+            info.update(e.target.feature.properties);
+          },
+        });
+      }
+
+      /* --- End Map --- */
+
+
+      /* --- Recommend Countries --- */
+
+
+      // Country Recommendations 
+      const possibleCountries = [
+        { name: "France", image: "paris.jpg" },
+        { name: "Spain", image: "barcelona.jpg" },
+        { name: "United States", image: "new-york.jpg" },
+        { name: "Turkey", image: "turkey.jpg" },
+        { name: "Italy", image: "rome.jpg" },
+        { name: "Mexico", image: "mexico.jpg" },
+        { name: "United Kingdom", image: "london.jpg" },
+        { name: "Germany", image: "berlin.jpg" },
+        { name: "Greece", image: "santorini.jpg" },
+        { name: "Austria", image: "austria.jpg" }
+
+      ];
+
+      function getRecommendedCountries(selected, possible) {
+        const recommended = possible.filter(country => !selected.includes(country.name));
+        if (recommended.length < 1) {
+          return possibleCountries.slice(0, 3); // Default top 3 countries
+        }
+        return recommended.slice(0, 3);
+      }
+
+      function updateRecommendedCountries() {
+        const recommendations = getRecommendedCountries(selectedCountries, possibleCountries);
+        const container = document.getElementById('recommended-countries');
+        container.innerHTML = '';
+        recommendations.forEach(country => {
+          const countryCard = `
                   <div class="col-12 col-md-4 d-flex justify-content-center">
                       <div class="card">
                           <img src="img/countries/${country.image}" class="card-img-top" alt="Visit Country ${country.name}">
@@ -2213,292 +2546,216 @@
                       </div>
                   </div>
               `;
-        container.innerHTML += countryCard;
-      });
-    }
-
-    // Define the 'info' control
-    const info = L.control();
-
-    // Define the 'geojson' layer
-    const geojson = L.geoJson(countriesData, {
-      style: style,
-      onEachFeature: onEachFeature,
-    }).addTo(map);
-
-    // 'info' control methods
-    info.onAdd = function (map) {
-      this._div = L.DomUtil.create("div", "info");
-      this.update();
-      return this._div;
-    };
-
-    // Function to animate the counter update
-    function updateCounter(element, newValue) {
-      element.classList.remove("rotate-text"); // Remove the class to reset animation
-      void element.offsetWidth; // Trigger a DOM reflow
-      element.classList.add("rotate-text"); // Reapply the class for the animation
-      element.textContent = newValue; // Update the text content
-      updateRecommendedCountries();
-    }
-
-    // Mouseover Update
-    info.update = function (props) {
-      const contents = props
-        ? `<b>${props.NAME_LONG}</b><br />`
-        : "Hover over a country";
-      this._div.innerHTML = `${contents}`;
-
-      // Redraw the map
-      geojson.setStyle(style);
-    };
-
-    info.addTo(map);
-
-    // Style function
-    function style(feature) {
-      const selected = selectedCountries.includes(
-        feature.properties.NAME_LONG
-      );
-      return {
-        weight: 1,
-        opacity: 0.5,
-        color: "white",
-        dashArray: "",
-        fillOpacity: 1,
-        fillColor: selected ? "#2b75a5" : "#e6e6e6",
-      };
-    }
-
-    // Highlight feature function
-    function highlightFeature(e) {
-      const layer = e.target;
-      info.update(layer.feature.properties);
-      layer.setStyle({
-        weight: 1,
-        dashArray: "",
-        fillOpacity: 0.9,
-        fillColor: "#3389c1",
-      });
-      layer.bringToFront();
-    }
-
-    // Reset highlight function
-    function resetHighlight(e) {
-      geojson.resetStyle(e.target);
-      info.update();
-    }
-
-    function updateCounterElements() {
-      // Update counter and percentage elements
-      const counterElement = document.getElementById("selected-count");
-      const percentageElement = document.getElementById("selected-percentage");
-      const newCount = selectedCountries.length;
-      updateCounter(counterElement, newCount);
-      const newPercentage = ((newCount / 238) * 100).toFixed(0) + "%";
-      // Only update on percentage change
-      if (newPercentage != percentageElement.textContent) {
-        updateCounter(percentageElement, newPercentage);
-      }
-    }
-
-    // On each feature function
-    function onEachFeature(feature, layer) {
-      layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: function (e) {
-          const countryName = e.target.feature.properties.NAME_LONG;
-
-          if (selectedCountries.includes(countryName)) {
-            // Country is already selected, remove it
-            const index = selectedCountries.indexOf(countryName);
-            if (index !== -1) {
-              selectedCountries.splice(index, 1);
-            }
-            uncheckCheckboxByCountry(countryName);
-          } else {
-            // Country is not selected, add it
-            selectedCountries.push(countryName);
-            checkCheckboxByCountry(countryName);
-          }
-
-          updateCounterElements();
-          updateStatesLinkInfo();
-
-
-          // Update the info control
-          info.update(e.target.feature.properties);
-        },
-      });
-    }
-
-    // Function to uncheck a checkbox by country name
-    function uncheckCheckboxByCountry(country) {
-      const checkboxId = `checkbox${country.replace(/\s+/g, "")}`;
-      const checkbox = document.getElementById(checkboxId);
-
-      if (checkbox) {
-        checkbox.checked = false;
-      }
-    }
-
-    // Function to check a checkbox by country name
-    function checkCheckboxByCountry(country) {
-      const checkboxId = `checkbox${country.replace(/\s+/g, "")}`;
-      const checkbox = document.getElementById(checkboxId);
-
-      if (checkbox) {
-        checkbox.checked = true;
-      }
-    }
-
-    // Function to remove a country from the list
-    function removeCountry(country) {
-      const index = selectedCountries.indexOf(country);
-      if (index !== -1) {
-        selectedCountries.splice(index, 1);
-      }
-
-      // Update the info control and redraw the map
-      info.update();
-    }
-
-    // Function to update URL when checkbox is clicked
-    function updateURL() {
-      let checkedCheckboxes = document.querySelectorAll('.form-check-input:checked');
-      let params = [];
-      checkedCheckboxes.forEach(function (checkbox) {
-        params.push(checkbox.value);
-      });
-      let url = window.location.href.split('?')[0]; // remove existing parameters
-      if (params.length > 0) {
-        url += '?countries=' + encodeURIComponent(params.join(','));
-      }
-      history.pushState(null, '', url);
-
-      updateSocialLinks();
-    }
-
-    // Function to check checkboxes based on URL parameters
-    function checkCheckboxes() {
-      let urlParams = new URLSearchParams(window.location.search);
-      let checkedCheckboxes = urlParams.get('countries');
-      if (checkedCheckboxes) {
-        let checkedValues = checkedCheckboxes.split(',');
-        checkedValues.forEach(function (value) {
-          let checkbox = document.querySelector('input[value="' + value + '"]');
-          if (checkbox) {
-            checkbox.checked = true;
-            updateSelectedCountries(value, true); // Update selected countries array
-          }
+          container.innerHTML += countryCard;
         });
       }
-    }
 
-    // Function to initialize event listeners for checkboxes
-    function initializeCheckboxListeners() {
-      const checkboxes = document.querySelectorAll(".form-check-input");
-
-      checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change", function () {
-          const country = this.value;
-          const isChecked = this.checked;
-          updateSelectedCountries(country, isChecked);
-          updateURL();
-          updateCounterElements();
-          updateStatesLinkInfo();
-        });
-      });
-    }
-
-    function updateStatesLinkInfo() {
-      const statesRow = document.getElementById('states-row');
-
-      if (selectedCountries.includes("United States")) {
-        statesRow.classList.add('visible');
-      } else {
-        statesRow.classList.remove('visible');
-      }
-    }
+      /* --- End Recommend Countries --- */
 
 
-    // Function to update the selected countries based on checkbox state
-    function updateSelectedCountries(country, isChecked) {
-      if (isChecked && !selectedCountries.includes(country)) {
-        selectedCountries.push(country);
+      /* --- Country Counter --- */
+
+      // Function to animate the counter update
+      function updateCounter(element, newValue) {
+        element.classList.remove("rotate-text"); // Remove the class to reset animation
+        void element.offsetWidth; // Trigger a DOM reflow
+        element.classList.add("rotate-text"); // Reapply the class for the animation
+        element.textContent = newValue; // Update the text content
         updateRecommendedCountries();
-      } else if (!isChecked && selectedCountries.includes(country)) {
+      }
+
+      function updateCounterElements() {
+        // Update counter and percentage elements
+        const counterElement = document.getElementById("selected-count");
+        const percentageElement = document.getElementById("selected-percentage");
+        const newCount = selectedCountries.length;
+        updateCounter(counterElement, newCount);
+        const newPercentage = ((newCount / 238) * 100).toFixed(0) + "%";
+        // Only update on percentage change
+        if (newPercentage != percentageElement.textContent) {
+          updateCounter(percentageElement, newPercentage);
+        }
+      }
+
+
+
+
+      // Function to uncheck a checkbox by country name
+      function uncheckCheckboxByCountry(country) {
+        const checkboxId = `checkbox${country.replace(/\s+/g, "")}`;
+        const checkbox = document.getElementById(checkboxId);
+
+        if (checkbox) {
+          checkbox.checked = false;
+        }
+      }
+
+      // Function to check a checkbox by country name
+      function checkCheckboxByCountry(country) {
+        const checkboxId = `checkbox${country.replace(/\s+/g, "")}`;
+        const checkbox = document.getElementById(checkboxId);
+
+        if (checkbox) {
+          checkbox.checked = true;
+        }
+      }
+
+      // Function to remove a country from the list
+      function removeCountry(country) {
         const index = selectedCountries.indexOf(country);
-        selectedCountries.splice(index, 1);
+        if (index !== -1) {
+          selectedCountries.splice(index, 1);
+        }
+
+        // Update the info control and redraw the map
+        info.update();
+      }
+
+      // Function to update URL when checkbox is clicked
+      function updateURL() {
+        let checkedCheckboxes = document.querySelectorAll('.form-check-input:checked');
+        let params = [];
+        checkedCheckboxes.forEach(function (checkbox) {
+          params.push(checkbox.value);
+        });
+        let url = window.location.href.split('?')[0]; // remove existing parameters
+        if (params.length > 0) {
+          url += '?countries=' + encodeURIComponent(params.join(','));
+        }
+        history.pushState(null, '', url);
+
+        updateSocialLinks();
+      }
+
+      // Function to check checkboxes based on URL parameters
+      function checkCheckboxes() {
+        let urlParams = new URLSearchParams(window.location.search);
+        let checkedCheckboxes = urlParams.get('countries');
+        if (checkedCheckboxes) {
+          let checkedValues = checkedCheckboxes.split(',');
+          checkedValues.forEach(function (value) {
+            let checkbox = document.querySelector('input[value="' + value + '"]');
+            if (checkbox) {
+              checkbox.checked = true;
+              updateSelectedCountries(value, true); // Update selected countries array
+            }
+          });
+        }
+      }
+
+      // Function to initialize event listeners for checkboxes
+      function initializeCheckboxListeners() {
+        const checkboxes = document.querySelectorAll(".form-check-input");
+
+        checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", function () {
+            const country = this.value;
+            const isChecked = this.checked;
+            updateSelectedCountries(country, isChecked);
+            updateURL();
+            updateCounterElements();
+            updateStatesLinkInfo();
+          });
+        });
+      }
+
+      function updateStatesLinkInfo() {
+        const statesRow = document.getElementById('states-row');
+
+        if (selectedCountries.includes("United States")) {
+          statesRow.classList.add('visible');
+        } else {
+          statesRow.classList.remove('visible');
+        }
+      }
+
+
+      // Function to update the selected countries based on checkbox state
+      function updateSelectedCountries(country, isChecked) {
+        if (isChecked && !selectedCountries.includes(country)) {
+          selectedCountries.push(country);
+          updateRecommendedCountries();
+        } else if (!isChecked && selectedCountries.includes(country)) {
+          const index = selectedCountries.indexOf(country);
+          selectedCountries.splice(index, 1);
+          updateRecommendedCountries();
+        }
+        updateStatesLinkInfo();
+        // Update the info control
+        info.update();
+      }
+
+
+      /* --- Social Media Section --- */
+
+      function updateSocialLinks() {
+        const currentUrl = window.location.href;
+        const facebookLink = document.getElementById('facebook-link');
+        if (facebookLink) {
+          const quote = "Simply%20mark%20and%20count%20the%20countries%20you%20have%20visited%20on%20the%20interactive%20country%20map.%20%23CountriesVisited";
+          facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}&quote=${quote}`;
+        }
+
+        const xLink = document.getElementById('x-twitter-link');
+        if (xLink) {
+          const text = "Track%20and%20count%20all%20the%20countries%20you%27ve%20visited%20with%20the%20interactive%20world%20map.%20See%20more%20at";
+          const hashtags = "CountriesVisited"
+          xLink.href = `https://x.com/intent/tweet?text=${text}&url=${encodeURIComponent(currentUrl)}&hashtags=${hashtags}`;
+        }
+
+        const whatsappLink = document.getElementById('whatsapp-link');
+        if (whatsappLink) {
+          const text = "Track%20and%20count%20all%20the%20countries%20you%27ve%20visited%20with%20the%20interactive%20world%20map.%20See%20more%20at%20";
+          whatsappLink.href = `whatsapp://send?text=${text}${currentUrl}`;
+        }
+
+        const mailLink = document.getElementById('mail-link');
+        if (mailLink) {
+          const subject = 'Check out this country tracker and counter';
+          const body = `Track and count all the countries you\'ve visited with the interactive world map. Explore more at ${(currentUrl)}`;
+
+          mailLink.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+      }
+
+      function copyToClipboard() {
+        // Get the current page URL
+        const currentUrl = window.location.href;
+
+        // Use the Clipboard API to copy text
+        navigator.clipboard.writeText(currentUrl).then(() => {
+          //alert('Link copied to clipboard!');
+        }).catch(err => {
+          console.error('Failed to copy: ', err);
+        });
+      }
+
+      /* --- End Social Media Section --- */
+
+      /* New */
+      const handleCountrySelection = (country, isChecked) => {
+        updateSelectedCountries(country, isChecked);
+        updateURL();
+        updateCounterElements();
+        updateStatesLinkInfo();
+      };
+
+
+      // Initialize the checkbox listeners
+      initializeCheckboxListeners();
+
+
+      // Check checkboxes on page load
+      window.addEventListener('load', function () {
+        checkCheckboxes();
+        updateURL(); // Call updateURL() on page load
         updateRecommendedCountries();
-      }
-      updateStatesLinkInfo();
-      // Update the info control
-      info.update();
-    }
-
-    function updateSocialLinks() {
-
-      const currentUrl = window.location.href;
-
-      const facebookLink = document.getElementById('facebook-link');
-      if (facebookLink) {
-        const quote = "Simply%20mark%20and%20count%20the%20countries%20you%20have%20visited%20on%20the%20interactive%20country%20map.%20%23CountriesVisited";
-        facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}&quote=${quote}`;
-      }
-
-      const xLink = document.getElementById('x-twitter-link');
-      if (xLink) {
-        const text = "Track%20and%20count%20all%20the%20countries%20you%27ve%20visited%20with%20the%20interactive%20world%20map.%20See%20more%20at";
-        const hashtags = "CountriesVisited"
-        xLink.href = `https://x.com/intent/tweet?text=${text}&url=${encodeURIComponent(currentUrl)}&hashtags=${hashtags}`;
-      }
-
-      const whatsappLink = document.getElementById('whatsapp-link');
-      if (whatsappLink) {
-        const text = "Track%20and%20count%20all%20the%20countries%20you%27ve%20visited%20with%20the%20interactive%20world%20map.%20See%20more%20at%20";
-        whatsappLink.href = `whatsapp://send?text=${text}${currentUrl}`;
-      }
-
-      const mailLink = document.getElementById('mail-link');
-      if (mailLink) {
-        const subject = 'Check out this country tracker and counter';
-        const body = `Track and count all the countries you\'ve visited with the interactive world map. Explore more at ${(currentUrl)}`;
-
-        mailLink.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      }
-
-    }
-
-    function copyToClipboard() {
-      // Get the current page URL
-      const currentUrl = window.location.href;
-
-      // Use the Clipboard API to copy text
-      navigator.clipboard.writeText(currentUrl).then(() => {
-        //alert('Link copied to clipboard!');
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
+        updateCounterElements();
+        updateStatesLinkInfo();
       });
-    }
 
 
-    // Initialize the checkbox listeners
-    initializeCheckboxListeners();
-
-    // Add event listener to map clicks
-    map.on('click', function () {
-      updateURL(); // Call updateURL() when map is clicked
-    });
-
-    // Check checkboxes on page load
-    window.addEventListener('load', function () {
-      checkCheckboxes();
-      updateURL(); // Call updateURL() on page load
-      updateRecommendedCountries();
-      updateCounterElements();
-      updateStatesLinkInfo();
     });
 
 
