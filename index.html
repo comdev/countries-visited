@@ -91,9 +91,22 @@
         const expires = `expires=${date.toUTCString()}`;
         document.cookie = `${name}=${value}; ${expires}; path=/`;
       }
+      function runEUBanner() {
+        cookieconsent.run({
+          notice_banner_type: "interstitial",
+          consent_type: "express",
+          palette: "light",
+          language: "en",
+          page_load_consent_levels: ["strictly-necessary"],
+          notice_banner_reject_button_hide: false,
+          preferences_center_close_button_hide: false,
+          page_refresh_confirmation_buttons: false,
+          website_name: "Countries Visited",
+          website_privacy_policy_url: "https://countries-visited.com/privacy-policy.html",
+        });
+      }
 
-
-      function handleNonEUUser() {
+      function runNonEUBanner() {
         cookieconsent.run({
           consent_type: "express",
           page_load_consent_levels: ["strictly-necessary", "functionality", "tracking", "targeting"],
@@ -101,49 +114,46 @@
 
         const style = document.createElement("style");
         style.innerHTML = `
-                    .termsfeed-com---palette-light.termsfeed-com---nb {
-                        visibility: hidden !important;
-                        display: none !important;
-                    }
-                `;
+          .termsfeed-com---palette-light.termsfeed-com---nb {
+            visibility: hidden !important;
+            display: none !important;
+          }
+        `;
         document.head.appendChild(style);
       }
 
       const isOutsideEU = getCookie('outside_eu');
 
       if (isOutsideEU) {
-        handleNonEUUser();
+        runNonEUBanner();
       } else {
         fetch('https://ipinfo.io/json?token=60c37d874cf039')
-          .then(response => response.json())
+          .then(response => {
+            if (response.status === 429) {
+              // 429 Too Many Requests - showing EU banner
+              runEUBanner();
+              return;
+            }
+            return response.json();
+          })
           .then(data => {
+            if (!data) return;
             const userCountry = data.country;
-
             if (BANNER_COUNTRIES.includes(userCountry)) {
-
-              cookieconsent.run({
-                notice_banner_type: "interstitial",
-                consent_type: "express",
-                palette: "light",
-                language: "en",
-                page_load_consent_levels: ["strictly-necessary"],
-                notice_banner_reject_button_hide: false,
-                preferences_center_close_button_hide: false,
-                page_refresh_confirmation_buttons: false,
-                website_name: "Countries Visited",
-                website_privacy_policy_url: "https://countries-visited.com/privacy-policy.html",
-              });
+              runEUBanner();
             } else {
-
               setCookie('outside_eu', 'true', 1);
-              handleNonEUUser();
-
+              runNonEUBanner();
             }
           })
-          .catch(error => console.error('Error fetching user location:', error));
-
+          .catch(error => {
+            console.error('Error fetching IP or handling user location:', error);
+            runNonEUBanner();
+          });
       }
     });
+
+
   </script>
 
   <!-- Google Analytics -->
@@ -171,7 +181,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light box-shadow ">
       <div class="container d-flex justify-content-between">
-        <a href="index.html" class="navbar-brand d-flex align-items-center" title="Countries Visited Startpage">
+        <a href="https://countries-visited.com/" class="navbar-brand d-flex align-items-center" title="Countries Visited Startpage">
           <img src="img/countries_visited_icon.svg" width="30" class="header-icon bi me-2"
             alt="World with Country Marker" />
           <span class="fs-4">Countries Visited</span>
@@ -183,7 +193,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a href="index.html" class="nav-link" title="Countries Map & Counter">Countries Map & Counter</a>
+              <a href="https://countries-visited.com/" class="nav-link" title="Countries Map & Counter">Countries Map & Counter</a>
             </li>
             <li class="nav-item">
               <a href="states-visited.html" class="nav-link" title="States Map & Counter">States Map & Counter</a>
@@ -224,7 +234,7 @@
           </div>
           <div class="col-6 col-md-6">
             <div class="counter-box">
-              <i class="fa fa-group"></i>
+              <i class="fa fmap-loadeda-group"></i>
               <span class="counter rotate-text" id="selected-percentage">0%</span>
               <p>Traveled the World</p>
             </div>
@@ -241,8 +251,93 @@
           <div class="loading"></div>
         </div>
 
+        <!-- Continent Charts -->
+        <div class="row justify-content-center g-4 py-5 px-3 px-sm-5">
+
+          <!-- No World Container for now
+          <div class="col-4 col-md-auto">
+            <div class="chart-canvas-container">
+              <canvas id="chartWorld" width="100" height="100"></canvas>
+              <div class="chart-label" id="labelWorld"></div>
+            </div>
+            <div class="chart-title" id="titleWorld"></div>
+          </div>
+          -->
 
 
+
+          <div class="col-4 col-md-auto">
+            <div class="chart-canvas-container" id="containerAfrica">
+              <canvas id="chartAfrica"></canvas>
+              <div class="chart-label" id="labelAfrica"></div>
+            </div>
+            <div class="chart-title" id="titleAfrica"></div>
+          </div>
+
+          <div class="col-4 col-md-auto">
+            <div class="chart-canvas-container" id="containerAsia">
+              <canvas id="chartAsia"></canvas>
+              <div class="chart-label" id="labelAsia"></div>
+            </div>
+            <div class="chart-title" id="titleAsia"></div>
+          </div>
+
+          <div class="col-4 col-md-auto">
+            <div class="chart-canvas-container" id="containerEurope">
+              <canvas id="chartEurope"></canvas>
+              <div class="chart-label" id="labelEurope"></div>
+            </div>
+            <div class="chart-title" id="titleEurope"></div>
+          </div>
+
+          <div class="col-4 col-md-auto">
+            <div class="chart-canvas-container" id="containerNorthAmerica">
+              <canvas id="chartNorthAmerica"></canvas>
+              <div class="chart-label" id="labelNorthAmerica"></div>
+            </div>
+            <div class="chart-title" id="titleNorthAmerica"></div>
+          </div>
+
+          <div class="col-4 col-md-auto">
+            <div class="chart-canvas-container" id="containerSouthAmerica">
+              <canvas id="chartSouthAmerica"></canvas>
+              <div class="chart-label" id="labelSouthAmerica"></div>
+            </div>
+            <div class="chart-title" id="titleSouthAmerica"></div>
+          </div>
+
+          <div class="col-4 col-md-auto">
+            <div class="chart-canvas-container" id="containerOceania">
+              <canvas id="chartOceania"></canvas>
+              <div class="chart-label" id="labelOceania"></div>
+            </div>
+            <div class="chart-title" id="titleOceania"></div>
+          </div>
+
+
+          <div class="col-4 col-md-auto" id="containerAntarctica">
+            <div class="chart-canvas-container">
+              <canvas id="chartAntarctica"></canvas>
+              <div class="chart-label" id="labelAntarctica"></div>
+            </div>
+            <div class="chart-title" id="titleAntarctica"></div>
+          </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="unOnlySwitch" style="cursor:pointer;">
+            <label class="form-check-label" for="unOnlySwitch" style="cursor:pointer;">Count only UN Countries</label>
+          </div>
+        </div>
+
+
+
+
+
+
+        <!-- Social Media Banner -->
         <div class="row">
           <div class="col-md-8 mx-auto">
             <div class="share-box d-flex justify-content-between align-items-center">
@@ -276,8 +371,8 @@
                       d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
                   </svg>
                 </a>
-                <a id="copy-to-clipboard" href="javascript:void(0);" class="btn btn-social" aria-label="Link"
-                  onclick="copyToClipboard()">
+                <a id="copy-to-clipboard" href="#" class="btn btn-social" aria-label="Copy to clipboard"
+   onclick="event.preventDefault(); copyToClipboard();">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-link-45deg" viewBox="0 0 16 16">
                     <path
@@ -300,6 +395,7 @@
 
         </div>
 
+        <!--United States Banner -->
         <div class="row" id="states-row">
           <div class="col-md-8 mx-auto">
             <div class="states-box d-flex justify-content-between align-items-center">
@@ -325,247 +421,6 @@
 
 
 
-        <div class="row justify-content-center g-3 py-5">
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartWorld" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelWorld"></div>
-            </div>
-            <div class="chart-title" id="titleWorld"></div>
-          </div>
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartEurope" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelEurope"></div>
-            </div>
-            <div class="chart-title" id="titleEurope"></div>
-          </div>
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartAsia" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelAsia"></div>
-            </div>
-            <div class="chart-title" id="titleAsia"></div>
-          </div>
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartAfrica" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelAfrica"></div>
-            </div>
-            <div class="chart-title" id="titleAfrica"></div>
-          </div>
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartNorthAmerica" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelNorthAmerica"></div>
-            </div>
-            <div class="chart-title" id="titleNorthAmerica"></div>
-          </div>
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartSouthAmerica" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelSouthAmerica"></div>
-            </div>
-            <div class="chart-title" id="titleSouthAmerica"></div>
-          </div>
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartOceania" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelOceania"></div>
-            </div>
-            <div class="chart-title" id="titleOceania"></div>
-          </div>
-
-          <div class="col-auto">
-            <div class="chart-canvas-container">
-              <canvas id="chartAntarctica" width="100" height="100"></canvas>
-              <div class="chart-label" id="labelAntarctica"></div>
-            </div>
-            <div class="chart-title" id="titleAntarctica"></div>
-          </div>
-        </div>
-
-
-        <script>
-
-          const countryToContinent = {
-            // Africa (55)
-            "Algeria": "Africa", "Angola": "Africa", "Benin": "Africa", "Botswana": "Africa", "Burkina Faso": "Africa",
-            "Burundi": "Africa", "Cabo Verde": "Africa", "Cameroon": "Africa", "Central African Republic": "Africa",
-            "Chad": "Africa", "Comoros": "Africa", "Congo (Brazzaville)": "Africa", "Congo (Kinshasa)": "Africa",
-            "Côte d'Ivoire": "Africa", "Djibouti": "Africa", "Egypt": "Africa", "Equatorial Guinea": "Africa",
-            "Eritrea": "Africa", "Eswatini": "Africa", "Ethiopia": "Africa", "Gabon": "Africa", "Gambia": "Africa",
-            "Ghana": "Africa", "Guinea": "Africa", "Guinea-Bissau": "Africa", "Kenya": "Africa", "Lesotho": "Africa",
-            "Liberia": "Africa", "Libya": "Africa", "Madagascar": "Africa", "Malawi": "Africa", "Mali": "Africa",
-            "Mauritania": "Africa", "Mauritius": "Africa", "Morocco": "Africa", "Mozambique": "Africa", "Namibia": "Africa",
-            "Niger": "Africa", "Nigeria": "Africa", "Rwanda": "Africa", "Sao Tome and Principe": "Africa", "Senegal": "Africa",
-            "Seychelles": "Africa", "Sierra Leone": "Africa", "Somalia": "Africa", "South Africa": "Africa", "South Sudan": "Africa",
-            "Sudan": "Africa", "Tanzania": "Africa", "Togo": "Africa", "Tunisia": "Africa", "Uganda": "Africa",
-            "Zambia": "Africa", "Zimbabwe": "Africa",
-
-            // Asia (51)
-            "Afghanistan": "Asia", "Armenia": "Asia", "Azerbaijan": "Asia", "Bahrain": "Asia", "Bangladesh": "Asia",
-            "Bhutan": "Asia", "Brunei": "Asia", "Cambodia": "Asia", "China": "Asia", "Cyprus": "Asia",
-            "Georgia": "Asia", "India": "Asia", "Indonesia": "Asia", "Iran": "Asia", "Iraq": "Asia",
-            "Israel": "Asia", "Japan": "Asia", "Jordan": "Asia", "Kazakhstan": "Asia", "Kuwait": "Asia",
-            "Kyrgyzstan": "Asia", "Laos": "Asia", "Lebanon": "Asia", "Malaysia": "Asia", "Maldives": "Asia",
-            "Mongolia": "Asia", "Myanmar": "Asia", "Nepal": "Asia", "North Korea": "Asia", "Oman": "Asia",
-            "Pakistan": "Asia", "Palestine": "Asia", "Philippines": "Asia", "Qatar": "Asia", "Saudi Arabia": "Asia",
-            "Singapore": "Asia", "South Korea": "Asia", "Sri Lanka": "Asia", "Syria": "Asia", "Tajikistan": "Asia",
-            "Thailand": "Asia", "Timor-Leste": "Asia", "Turkey": "Asia", "Turkmenistan": "Asia", "United Arab Emirates": "Asia",
-            "Uzbekistan": "Asia", "Vietnam": "Asia", "Yemen": "Asia", "Russia": "Asia", // Russia is transcontinental
-
-            // Europe (50)
-            "Albania": "Europe", "Andorra": "Europe", "Austria": "Europe", "Belarus": "Europe", "Belgium": "Europe",
-            "Bosnia and Herzegovina": "Europe", "Bulgaria": "Europe", "Croatia": "Europe", "Czech Republic": "Europe",
-            "Denmark": "Europe", "Estonia": "Europe", "Finland": "Europe", "France": "Europe", "Germany": "Europe",
-            "Greece": "Europe", "Hungary": "Europe", "Iceland": "Europe", "Ireland": "Europe", "Italy": "Europe",
-            "Kosovo": "Europe", "Latvia": "Europe", "Liechtenstein": "Europe", "Lithuania": "Europe", "Luxembourg": "Europe",
-            "Malta": "Europe", "Moldova": "Europe", "Monaco": "Europe", "Montenegro": "Europe", "Netherlands": "Europe",
-            "North Macedonia": "Europe", "Norway": "Europe", "Poland": "Europe", "Portugal": "Europe", "Romania": "Europe",
-            "San Marino": "Europe", "Serbia": "Europe", "Slovakia": "Europe", "Slovenia": "Europe", "Spain": "Europe",
-            "Sweden": "Europe", "Switzerland": "Europe", "Ukraine": "Europe", "United Kingdom": "Europe", "Vatican City": "Europe",
-
-            // North America (35)
-            "Antigua and Barbuda": "North America", "Bahamas": "North America", "Barbados": "North America", "Belize": "North America",
-            "Canada": "North America", "Costa Rica": "North America", "Cuba": "North America", "Dominica": "North America",
-            "Dominican Republic": "North America", "El Salvador": "North America", "Grenada": "North America", "Guatemala": "North America",
-            "Haiti": "North America", "Honduras": "North America", "Jamaica": "North America", "Mexico": "North America",
-            "Nicaragua": "North America", "Panama": "North America", "Saint Kitts and Nevis": "North America", "Saint Lucia": "North America",
-            "Saint Vincent and the Grenadines": "North America", "Trinidad and Tobago": "North America", "United States": "North America",
-
-            // Additional territories sometimes included:
-            "Greenland": "North America", "Bermuda": "North America", "Aruba": "North America", "Curacao": "North America",
-            "Saint Pierre and Miquelon": "North America", "Martinique": "North America", "Guadeloupe": "North America",
-
-            // South America (15)
-            "Argentina": "South America", "Bolivia": "South America", "Brazil": "South America", "Chile": "South America",
-            "Colombia": "South America", "Ecuador": "South America", "Guyana": "South America", "Paraguay": "South America",
-            "Peru": "South America", "Suriname": "South America", "Uruguay": "South America", "Venezuela": "South America",
-            "French Guiana": "South America", // technically part of France, but geographically SA
-            "Falkland Islands": "South America", "South Georgia and the South Sandwich Islands": "South America",
-
-            // Oceania (31)
-            "Australia": "Oceania", "Fiji": "Oceania", "Kiribati": "Oceania", "Marshall Islands": "Oceania", "Micronesia": "Oceania",
-            "Nauru": "Oceania", "New Zealand": "Oceania", "Palau": "Oceania", "Papua New Guinea": "Oceania", "Samoa": "Oceania",
-            "Solomon Islands": "Oceania", "Tonga": "Oceania", "Tuvalu": "Oceania", "Vanuatu": "Oceania",
-
-            // Territories often included:
-            "New Caledonia": "Oceania", "French Polynesia": "Oceania", "Guam": "Oceania", "American Samoa": "Oceania",
-            "Cook Islands": "Oceania", "Niue": "Oceania", "Tokelau": "Oceania", "Wallis and Futuna": "Oceania",
-            "Northern Mariana Islands": "Oceania", "Pitcairn Islands": "Oceania",
-
-            // Antarctica (1)
-            "Antarctica": "Antarctica"
-          };
-
-
-          // Global data for totals and visited counts
-          const continentData = {
-            "Africa": { total: 55, visited: 0 },
-            "Asia": { total: 51, visited: 0 },
-            "Europe": { total: 50, visited: 0 },
-            "North America": { total: 35, visited: 0 },
-            "South America": { total: 15, visited: 0 },
-            "Oceania": { total: 31, visited: 0 },
-            "Antarctica": { total: 1, visited: 0 }
-          };
-
-          // Calculate World as sum of all continents
-          function calculateWorldData() {
-            let totalVisited = 0, totalTotal = 0;
-            for (const key in continentData) {
-              totalVisited += continentData[key].visited;
-              totalTotal += continentData[key].total;
-            }
-            return { visited: totalVisited, total: totalTotal };
-          }
-
-          // Store chart instances
-          const charts = {};
-
-          // List of all chart names (including World)
-          const chartNames = ["World", "Europe", "Asia", "Africa", "North America", "South America", "Oceania", "Antarctica"];
-
-          // Initialize charts
-          chartNames.forEach(name => {
-            let data;
-            if (name === "World") {
-              data = calculateWorldData();
-            } else {
-              data = continentData[name];
-            }
-
-            // Set the label and title
-            document.getElementById("label" + name.replace(/\s+/g, '')).innerText = ((data.visited / data.total) * 100).toFixed(1) + '%';
-            document.getElementById("title" + name.replace(/\s+/g, '')).innerText = name;
-
-            // Create the doughnut chart
-            charts[name] = new Chart(document.getElementById("chart" + name.replace(/\s+/g, '')), {
-              type: 'doughnut',
-              data: {
-                labels: ['Visited', 'Not Visited'],
-                datasets: [{
-                  data: [data.visited, data.total - data.visited],
-                  backgroundColor: ['#2b75a5', '#e6e6e6'],
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                plugins: {
-                  legend: { display: false }
-                },
-                responsive: false, // fixed canvas size
-                maintainAspectRatio: false,
-                cutout: '70%',
-                layout: { padding: 0 },
-                animation: {
-                  duration: 1000, // smooth transition duration in ms
-                  easing: 'easeOutQuart'
-                }
-              }
-            });
-          });
-
-          // Function to update visited count for a given continent and refresh its chart
-          function updateVisited(continentName, newVisited) {
-            // Update data for individual continents
-            if (continentName !== "World" && continentData[continentName]) {
-              continentData[continentName].visited = newVisited;
-            }
-
-            // Update the specific chart if it's not World
-            if (continentName !== "World") {
-              let data = continentData[continentName];
-              let chart = charts[continentName];
-              chart.data.datasets[0].data = [data.visited, data.total - data.visited];
-              document.getElementById("label" + continentName.replace(/\s+/g, '')).innerText = ((data.visited / data.total) * 100).toFixed(1) + '%';
-              chart.update();
-            }
-
-            // Recalculate and update World chart
-            let worldData = calculateWorldData();
-            let worldChart = charts["World"];
-            worldChart.data.datasets[0].data = [worldData.visited, worldData.total - worldData.visited];
-            document.getElementById("labelWorld").innerText = ((worldData.visited / worldData.total) * 100).toFixed(1) + '%';
-            worldChart.update();
-          }
-
-          // Example: update the visited count for Europe after 2 seconds
-          setTimeout(() => {
-            updateVisited("Europe", 1);
-          }, 2000);
-        </script>
-
-
-
         <h2 class="jumbotron-heading">
           Visualize and count the countries you have visited
         </h2>
@@ -574,8 +429,9 @@
           countries you have already visited with a few simple mouse clicks.
           Whether it was a brief city excursion, an extensive vacation, or a
           phase of living abroad, you can capture and visualize those
-          experiences on this map. If you're unable to locate the countries
-          you have visited on the map, the list beneath it is your guide.
+          experiences on this map. Interactive charts show the percentage of countries you've visited in each continent, giving you a clear overview of your global travel progress. If you're unable to locate the countries
+          you have visited on the map, the list beneath it is your guide.<br>
+          You can switch between two counting modes: the default mode includes 236 recognized countries and territories — such as Greenland, Kosovo, or Hong Kong — giving a broad picture of your travels. The UN mode, on the other hand, counts only the 193 UN member states for a stricter view based on international consensus. Toggle the setting to see your stats from both perspectives.
         </p>
       </div>
 
@@ -625,7 +481,7 @@
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAfrica"
                 aria-expanded="false" aria-controls="collapseAfrica">
                 Africa
-                <div class="continent-counter">(55)</div>
+                <div class="continent-counter">(56)</div>
               </button>
             </h3>
             <div id="collapseAfrica" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
@@ -658,7 +514,7 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Burkina Faso" id="checkboxBurkina Faso" />
+                      <input class="form-check-input" type="checkbox" value="Burkina Faso" id="checkboxBurkinaFaso" />
                       <label class="form-check-label" for="checkboxBurkina Faso">Burkina Faso</label>
                     </div>
                   </div>
@@ -677,7 +533,7 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Central African Republic"
-                        id="checkboxCentral African Republic" />
+                        id="checkboxCentralAfricanRepublic" />
                       <label class="form-check-label" for="checkboxCentral African Republic">Central African
                         Republic</label>
                     </div>
@@ -721,7 +577,7 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Equatorial Guinea"
-                        id="checkboxEquatorial Guinea" />
+                        id="checkboxEquatorialGuinea" />
                       <label class="form-check-label" for="checkboxEquatorial Guinea">Equatorial Guinea</label>
                     </div>
                   </div>
@@ -861,8 +717,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Republic of the Congo"
-                        id="checkboxRepublic of the Congo" />
-                      <label class="form-check-label" for="checkboxRepublic of the Congo">Republic of the
+                        id="checkboxRepublicoftheCongo" />
+                      <label class="form-check-label" for="checkboxRepublicoftheCongo">Republic of the
                         Congo</label>
                     </div>
                   </div>
@@ -870,6 +726,12 @@
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Rwanda" id="checkboxRwanda" />
                       <label class="form-check-label" for="checkboxRwanda">Rwanda</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Saint Helena" id="checkboxSaintHelena" />
+                      <label class="form-check-label" for="checkboxSaintHelena">Saint Helena</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -886,8 +748,8 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Sierra Leone" id="checkboxSierra Leone" />
-                      <label class="form-check-label" for="checkboxSierra Leone">Sierra Leone</label>
+                      <input class="form-check-input" type="checkbox" value="Sierra Leone" id="checkboxSierraLeone" />
+                      <label class="form-check-label" for="checkboxSierraLeone">Sierra Leone</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -898,14 +760,14 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="South Africa" id="checkboxSouth Africa" />
-                      <label class="form-check-label" for="checkboxSouth Africa">South Africa</label>
+                      <input class="form-check-input" type="checkbox" value="South Africa" id="checkboxSouthAfrica" />
+                      <label class="form-check-label" for="checkboxSouthAfrica">South Africa</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="South Sudan" id="checkboxSouth Sudan" />
-                      <label class="form-check-label" for="checkboxSouth Sudan">South Sudan</label>
+                      <input class="form-check-input" type="checkbox" value="South Sudan" id="checkboxSouthSudan" />
+                      <label class="form-check-label" for="checkboxSouthSudan">South Sudan</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -917,8 +779,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="São Tomé and Principe"
-                        id="checkboxSão Tomé and Principe" />
-                      <label class="form-check-label" for="checkboxSão Tomé and Principe">São Tomé and
+                        id="checkboxSãoToméandPrincipe" />
+                      <label class="form-check-label" for="checkboxSãoToméandPrincipe">São Tomé and
                         Principe</label>
                     </div>
                   </div>
@@ -930,8 +792,8 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="The Gambia" id="checkboxThe Gambia" />
-                      <label class="form-check-label" for="checkboxThe Gambia">The Gambia</label>
+                      <input class="form-check-input" type="checkbox" value="The Gambia" id="checkboxTheGambia" />
+                      <label class="form-check-label" for="checkboxTh Gambia">The Gambia</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -955,8 +817,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Western Sahara"
-                        id="checkboxWestern Sahara" />
-                      <label class="form-check-label" for="checkboxWestern Sahara">Western Sahara</label>
+                        id="checkboxWesternSahara" />
+                      <label class="form-check-label" for="checkboxWesternSahara">Western Sahara</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1061,8 +923,8 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Hong Kong" id="checkboxHong Kong" />
-                      <label class="form-check-label" for="checkboxHong Kong">Hong Kong</label>
+                      <input class="form-check-input" type="checkbox" value="Hong Kong" id="checkboxHongKong" />
+                      <label class="form-check-label" for="checkboxHongKong">Hong Kong</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1211,8 +1073,8 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Saudi Arabia" id="checkboxSaudi Arabia" />
-                      <label class="form-check-label" for="checkboxSaudi Arabia">Saudi Arabia</label>
+                      <input class="form-check-input" type="checkbox" value="Saudi Arabia" id="checkboxSaudiArabia" />
+                      <label class="form-check-label" for="checkboxSaudiArabia">Saudi Arabia</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1223,8 +1085,8 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Sri Lanka" id="checkboxSri Lanka" />
-                      <label class="form-check-label" for="checkboxSri Lanka">Sri Lanka</label>
+                      <input class="form-check-input" type="checkbox" value="Sri Lanka" id="checkboxSriLanka" />
+                      <label class="form-check-label" for="checkboxSriLanka">Sri Lanka</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1272,8 +1134,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="United Arab Emirates"
-                        id="checkboxUnited Arab Emirates" />
-                      <label class="form-check-label" for="checkboxUnited Arab Emirates">United Arab Emirates</label>
+                        id="checkboxUnitedArabEmirates" />
+                      <label class="form-check-label" for="checkboxUnitedArabEmirates">United Arab Emirates</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1343,8 +1205,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Bosnia and Herzegovina"
-                        id="checkboxBosnia and Herzegovina" />
-                      <label class="form-check-label" for="checkboxBosnia and Herzegovina">Bosnia and
+                        id="checkboxBosniaandHerzegovina" />
+                      <label class="form-check-label" for="checkboxBosniaandHerzegovina">Bosnia and
                         Herzegovina</label>
                     </div>
                   </div>
@@ -1363,8 +1225,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Czech Republic"
-                        id="checkboxCzech Republic" />
-                      <label class="form-check-label" for="checkboxCzech Republic">Czech Republic</label>
+                        id="checkboxCzechRepublic" />
+                      <label class="form-check-label" for="checkboxCzechRepublic">Czech Republic</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1491,8 +1353,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="North Macedonia"
-                        id="checkboxNorth Macedonia" />
-                      <label class="form-check-label" for="checkboxNorth Macedonia">North Macedonia</label>
+                        id="checkboxNorthMacedonia" />
+                      <label class="form-check-label" for="checkboxNorthMacedonia">North Macedonia</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1527,8 +1389,8 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="San Marino" id="checkboxSan Marino" />
-                      <label class="form-check-label" for="checkboxSan Marino">San Marino</label>
+                      <input class="form-check-input" type="checkbox" value="San Marino" id="checkboxSanMarino" />
+                      <label class="form-check-label" for="checkboxSanMarino">San Marino</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1576,8 +1438,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="United Kingdom"
-                        id="checkboxUnited Kingdom" />
-                      <label class="form-check-label" for="checkboxUnited Kingdom">United Kingdom</label>
+                        id="checkboxUnitedKingdom" />
+                      <label class="form-check-label" for="checkboxUnitedKingdom">United Kingdom</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1642,8 +1504,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Antigua and Barbuda"
-                        id="checkboxAntigua and Barbuda" />
-                      <label class="form-check-label" for="checkboxAntigua and Barbuda">Antigua and Barbuda</label>
+                        id="checkboxAntiguaandBarbuda" />
+                      <label class="form-check-label" for="checkboxAntiguaandBarbuda">Antigua and Barbuda</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1673,8 +1535,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="British Virgin Islands"
-                        id="checkboxBritish Virgin Islands" />
-                      <label class="form-check-label" for="checkboxBritish Virgin Islands">British Virgin
+                        id="checkboxBritishVirginIslands" />
+                      <label class="form-check-label" for="checkboxBritishVirginIslands">British Virgin
                         Islands</label>
                     </div>
                   </div>
@@ -1687,14 +1549,14 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Cayman Islands"
-                        id="checkboxCayman Islands" />
-                      <label class="form-check-label" for="checkboxCayman Islands">Cayman Islands</label>
+                        id="checkboxCaymanIslands" />
+                      <label class="form-check-label" for="checkboxCaymanIslands">Cayman Islands</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Costa Rica" id="checkboxCosta Rica" />
-                      <label class="form-check-label" for="checkboxCosta Rica">Costa Rica</label>
+                      <input class="form-check-input" type="checkbox" value="Costa Rica" id="checkboxCostaRica" />
+                      <label class="form-check-label" for="checkboxCostaRica">Costa Rica</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1718,14 +1580,14 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Dominican Republic"
-                        id="checkboxDominican Republic" />
-                      <label class="form-check-label" for="checkboxDominican Republic">Dominican Republic</label>
+                        id="checkboxDominicanRepublic" />
+                      <label class="form-check-label" for="checkboxDominicanRepublic">Dominican Republic</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="El Salvador" id="checkboxEl Salvador" />
-                      <label class="form-check-label" for="checkboxEl Salvador">El Salvador</label>
+                      <input class="form-check-input" type="checkbox" value="El Salvador" id="checkboxElSalvador" />
+                      <label class="form-check-label" for="checkboxElSalvador">El Salvador</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -1790,29 +1652,29 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Puerto Rico" id="checkboxPuerto Rico" />
-                      <label class="form-check-label" for="checkboxPuerto Rico">Puerto Rico</label>
+                      <input class="form-check-input" type="checkbox" value="Puerto Rico" id="checkboxPuertoRico" />
+                      <label class="form-check-label" for="checkboxPuertoRico">Puerto Rico</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Saint Kitts and Nevis"
-                        id="checkboxSaint Kitts and Nevis" />
-                      <label class="form-check-label" for="checkboxSaint Kitts and Nevis">Saint Kitts and
+                        id="checkboxSaintKittsandNevis" />
+                      <label class="form-check-label" for="checkboxSaintKittsandNevis">Saint Kitts and
                         Nevis</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Saint Lucia" id="checkboxSaint Lucia" />
-                      <label class="form-check-label" for="checkboxSaint Lucia">Saint Lucia</label>
+                      <input class="form-check-input" type="checkbox" value="Saint Lucia" id="checkboxSaintLucia" />
+                      <label class="form-check-label" for="checkboxSaintLucia">Saint Lucia</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Saint Pierre and Miquelon"
-                        id="checkboxSaint Pierre and Miquelon" />
-                      <label class="form-check-label" for="checkboxSaint Pierre and Miquelon">Saint Pierre and
+                        id="checkboxSaintPierreandMiquelon" />
+                      <label class="form-check-label" for="checkboxSaintPierreandMiquelon">Saint Pierre and
                         Miquelon</label>
                     </div>
                   </div>
@@ -1820,7 +1682,7 @@
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Saint Vincent and the Grenadines"
                         id="checkboxSaintVincentandtheGrenadines" />
-                      <label class="form-check-label" for="checkboxSaint VincentandtheGrenadines">St. Vincent and the
+                      <label class="form-check-label" for="checkboxSaintVincentandtheGrenadines">St. Vincent and the
                         Grenadines</label>
                     </div>
                   </div>
@@ -1840,8 +1702,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Turks and Caicos Islands"
-                        id="checkboxTurks and Caicos Islands" />
-                      <label class="form-check-label" for="checkboxTurks and Caicos Islands">Turks and Caicos
+                        id="checkboxTurksandCaicosIslands" />
+                      <label class="form-check-label" for="checkboxTurksandCaicosIslands">Turks and Caicos
                         Islands</label>
                     </div>
                   </div>
@@ -1854,222 +1716,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="United States Virgin Islands"
-                        id="checkboxUnited States Virgin Islands" />
-                      <label class="form-check-label" for="checkboxUnited States Virgin Islands">United States Virgin
-                        Islands</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h3 class="accordion-header" id="headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseAustralia" aria-expanded="false" aria-controls="collapseAustralia">
-                Australia & Oceania
-                <div class="continent-counter">(31)</div>
-              </button>
-            </h3>
-            <div id="collapseAustralia" class="accordion-collapse collapse" aria-labelledby="headingThree"
-              data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <div id="checkboxes" class="row">
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="French Southern and Antarctic Lands"
-                        id="checkboxFrench Southern and Antarctic Lands" />
-                      <label class="form-check-label" for="checkboxFrench Southern and Antarctic Lands">French S. and
-                        Antarctic Lands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Heard I. and McDonald Islands"
-                        id="checkboxHeard I. and McDonald Islands" />
-                      <label class="form-check-label" for="checkboxHeard I. and McDonald Islands">Heard I. and
-                        McDonald Islands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Saint Helena" id="checkboxSaint Helena" />
-                      <label class="form-check-label" for="checkboxSaint Helena">Saint Helena</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="South Georgia and the Islands"
-                        id="checkboxSouth Georgia and the Islands" />
-                      <label class="form-check-label" for="checkboxSouth Georgia and the Islands">South Georgia and
-                        the Islands</label>
-                    </div>
-                  </div>
-
-                  <!-- Oceania -->
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="American Samoa"
-                        id="checkboxAmerican Samoa" />
-                      <label class="form-check-label" for="checkboxAmerican Samoa">American Samoa</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Ashmore and Cartier Islands"
-                        id="checkboxAshmore and Cartier Islands" />
-                      <label class="form-check-label" for="checkboxAshmore and Cartier Islands">Ashmore and Cartier
-                        Islands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Australia" id="checkboxAustralia" />
-                      <label class="form-check-label" for="checkboxAustralia">Australia</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Cook Islands" id="checkboxCook Islands" />
-                      <label class="form-check-label" for="checkboxCook Islands">Cook Islands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Federated States of Micronesia"
-                        id="checkboxFederated States of Micronesia" />
-                      <label class="form-check-label" for="checkboxFederated States of Micronesia">Federated States of
-                        Micronesia</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Fiji" id="checkboxFiji" />
-                      <label class="form-check-label" for="checkboxFiji">Fiji</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="French Polynesia"
-                        id="checkboxFrench Polynesia" />
-                      <label class="form-check-label" for="checkboxFrench Polynesia">French Polynesia</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Guam" id="checkboxGuam" />
-                      <label class="form-check-label" for="checkboxGuam">Guam</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Kiribati" id="checkboxKiribati" />
-                      <label class="form-check-label" for="checkboxKiribati">Kiribati</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Marshall Islands"
-                        id="checkboxMarshall Islands" />
-                      <label class="form-check-label" for="checkboxMarshall Islands">Marshall Islands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Nauru" id="checkboxNauru" />
-                      <label class="form-check-label" for="checkboxNauru">Nauru</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="New Caledonia"
-                        id="checkboxNew Caledonia" />
-                      <label class="form-check-label" for="checkboxNew Caledonia">New Caledonia</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="New Zealand" id="checkboxNew Zealand" />
-                      <label class="form-check-label" for="checkboxNew Zealand">New Zealand</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Niue" id="checkboxNiue" />
-                      <label class="form-check-label" for="checkboxNiue">Niue</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Norfolk Island"
-                        id="checkboxNorfolk Island" />
-                      <label class="form-check-label" for="checkboxNorfolk Island">Norfolk Island</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Northern Mariana Islands"
-                        id="checkboxNorthern Mariana Islands" />
-                      <label class="form-check-label" for="checkboxNorthern Mariana Islands">Northern Mariana
-                        Islands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Palau" id="checkboxPalau" />
-                      <label class="form-check-label" for="checkboxPalau">Palau</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Papua New Guinea"
-                        id="checkboxPapua New Guinea" />
-                      <label class="form-check-label" for="checkboxPapua New Guinea">Papua New Guinea</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Pitcairn Islands"
-                        id="checkboxPitcairn Islands" />
-                      <label class="form-check-label" for="checkboxPitcairn Islands">Pitcairn Islands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Samoa" id="checkboxSamoa" />
-                      <label class="form-check-label" for="checkboxSamoa">Samoa</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Solomon Islands"
-                        id="checkboxSolomon Islands" />
-                      <label class="form-check-label" for="checkboxSolomon Islands">Solomon Islands</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Tonga" id="checkboxTonga" />
-                      <label class="form-check-label" for="checkboxTonga">Tonga</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Tuvalu" id="checkboxTuvalu" />
-                      <label class="form-check-label" for="checkboxTuvalu">Tuvalu</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Vanuatu" id="checkboxVanuatu" />
-                      <label class="form-check-label" for="checkboxVanuatu">Vanuatu</label>
-                    </div>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Wallis and Futuna Islands"
-                        id="checkboxWallis and Futuna Islands" />
-                      <label class="form-check-label" for="checkboxWallis and Futuna Islands">Wallis and Futuna
+                        id="checkboxUnitedStatesVirginIslands" />
+                      <label class="form-check-label" for="checkboxUnitedStatesVirginIslands">United States Virgin
                         Islands</label>
                     </div>
                   </div>
@@ -2134,8 +1782,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Falkland Islands / Malvinas"
-                        id="checkboxFalkland Islands / Malvinas" />
-                      <label class="form-check-label" for="checkboxFalkland Islands / Malvinas">Falkland Islands /
+                        id="checkboxFalklandIslands/Malvinas" />
+                      <label class="form-check-label" for="checkboxFalklandIslands/Malvinas">Falkland Islands /
                         Malvinas</label>
                     </div>
                   </div>
@@ -2166,8 +1814,8 @@
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="Trinidad and Tobago"
-                        id="checkboxTrinidad and Tobago" />
-                      <label class="form-check-label" for="checkboxTrinidad and Tobago">Trinidad and Tobago</label>
+                        id="checkboxTrinidadandTobago" />
+                      <label class="form-check-label" for="checkboxTrinidadandTobago">Trinidad and Tobago</label>
                     </div>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -2186,13 +1834,198 @@
               </div>
             </div>
           </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseOceania" aria-expanded="false" aria-controls="collapseOceania">
+                Oceania
+                <div class="continent-counter">(25)</div>
+              </button>
+            </h3>
+            <div id="collapseOceania" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div id="checkboxes" class="row">
+
+                  <!-- Oceania -->
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="American Samoa"
+                        id="checkboxAmericanSamoa" />
+                      <label class="form-check-label" for="checkboxAmericanSamoa">American Samoa</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Ashmore and Cartier Islands"
+                        id="checkboxAshmoreandCartierIslands" />
+                      <label class="form-check-label" for="checkboxAshmoreandCartierIslands">Ashmore and Cartier
+                        Islands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Australia" id="checkboxAustralia" />
+                      <label class="form-check-label" for="checkboxAustralia">Australia</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Cook Islands" id="checkboxCookIslands" />
+                      <label class="form-check-label" for="checkboxCookIslands">Cook Islands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Federated States of Micronesia"
+                        id="checkboxFederatedStatesofMicronesia" />
+                      <label class="form-check-label" for="checkboxFederatedStatesofMicronesia">Federated States of
+                        Micronesia</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Fiji" id="checkboxFiji" />
+                      <label class="form-check-label" for="checkboxFiji">Fiji</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="French Polynesia"
+                        id="checkboxFrenchPolynesia" />
+                      <label class="form-check-label" for="checkboxFrenchPolynesia">French Polynesia</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Guam" id="checkboxGuam" />
+                      <label class="form-check-label" for="checkboxGuam">Guam</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Kiribati" id="checkboxKiribati" />
+                      <label class="form-check-label" for="checkboxKiribati">Kiribati</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Marshall Islands"
+                        id="checkboxMarshallIslands" />
+                      <label class="form-check-label" for="checkboxMarshallIslands">Marshall Islands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Nauru" id="checkboxNauru" />
+                      <label class="form-check-label" for="checkboxNauru">Nauru</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="New Caledonia"
+                        id="checkboxNewCaledonia" />
+                      <label class="form-check-label" for="checkboxNewCaledonia">New Caledonia</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="New Zealand" id="checkboxNewZealand" />
+                      <label class="form-check-label" for="checkboxNewZealand">New Zealand</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Niue" id="checkboxNiue" />
+                      <label class="form-check-label" for="checkboxNiue">Niue</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Norfolk Island"
+                        id="checkboxNorfolkIsland" />
+                      <label class="form-check-label" for="checkboxNorfolkIsland">Norfolk Island</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Northern Mariana Islands"
+                        id="checkboxNorthernMarianaIslands" />
+                      <label class="form-check-label" for="checkboxNorthernMarianaIslands">Northern Mariana
+                        Islands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Palau" id="checkboxPalau" />
+                      <label class="form-check-label" for="checkboxPalau">Palau</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Papua New Guinea"
+                        id="checkboxPapuaNewGuinea" />
+                      <label class="form-check-label" for="checkboxPapuaNewGuinea">Papua New Guinea</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Pitcairn Islands"
+                        id="checkboxPitcairnIslands" />
+                      <label class="form-check-label" for="checkboxPitcairnIslands">Pitcairn Islands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Samoa" id="checkboxSamoa" />
+                      <label class="form-check-label" for="checkboxSamoa">Samoa</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Solomon Islands"
+                        id="checkboxSolomonIslands" />
+                      <label class="form-check-label" for="checkboxSolomonIslands">Solomon Islands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Tonga" id="checkboxTonga" />
+                      <label class="form-check-label" for="checkboxTonga">Tonga</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Tuvalu" id="checkboxTuvalu" />
+                      <label class="form-check-label" for="checkboxTuvalu">Tuvalu</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Vanuatu" id="checkboxVanuatu" />
+                      <label class="form-check-label" for="checkboxVanuatu">Vanuatu</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Wallis and Futuna Islands"
+                        id="checkboxWallisandFutunaIslands" />
+                      <label class="form-check-label" for="checkboxWallisandFutunaIslands">Wallis and Futuna
+                        Islands</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
 
           <div class="accordion-item">
             <h3 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseAntarctica" aria-expanded="false" aria-controls="collapseAntarctica">
                 Antarctica
-                <div class="continent-counter">(1)</div>
+                <div class="continent-counter">(4)</div>
               </button>
             </h3>
             <div id="collapseAntarctica" class="accordion-collapse collapse" aria-labelledby="headingThree"
@@ -2205,6 +2038,31 @@
                       <label class="form-check-label" for="Antarctica">Antarctica</label>
                     </div>
                   </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="French Southern and Antarctic Lands"
+                        id="checkboxFrenchSouthernandAntarcticLands" />
+                      <label class="form-check-label" for="checkboxFrenchSouthernandAntarcticLands">French S. and
+                        Antarctic Lands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Heard I. and McDonald Islands"
+                        id="checkboxHeardI.andMcDonaldIslands" />
+                      <label class="form-check-label" for="checkboxHeardI.andMcDonaldIslands">Heard I. and
+                        McDonald Islands</label>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="South Georgia and the Islands"
+                        id="checkboxSouthGeorgiaandtheIslands" />
+                      <label class="form-check-label" for="checkboxSouthGeorgiaandtheIslands">South Georgia and
+                        the Islands</label>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -2325,8 +2183,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
 
-      let selectedCountries = [];
-      // const selectedCountries = new Set();
+      //let selectedCountries = [];
+      const selectedCountries = new Set();
 
       /* --- Start Map --- */
 
@@ -2350,36 +2208,32 @@
         // Smaller screens
         map.fitBounds(maxBounds);
       }
-     
-      
-      L.Control.Watermark = L.Control.extend({
-        onAdd: function (map) {
-          var watermark = L.DomUtil.create('div');
-          watermark.innerHTML = 'countries-visited.com';
-          watermark.style.opacity = '0.1';
-          watermark.style.position = 'relative';
-          watermark.style.bottom = '0px'; // Use positive bottom value to move it up
-          watermark.style.left = '50%'; // Center horizontally
-          watermark.style.transform = 'translateX(-50%)'; // Adjust to truly center
-          watermark.style.width = '150px'; // Width of the watermark
-          watermark.style.textAlign = 'center'; // Center the text
-          watermark.style.color = '#000';
-          watermark.style.fontSize = '12px';
-          watermark.style.pointerEvents = 'none';
-          watermark.style.fontWeight = 'bold';
 
-          return watermark;
-        },
-      });
+      // Create the watermark element
+      var watermark = L.DomUtil.create('div', 'custom-watermark');
+      watermark.innerHTML = 'countries-visited.com';
+      watermark.style.opacity = '0.1';
+      watermark.style.position = 'absolute';
+      watermark.style.left = '50%';
+      watermark.style.bottom = '15px';
+      watermark.style.transform = 'translateX(-50%)';
+      watermark.style.width = '150px';
+      watermark.style.textAlign = 'center';
+      watermark.style.color = '#000';
+      watermark.style.fontSize = '12px';
+      watermark.style.pointerEvents = 'none';
+      watermark.style.fontWeight = 'bold';
 
-      L.control.watermark = function (opts) { return new L.Control.Watermark(opts); }
-      L.control.watermark({ position: 'bottomright' }).addTo(map);
-      
+      // Attach it manually to the map container, not through L.Control
+      map.getContainer().appendChild(watermark);
+
+
+
 
       // Define the custom control
       const resetViewControl = L.Control.extend({
         options: {
-          position: "topleft", 
+          position: "topleft",
         },
         onAdd: function (map) {
           const container = L.DomUtil.create(
@@ -2436,9 +2290,7 @@
 
       // Style function
       function style(feature) {
-        const selected = selectedCountries.includes(
-          feature.properties.NAME_LONG
-        );
+        const selected = selectedCountries.has(feature.properties.NAME_LONG);
         return {
           weight: 1,
           opacity: 0.5,
@@ -2448,7 +2300,7 @@
           fillColor: selected ? "#2b75a5" : "#e6e6e6",
         };
       }
-      
+
 
       // Highlight feature function
       function highlightFeature(e) {
@@ -2469,46 +2321,116 @@
         info.update();
       }
 
-      
-
-      // On each feature function
+      // New from here
       function onEachFeature(feature, layer) {
         layer.on({
           mouseover: highlightFeature,
           mouseout: resetHighlight,
-          click: function (e) {
-            const countryName = e.target.feature.properties.NAME_LONG;
+          click: e => toggleCountry(e.target.feature.properties.NAME_LONG)
+        });
+      }
 
-            if (selectedCountries.includes(countryName)) {
-              // Country is already selected, remove it
-              const index = selectedCountries.indexOf(countryName);
-              if (index !== -1) {
-                selectedCountries.splice(index, 1);
-              }
-              uncheckCheckboxByCountry(countryName);
-            } else {
-              // Country is not selected, add it
-              selectedCountries.push(countryName);
-              checkCheckboxByCountry(countryName);
-            }
+      function toggleCountry(name) {
+        if (selectedCountries.has(name)) {
+          selectedCountries.delete(name);
+          uncheckCheckbox(name);
+        } else {
+          selectedCountries.add(name);
+          checkCheckbox(name);
+        }
+        updateVisuals();
+      }
 
-            updateCounterElements();
-            updateStatesLinkInfo();
+      function checkCheckbox(name) {
+        const el = document.getElementById(`checkbox${name.replace(/\s+/g, '')}`);
+        if (el) el.checked = true;
+      }
+
+      function uncheckCheckbox(name) {
+        const el = document.getElementById(`checkbox${name.replace(/\s+/g, '')}`);
+        if (el) el.checked = false;
+      }
+
+      function updateVisuals() {
+        geojson.setStyle(style);
+        updateURL();
+        updateStatesLinkInfo();
+        updateRecommendedCountries();
+        updateCounterElements();
+        createOrUpdateCharts();
+      }
+
+      function updateCounter(element, newValue) {
+        if (element.textContent !== newValue) {
+          element.classList.remove('rotate-text');
+          void element.offsetWidth;
+          element.classList.add('rotate-text');
+          element.textContent = newValue;
+        }
+      }
+
+      function updateCounterElements() {
 
 
-            // Update the info control
-            info.update(e.target.feature.properties);
-          },
+        /*
+        updateCounter(document.getElementById('selected-count'), selectedCountries.size);
+        updateCounter(document.getElementById('selected-percentage'), `${((selectedCountries.size / 238) * 100).toFixed(0)}%`);
+        */
+        // Get the total number of countries (UN-only or all countries)
+        const totalCountries = unOnlyMode ? Object.values(countries).filter(country => country.type === "UN").length : 238;
+
+        // Get the number of visited countries based on the current selection and mode
+        const visitedCountries = getProcessedVisitedCountries();  // This already takes unOnlyMode into account
+
+        // Update the counters with the visited count and percentage
+        const visitedCount = visitedCountries.size;  // Get the number of visited countries
+        const visitedPercentage = ((visitedCount / totalCountries) * 100).toFixed(0);  // Calculate percentage
+
+        updateCounter(document.getElementById('selected-count'), visitedCount);
+        updateCounter(document.getElementById('selected-percentage'), `${visitedPercentage}%`);
+      };
+
+      function updateStatesLinkInfo() {
+        const row = document.getElementById('states-row');
+        if (selectedCountries.has("United States")) {
+          row.classList.add('visible');
+        } else {
+          row.classList.remove('visible');
+        }
+      }
+
+
+      function updateURL() {
+        const params = Array.from(selectedCountries).join(',');
+        const base = window.location.href.split('?')[0];
+        const url = params ? `${base}?countries=${encodeURIComponent(params)}` : base;
+        history.pushState(null, '', url);
+        updateSocialLinks();
+      }
+
+
+      function checkCheckboxesFromURL() {
+        const params = new URLSearchParams(window.location.search).get('countries');
+        if (!params) return;
+        params.split(',').forEach(name => {
+          selectedCountries.add(name);
+          checkCheckbox(name);
+        });
+      }
+
+      function initCheckboxListeners() {
+        document.querySelectorAll(".form-check-input").forEach(cb => {
+          if (cb.id === 'unOnlySwitch') return; // Ignore Switch 
+          cb.addEventListener("change", () => {
+            const name = cb.value;
+            cb.checked ? selectedCountries.add(name) : selectedCountries.delete(name);
+            updateVisuals();
+          });
         });
       }
 
       /* --- End Map --- */
 
-
-      /* --- Recommend Countries --- */
-
-
-      // Country Recommendations 
       const possibleCountries = [
         { name: "France", image: "paris.jpg" },
         { name: "Spain", image: "barcelona.jpg" },
@@ -2520,239 +2442,501 @@
         { name: "Germany", image: "berlin.jpg" },
         { name: "Greece", image: "santorini.jpg" },
         { name: "Austria", image: "austria.jpg" }
-
       ];
 
-      function getRecommendedCountries(selected, possible) {
-        const recommended = possible.filter(country => !selected.includes(country.name));
-        if (recommended.length < 1) {
-          return possibleCountries.slice(0, 3); // Default top 3 countries
-        }
-        return recommended.slice(0, 3);
-      }
-
       function updateRecommendedCountries() {
-        const recommendations = getRecommendedCountries(selectedCountries, possibleCountries);
+        const recs = possibleCountries.filter(c => !selectedCountries.has(c.name)).slice(0, 3);
         const container = document.getElementById('recommended-countries');
-        container.innerHTML = '';
-        recommendations.forEach(country => {
-          const countryCard = `
-                  <div class="col-12 col-md-4 d-flex justify-content-center">
-                      <div class="card">
-                          <img src="img/countries/${country.image}" class="card-img-top" alt="Visit Country ${country.name}">
-                          <div class="card-body">
-                              <h5 class="card-title">Visit ${country.name}</h5>
-                          </div>
-                      </div>
-                  </div>
-              `;
-          container.innerHTML += countryCard;
-        });
+        container.innerHTML = recs.map(c => `
+            <div class="col-12 col-md-4 d-flex justify-content-center">
+              <div class="card">
+                <img src="img/countries/${c.image}" class="card-img-top" alt="Visit ${c.name}">
+                <div class="card-body">
+                  <h5 class="card-title">Visit ${c.name}</h5>
+                </div>
+              </div>
+            </div>
+        `).join('');
       }
-
-      /* --- End Recommend Countries --- */
-
-
-      /* --- Country Counter --- */
-
-      // Function to animate the counter update
-      function updateCounter(element, newValue) {
-        element.classList.remove("rotate-text"); // Remove the class to reset animation
-        void element.offsetWidth; // Trigger a DOM reflow
-        element.classList.add("rotate-text"); // Reapply the class for the animation
-        element.textContent = newValue; // Update the text content
-        updateRecommendedCountries();
-      }
-
-      function updateCounterElements() {
-        // Update counter and percentage elements
-        const counterElement = document.getElementById("selected-count");
-        const percentageElement = document.getElementById("selected-percentage");
-        const newCount = selectedCountries.length;
-        updateCounter(counterElement, newCount);
-        const newPercentage = ((newCount / 238) * 100).toFixed(0) + "%";
-        // Only update on percentage change
-        if (newPercentage != percentageElement.textContent) {
-          updateCounter(percentageElement, newPercentage);
-        }
-      }
-
-
-
-
-      // Function to uncheck a checkbox by country name
-      function uncheckCheckboxByCountry(country) {
-        const checkboxId = `checkbox${country.replace(/\s+/g, "")}`;
-        const checkbox = document.getElementById(checkboxId);
-
-        if (checkbox) {
-          checkbox.checked = false;
-        }
-      }
-
-      // Function to check a checkbox by country name
-      function checkCheckboxByCountry(country) {
-        const checkboxId = `checkbox${country.replace(/\s+/g, "")}`;
-        const checkbox = document.getElementById(checkboxId);
-
-        if (checkbox) {
-          checkbox.checked = true;
-        }
-      }
-
-      // Function to remove a country from the list
-      function removeCountry(country) {
-        const index = selectedCountries.indexOf(country);
-        if (index !== -1) {
-          selectedCountries.splice(index, 1);
-        }
-
-        // Update the info control and redraw the map
-        info.update();
-      }
-
-      // Function to update URL when checkbox is clicked
-      function updateURL() {
-        let checkedCheckboxes = document.querySelectorAll('.form-check-input:checked');
-        let params = [];
-        checkedCheckboxes.forEach(function (checkbox) {
-          params.push(checkbox.value);
-        });
-        let url = window.location.href.split('?')[0]; // remove existing parameters
-        if (params.length > 0) {
-          url += '?countries=' + encodeURIComponent(params.join(','));
-        }
-        history.pushState(null, '', url);
-
-        updateSocialLinks();
-      }
-
-      // Function to check checkboxes based on URL parameters
-      function checkCheckboxes() {
-        let urlParams = new URLSearchParams(window.location.search);
-        let checkedCheckboxes = urlParams.get('countries');
-        if (checkedCheckboxes) {
-          let checkedValues = checkedCheckboxes.split(',');
-          checkedValues.forEach(function (value) {
-            let checkbox = document.querySelector('input[value="' + value + '"]');
-            if (checkbox) {
-              checkbox.checked = true;
-              updateSelectedCountries(value, true); // Update selected countries array
-            }
-          });
-        }
-      }
-
-      // Function to initialize event listeners for checkboxes
-      function initializeCheckboxListeners() {
-        const checkboxes = document.querySelectorAll(".form-check-input");
-
-        checkboxes.forEach((checkbox) => {
-          checkbox.addEventListener("change", function () {
-            const country = this.value;
-            const isChecked = this.checked;
-            updateSelectedCountries(country, isChecked);
-            updateURL();
-            updateCounterElements();
-            updateStatesLinkInfo();
-          });
-        });
-      }
-
-      function updateStatesLinkInfo() {
-        const statesRow = document.getElementById('states-row');
-
-        if (selectedCountries.includes("United States")) {
-          statesRow.classList.add('visible');
-        } else {
-          statesRow.classList.remove('visible');
-        }
-      }
-
-
-      // Function to update the selected countries based on checkbox state
-      function updateSelectedCountries(country, isChecked) {
-        if (isChecked && !selectedCountries.includes(country)) {
-          selectedCountries.push(country);
-          updateRecommendedCountries();
-        } else if (!isChecked && selectedCountries.includes(country)) {
-          const index = selectedCountries.indexOf(country);
-          selectedCountries.splice(index, 1);
-          updateRecommendedCountries();
-        }
-        updateStatesLinkInfo();
-        // Update the info control
-        info.update();
-      }
-
-
-      /* --- Social Media Section --- */
 
       function updateSocialLinks() {
-        const currentUrl = window.location.href;
-        const facebookLink = document.getElementById('facebook-link');
-        if (facebookLink) {
-          const quote = "Simply%20mark%20and%20count%20the%20countries%20you%20have%20visited%20on%20the%20interactive%20country%20map.%20%23CountriesVisited";
-          facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}&quote=${quote}`;
-        }
+        const url = encodeURIComponent(window.location.href);
+        const quote = "Simply%20mark%20and%20count%20the%20countries%20you%20have%20visited%20on%20the%20interactive%20country%20map.%20%23CountriesVisited";
+        const text = "Track%20and%20count%20all%20the%20countries%20you%27ve%20visited%20with%20the%20interactive%20world%20map.%20See%20more%20at";
 
-        const xLink = document.getElementById('x-twitter-link');
-        if (xLink) {
-          const text = "Track%20and%20count%20all%20the%20countries%20you%27ve%20visited%20with%20the%20interactive%20world%20map.%20See%20more%20at";
-          const hashtags = "CountriesVisited"
-          xLink.href = `https://x.com/intent/tweet?text=${text}&url=${encodeURIComponent(currentUrl)}&hashtags=${hashtags}`;
-        }
+        const fb = document.getElementById('facebook-link');
+        if (fb) fb.href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`;
 
-        const whatsappLink = document.getElementById('whatsapp-link');
-        if (whatsappLink) {
-          const text = "Track%20and%20count%20all%20the%20countries%20you%27ve%20visited%20with%20the%20interactive%20world%20map.%20See%20more%20at%20";
-          whatsappLink.href = `whatsapp://send?text=${text}${currentUrl}`;
-        }
+        const x = document.getElementById('x-twitter-link');
+        if (x) x.href = `https://x.com/intent/tweet?text=${text}&url=${url}&hashtags=CountriesVisited`;
 
-        const mailLink = document.getElementById('mail-link');
-        if (mailLink) {
-          const subject = 'Check out this country tracker and counter';
-          const body = `Track and count all the countries you\'ve visited with the interactive world map. Explore more at ${(currentUrl)}`;
+        const wa = document.getElementById('whatsapp-link');
+        if (wa) wa.href = `whatsapp://send?text=${text}%20${url}`;
 
-          mailLink.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
-
+        const mail = document.getElementById('mail-link');
+        if (mail) mail.href = `mailto:?subject=${encodeURIComponent('Check out this country tracker and counter')}&body=${text}%20${url}`;
       }
+
 
       function copyToClipboard() {
-        // Get the current page URL
-        const currentUrl = window.location.href;
-
-        // Use the Clipboard API to copy text
-        navigator.clipboard.writeText(currentUrl).then(() => {
-          //alert('Link copied to clipboard!');
-        }).catch(err => {
-          console.error('Failed to copy: ', err);
-        });
+        navigator.clipboard.writeText(window.location.href).catch(console.error);
       }
+      window.copyToClipboard = copyToClipboard;
 
-      /* --- End Social Media Section --- */
 
-      /* New */
-      const handleCountrySelection = (country, isChecked) => {
-        updateSelectedCountries(country, isChecked);
-        updateURL();
-        updateCounterElements();
-        updateStatesLinkInfo();
+      // Continent Charts
+
+      const countries = {
+        "Algeria": { continent: "Africa", type: "UN" },
+        "Angola": { continent: "Africa", type: "UN" },
+        "Benin": { continent: "Africa", type: "UN" },
+        "Botswana": { continent: "Africa", type: "UN" },
+        "Burkina Faso": { continent: "Africa", type: "UN" },
+        "Burundi": { continent: "Africa", type: "UN" },
+        "Cameroon": { continent: "Africa", type: "UN" },
+        "Central African Republic": { continent: "Africa", type: "UN" },
+        "Chad": { continent: "Africa", type: "UN" },
+        "Comoros": { continent: "Africa", type: "UN" },
+        "Ivory Coast": { continent: "Africa", type: "UN" },
+        "DR Congo": { continent: "Africa", type: "UN" },
+        "Djibouti": { continent: "Africa", type: "UN" },
+        "Egypt": { continent: "Africa", type: "UN" },
+        "Equatorial Guinea": { continent: "Africa", type: "UN" },
+        "Eritrea": { continent: "Africa", type: "UN" },
+        "Ethiopia": { continent: "Africa", type: "UN" },
+        "Gabon": { continent: "Africa", type: "UN" },
+        "Ghana": { continent: "Africa", type: "UN" },
+        "Guinea": { continent: "Africa", type: "UN" },
+        "Guinea-Bissau": { continent: "Africa", type: "UN" },
+        "Kenya": { continent: "Africa", type: "UN" },
+        "Eswatini": { continent: "Africa", type: "UN" },
+        "Lesotho": { continent: "Africa", type: "UN" },
+        "Liberia": { continent: "Africa", type: "UN" },
+        "Libya": { continent: "Africa", type: "UN" },
+        "Madagascar": { continent: "Africa", type: "UN" },
+        "Malawi": { continent: "Africa", type: "UN" },
+        "Mali": { continent: "Africa", type: "UN" },
+        "Mauritania": { continent: "Africa", type: "UN" },
+        "Mauritius": { continent: "Africa", type: "UN" },
+        "Morocco": { continent: "Africa", type: "UN" },
+        "Mozambique": { continent: "Africa", type: "UN" },
+        "Namibia": { continent: "Africa", type: "UN" },
+        "Niger": { continent: "Africa", type: "UN" },
+        "Nigeria": { continent: "Africa", type: "UN" },
+        "Cape Verde": { continent: "Africa", type: "UN" },
+        "Republic of the Congo": { continent: "Africa", type: "UN" },
+        "Rwanda": { continent: "Africa", type: "UN" },
+        "Senegal": { continent: "Africa", type: "UN" },
+        "Seychelles": { continent: "Africa", type: "UN" },
+        "Sierra Leone": { continent: "Africa", type: "UN" },
+        "Somalia": { continent: "Africa", type: "UN" },
+        "South Africa": { continent: "Africa", type: "UN" },
+        "South Sudan": { continent: "Africa", type: "UN" },
+        "Sudan": { continent: "Africa", type: "UN" },
+        "São Tomé and Principe": { continent: "Africa", type: "UN" },
+        "Tanzania": { continent: "Africa", type: "UN" },
+        "The Gambia": { continent: "Africa", type: "UN" },
+        "Togo": { continent: "Africa", type: "UN" },
+        "Tunisia": { continent: "Africa", type: "UN" },
+        "Uganda": { continent: "Africa", type: "UN" },
+        "Western Sahara": { continent: "Africa", type: "Special", parent: "Morocco" },
+        "Zambia": { continent: "Africa", type: "UN" },
+        "Zimbabwe": { continent: "Africa", type: "UN" },
+
+        "Saint Helena": { continent: "Africa", type: "Special", parent: "United Kingdom" },
+
+        "Afghanistan": { continent: "Asia", type: "UN" },
+        "Armenia": { continent: "Asia", type: "UN" },
+        "Azerbaijan": { continent: "Asia", type: "UN" },
+        "Bahrain": { continent: "Asia", type: "UN" },
+        "Bangladesh": { continent: "Asia", type: "UN" },
+        "Bhutan": { continent: "Asia", type: "UN" },
+        "Brunei": { continent: "Asia", type: "UN" },
+        "Cambodia": { continent: "Asia", type: "UN" },
+        "Cyprus": { continent: "Asia", type: "UN" },
+        "North Korea": { continent: "Asia", type: "UN" },
+        "Georgia": { continent: "Asia", type: "UN" },
+        "India": { continent: "Asia", type: "UN" },
+        "Indonesia": { continent: "Asia", type: "UN" },
+        "Iran": { continent: "Asia", type: "UN" },
+        "Iraq": { continent: "Asia", type: "UN" },
+        "Israel": { continent: "Asia", type: "UN" },
+        "Japan": { continent: "Asia", type: "UN" },
+        "Jordan": { continent: "Asia", type: "UN" },
+        "Kazakhstan": { continent: "Asia", type: "UN" },
+        "Kuwait": { continent: "Asia", type: "UN" },
+        "Kyrgyzstan": { continent: "Asia", type: "UN" },
+        "Laos": { continent: "Asia", type: "UN" },
+        "Lebanon": { continent: "Asia", type: "UN" },
+        "Macao": { continent: "Asia", type: "Special", parent: "China" },
+        "Malaysia": { continent: "Asia", type: "UN" },
+        "Maldives": { continent: "Asia", type: "UN" },
+        "Mongolia": { continent: "Asia", type: "UN" },
+        "Myanmar": { continent: "Asia", type: "UN" },
+        "Nepal": { continent: "Asia", type: "UN" },
+        "Oman": { continent: "Asia", type: "UN" },
+        "Pakistan": { continent: "Asia", type: "UN" },
+        "Palestine": { continent: "Asia", type: "Special", parent: null },
+        "Philippines": { continent: "Asia", type: "UN" },
+        "Qatar": { continent: "Asia", type: "UN" },
+        "South Korea": { continent: "Asia", type: "UN" },
+        "Saudi Arabia": { continent: "Asia", type: "UN" },
+        "Singapore": { continent: "Asia", type: "UN" },
+        "Sri Lanka": { continent: "Asia", type: "UN" },
+        "Syria": { continent: "Asia", type: "UN" },
+        "Tajikistan": { continent: "Asia", type: "UN" },
+        "Thailand": { continent: "Asia", type: "UN" },
+        "East Timor": { continent: "Asia", type: "UN" },
+        "Turkey": { continent: "Asia", type: "UN" },
+        "Turkmenistan": { continent: "Asia", type: "UN" },
+        "United Arab Emirates": { continent: "Asia", type: "UN" },
+        "Uzbekistan": { continent: "Asia", type: "UN" },
+        "Vietnam": { continent: "Asia", type: "UN" },
+        "Yemen": { continent: "Asia", type: "UN" },
+        "Taiwan": { continent: "Asia", type: "Special", parent: "China" },
+        "Hong Kong": { continent: "Asia", type: "Special", parent: "China" },
+        "China": { continent: "Asia", type: "UN" },
+
+        "Albania": { continent: "Europe", type: "UN" },
+        "Andorra": { continent: "Europe", type: "UN" },
+        "Austria": { continent: "Europe", type: "UN" },
+        "Belarus": { continent: "Europe", type: "UN" },
+        "Belgium": { continent: "Europe", type: "UN" },
+        "Bosnia and Herzegovina": { continent: "Europe", type: "UN" },
+        "Bulgaria": { continent: "Europe", type: "UN" },
+        "Croatia": { continent: "Europe", type: "UN" },
+        "Czech Republic": { continent: "Europe", type: "UN" },
+        "Denmark": { continent: "Europe", type: "UN" },
+        "Estonia": { continent: "Europe", type: "UN" },
+        "Finland": { continent: "Europe", type: "UN" },
+        "France": { continent: "Europe", type: "UN" },
+        "Germany": { continent: "Europe", type: "UN" },
+        "Greece": { continent: "Europe", type: "UN" },
+        "Hungary": { continent: "Europe", type: "UN" },
+        "Iceland": { continent: "Europe", type: "UN" },
+        "Ireland": { continent: "Europe", type: "UN" },
+        "Italy": { continent: "Europe", type: "UN" },
+        "Kosovo": { continent: "Europe", type: "Special", parent: "Serbia" },
+        "Latvia": { continent: "Europe", type: "UN" },
+        "Liechtenstein": { continent: "Europe", type: "UN" },
+        "Lithuania": { continent: "Europe", type: "UN" },
+        "Luxembourg": { continent: "Europe", type: "UN" },
+        "Malta": { continent: "Europe", type: "UN" },
+        "Moldova": { continent: "Europe", type: "UN" },
+        "Monaco": { continent: "Europe", type: "UN" },
+        "Montenegro": { continent: "Europe", type: "UN" },
+        "Netherlands": { continent: "Europe", type: "UN" },
+        "North Macedonia": { continent: "Europe", type: "UN" },
+        "Norway": { continent: "Europe", type: "UN" },
+        "Poland": { continent: "Europe", type: "UN" },
+        "Portugal": { continent: "Europe", type: "UN" },
+        "Romania": { continent: "Europe", type: "UN" },
+        "Russia": { continent: "Europe", type: "UN" },
+        "San Marino": { continent: "Europe", type: "UN" },
+        "Serbia": { continent: "Europe", type: "UN" },
+        "Slovakia": { continent: "Europe", type: "UN" },
+        "Slovenia": { continent: "Europe", type: "UN" },
+        "Spain": { continent: "Europe", type: "UN" },
+        "Sweden": { continent: "Europe", type: "UN" },
+        "Switzerland": { continent: "Europe", type: "UN" },
+        "Ukraine": { continent: "Europe", type: "UN" },
+        "United Kingdom": { continent: "Europe", type: "UN" },
+        "Vatican": { continent: "Europe", type: "Special", parent: "Italy" },
+
+        "Åland Islands": { continent: "Europe", type: "Special", parent: "Finland" },
+        "Jersey": { continent: "Europe", type: "Special", parent: "United Kingdom" },
+        "Faeroe Islands": { continent: "Europe", type: "Special", parent: "Denmark" },
+        "Guernsey": { continent: "Europe", type: "Special", parent: "United Kingdom" },
+        "Isle of Man": { continent: "Europe", type: "Special", parent: "United Kingdom" },
+
+
+        "Anguilla": { continent: "North America", type: "Special", parent: "United Kingdom" },
+        "Antigua and Barbuda": { continent: "North America", type: "UN" },
+        "Bahamas": { continent: "North America", type: "UN" },
+        "Barbados": { continent: "North America", type: "UN" },
+        "Belize": { continent: "North America", type: "UN" },
+        "Bermuda": { continent: "North America", type: "Special", parent: "United Kingdom" },
+        "British Virgin Islands": { continent: "North America", type: "Special", parent: "United Kingdom" },
+        "Canada": { continent: "North America", type: "UN" },
+        "Cayman Islands": { continent: "North America", type: "Special", parent: "United Kingdom" },
+        "Costa Rica": { continent: "North America", type: "UN" },
+        "Cuba": { continent: "North America", type: "UN" },
+        "Curaçao": { continent: "North America", type: "Special", parent: "Netherlands" },
+        "Dominica": { continent: "North America", type: "UN" },
+        "Dominican Republic": { continent: "North America", type: "UN" },
+        "El Salvador": { continent: "North America", type: "UN" },
+        "Greenland": { continent: "North America", type: "Special", parent: "Denmark" },
+        "Grenada": { continent: "North America", type: "UN" },
+        "Guatemala": { continent: "North America", type: "UN" },
+        "Haiti": { continent: "North America", type: "UN" },
+        "Honduras": { continent: "North America", type: "UN" },
+        "Jamaica": { continent: "North America", type: "UN" },
+        "Mexico": { continent: "North America", type: "UN" },
+        "Montserrat": { continent: "North America", type: "Special", parent: "United Kingdom" },
+        "Nicaragua": { continent: "North America", type: "UN" },
+        "Panama": { continent: "North America", type: "UN" },
+        "Puerto Rico": { continent: "North America", type: "Special", parent: "United States" },
+        "Saint Kitts and Nevis": { continent: "North America", type: "UN" },
+        "Saint Lucia": { continent: "North America", type: "UN" },
+        "Saint Pierre and Miquelon": { continent: "North America", type: "Special", parent: "France" },
+        "Saint Vincent and the Grenadines": { continent: "North America", type: "UN" },
+        "Saint-Barthélemy": { continent: "North America", type: "Special", parent: "France" },
+        "Saint-Martin": { continent: "North America", type: "Special", parent: "France" },
+        "Turks and Caicos Islands": { continent: "North America", type: "Special", parent: "United Kingdom" },
+        "United States": { continent: "North America", type: "UN" },
+        "United States Virgin Islands": { continent: "North America", type: "Special", parent: "United States" },
+
+        // Ozeanien und Australien
+        "Australia": { continent: "Oceania", type: "UN" },
+        "Cook Islands": { continent: "Oceania", type: "Special", parent: "New Zealand" },
+        "Federated States of Micronesia": { continent: "Oceania", type: "UN" },
+        "Fiji": { continent: "Oceania", type: "UN" },
+        "French Polynesia": { continent: "Oceania", type: "Special", parent: "France" },
+        "Guam": { continent: "Oceania", type: "Special", parent: "United States" },
+        "Kiribati": { continent: "Oceania", type: "UN" },
+        "Marshall Islands": { continent: "Oceania", type: "UN" },
+        "Nauru": { continent: "Oceania", type: "UN" },
+        "New Caledonia": { continent: "Oceania", type: "Special", parent: "France" },
+        "New Zealand": { continent: "Oceania", type: "UN" },
+        "Niue": { continent: "Oceania", type: "Special", parent: "New Zealand" },
+        "Norfolk Island": { continent: "Oceania", type: "Special", parent: "Australia" },
+        "Northern Mariana Islands": { continent: "Oceania", type: "Special", parent: "United States" },
+        "Palau": { continent: "Oceania", type: "UN" },
+        "Papua New Guinea": { continent: "Oceania", type: "UN" },
+        "Pitcairn Islands": { continent: "Oceania", type: "Special", parent: "United Kingdom" },
+        "Samoa": { continent: "Oceania", type: "UN" },
+        "Solomon Islands": { continent: "Oceania", type: "UN" },
+        "Tonga": { continent: "Oceania", type: "UN" },
+        "Tuvalu": { continent: "Oceania", type: "UN" },
+        "Vanuatu": { continent: "Oceania", type: "UN" },
+        "Wallis and Futuna Islands": { continent: "Oceania", type: "Special", parent: "France" },
+        "American Samoa": { continent: "Oceania", type: "Special", parent: "United States" },
+        "Ashmore and Cartier Islands": { continent: "Oceania", type: "Special", parent: "Australia" },
+
+
+
+        // Südamerika
+        "Aruba": { continent: "South America", type: "Special", parent: "Netherlands" },
+        "Argentina": { continent: "South America", type: "UN" },
+        "Bolivia": { continent: "South America", type: "UN" },
+        "Brazil": { continent: "South America", type: "UN" },
+        "Chile": { continent: "South America", type: "UN" },
+        "Colombia": { continent: "South America", type: "UN" },
+        "Ecuador": { continent: "South America", type: "UN" },
+        "Falkland Islands / Malvinas": { continent: "South America", type: "Special", parent: "United Kingdom" },
+        "Guyana": { continent: "South America", type: "UN" },
+        "Paraguay": { continent: "South America", type: "UN" },
+        "Peru": { continent: "South America", type: "UN" },
+        "Suriname": { continent: "South America", type: "UN" },
+        "Trinidad and Tobago": { continent: "South America", type: "UN" },
+        "Uruguay": { continent: "South America", type: "UN" },
+        "Venezuela": { continent: "South America", type: "UN" },
+
+        // Antarctica
+        "Antarctica": { continent: "Antarctica", type: "Special" },
+
+        "French Southern and Antarctic Lands": { continent: "Antarctica", type: "Special", parent: "France" },
+        "Heard I. and McDonald Islands": { continent: "Antarctica", type: "Special", parent: "Australia" },
+        "South Georgia and the Islands": { continent: "Antarctica", type: "Special", parent: "United Kingdom" },
+
+
       };
 
 
-      // Initialize the checkbox listeners
-      initializeCheckboxListeners();
+
+      // Start-Struktur
+      const continentData = {
+        "Africa": { total: 0, visited: 0 },
+        "Asia": { total: 0, visited: 0 },
+        "Europe": { total: 0, visited: 0 },
+        "North America": { total: 0, visited: 0 },
+        "South America": { total: 0, visited: 0 },
+        "Oceania": { total: 0, visited: 0 },
+        "Antarctica": { total: 0, visited: 0 }
+      };
+
+      function updateContinentTotals() {
+        // Reset totals
+        for (const continent in continentData) {
+          continentData[continent].total = 0;
+          continentData[continent].visited = 0;
+
+        }
+
+        // Durch alle Länder gehen
+        for (const country in countries) {
+          const data = countries[country];
+          if (!data.continent || !continentData[data.continent]) continue;
+
+          if (unOnlyMode) {
+            // Nur UN Länder zählen
+            if (data.type === "UN") {
+              continentData[data.continent].total++;
+            }
+          } else {
+            // Alle Länder zählen
+            continentData[data.continent].total++;
+          }
+
+          // Count visited countries
+          if (selectedCountries.has(country)) {
+            if (unOnlyMode) {
+              if (data.type === "UN") {
+                continentData[data.continent].visited++;
+              }
+            } else {
+              continentData[data.continent].visited++;
+            }
+          }
+        }
+      }
 
 
-      // Check checkboxes on page load
-      window.addEventListener('load', function () {
-        checkCheckboxes();
-        updateURL(); // Call updateURL() on page load
-        updateRecommendedCountries();
+
+
+      let unOnlyMode = false;
+
+      const chartNames = ["World", "Europe", "Asia", "Africa", "North America", "South America", "Oceania", "Antarctica"];
+      const charts = {};
+      const previousValues = {};
+
+      // Ermittelt besuchte Länder je nach Modus
+      function getProcessedVisitedCountries() {
+        const visitedSet = new Set();
+
+        selectedCountries.forEach(country => {
+          const countryData = countries[country];
+
+          if (!countryData) return;
+
+          if (unOnlyMode) {
+            if (countryData.type === "UN") {
+              visitedSet.add(country);
+            } else if (countryData.type === "Special" && countryData.parent) {
+              visitedSet.add(countryData.parent);
+            }
+          } else {
+            visitedSet.add(country);
+          }
+        });
+
+        return visitedSet;
+      }
+
+      // Zählt Besuche pro Kontinent
+      function countVisitedPerContinent() {
+        // Reset
+        for (const key in continentData) {
+          continentData[key].visited = 0;
+        }
+
+        const visitedCountries = getProcessedVisitedCountries();
+
+        visitedCountries.forEach(country => {
+          const countryData = countries[country];
+          if (!countryData) return;
+
+          const continent = countryData.continent;
+          if (continent && continentData[continent]) {
+            continentData[continent].visited++;
+          }
+        });
+      }
+
+      // Weltweit besucht + total berechnen
+      function calculateWorldData() {
+        let visited = 0, total = 0;
+        for (const key in continentData) {
+          visited += continentData[key].visited;
+          total += continentData[key].total;
+        }
+        return { visited, total };
+      }
+
+      // Charts aktualisieren oder erstellen
+      function createOrUpdateCharts() {
+        countVisitedPerContinent();
+
+        chartNames.forEach(name => {
+          //const isWorld = name === "World";
+          //const data = isWorld ? calculateWorldData() : continentData[name];
+          const data = continentData[name];
+          const key = name.replace(/\s+/g, '');
+
+          const container = document.getElementById("container" + key);
+
+          if (!data || !data.total || isNaN(data.total) || data.total === 0) {
+            if (container) container.style.display = "none";
+            return;
+          } else {
+            if (container) container.style.display = "block";
+          }
+
+          const visited = data.visited; // Absolute number of visited countries
+          const total = data.total; // Total countries
+          const percent = ((visited / total) * 100).toFixed(0);
+
+
+          document.getElementById("label" + key).innerText = `${percent}%`;
+          document.getElementById("title" + key).innerText = name;
+
+          const chartData = {
+            labels: ['Visited', 'Not Visited'],
+            datasets: [{
+              data: [data.visited, data.total - data.visited],
+              backgroundColor: ['#2b75a5', '#e6e6e6'],
+              borderWidth: 1
+            }]
+          };
+
+          const chartOptions = {
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '80%',
+            layout: { padding: 0 },
+            animation: {
+              duration: 1000,
+              easing: 'easeOutQuart'
+            }
+          };
+
+          const hasChanged = !previousValues[key] || previousValues[key].visited !== data.visited;
+
+          if (charts[name]) {
+            charts[name].data.datasets[0].data = chartData.datasets[0].data;
+            charts[name].options.animation.duration = hasChanged ? 1000 : 0;
+            charts[name].update();
+          } else {
+            const ctx = document.getElementById("chart" + key).getContext('2d');
+            charts[name] = new Chart(ctx, {
+              type: 'doughnut',
+              data: chartData,
+              options: chartOptions
+            });
+          }
+
+          previousValues[key] = { visited: data.visited };
+        });
+      }
+
+
+      document.getElementById("unOnlySwitch").addEventListener("change", (e) => {
+        unOnlyMode = e.target.checked;
+        updateContinentTotals();
         updateCounterElements();
-        updateStatesLinkInfo();
+        createOrUpdateCharts();
+      });
+
+
+      window.addEventListener('load', () => {
+        updateContinentTotals();
+        checkCheckboxesFromURL();
+        updateVisuals();
+        initCheckboxListeners();
       });
 
 

@@ -583,16 +583,17 @@ main {
 
 .chart-canvas-container {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin: auto;
+  padding: 0px;
 }
 .chart-canvas-container canvas {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
 .chart-label {
   position: absolute;
