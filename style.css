@@ -335,6 +335,12 @@ footer p {
   color: #fff;
 }
 
+.faq .accordion-button:not(.collapsed) {
+  background-color: #dfdfdf;
+  color: #000000;
+  font-weight: 600;
+}
+
 .accordion-button:focus {
   box-shadow: none;
 }
@@ -353,6 +359,10 @@ footer p {
 
 .accordion-button {
   font-weight: bold;
+}
+
+.faq .accordion-button {
+  font-weight: 400;
 }
 
 .continent-counter {

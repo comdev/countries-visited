@@ -57,91 +57,10 @@
 
 <body>
 
-  <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
-  <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js"
-    charset="UTF-8"></script>
-  <script type="text/javascript" charset="UTF-8">
-    document.addEventListener("DOMContentLoaded", function () {
-      const BANNER_COUNTRIES = [
-        "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK", "NO", "IS", "LI", "GB"
-      ];
-
-      function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          if (cookie.startsWith(`${name}=`)) {
-            return cookie.split('=')[1];
-          }
-        }
-        return null;
-      }
-
-      function setCookie(name, value, days) {
-        const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        const expires = `expires=${date.toUTCString()}`;
-        document.cookie = `${name}=${value}; ${expires}; path=/`;
-      }
-
-
-      function handleNonEUUser() {
-        cookieconsent.run({
-          consent_type: "express",
-          page_load_consent_levels: ["strictly-necessary", "functionality", "tracking", "targeting"],
-        });
-
-        const style = document.createElement("style");
-        style.innerHTML = `
-                  .termsfeed-com---palette-light.termsfeed-com---nb {
-                      visibility: hidden !important;
-                      display: none !important;
-                  }
-              `;
-        document.head.appendChild(style);
-      }
-
-      const isOutsideEU = getCookie('outside_eu');
-
-      if (isOutsideEU) {
-        handleNonEUUser();
-      } else {
-        fetch('https://ipinfo.io/json?token=60c37d874cf039')
-          .then(response => response.json())
-          .then(data => {
-            const userCountry = data.country;
-
-            if (BANNER_COUNTRIES.includes(userCountry)) {
-
-              cookieconsent.run({
-                notice_banner_type: "interstitial",
-                consent_type: "express",
-                palette: "light",
-                language: "en",
-                page_load_consent_levels: ["strictly-necessary"],
-                notice_banner_reject_button_hide: false,
-                preferences_center_close_button_hide: false,
-                page_refresh_confirmation_buttons: false,
-                website_name: "Countries Visited",
-                website_privacy_policy_url: "https://countries-visited.com/privacy-policy.html",
-              });
-            } else {
-
-              setCookie('outside_eu', 'true', 1);
-              handleNonEUUser();
-
-            }
-          })
-          .catch(error => console.error('Error fetching user location:', error));
-
-      }
-    });
-  </script>
-
-  <!-- Google Analytics -->
-  <script type="text/plain" data-cookie-consent="tracking" async
+    <!-- Google Analytics -->
+  <script async
     src="https://www.googletagmanager.com/gtag/js?id=G-ZC5NL66GC3"></script>
-  <script type="text/plain" data-cookie-consent="tracking">
+  <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -151,10 +70,12 @@
   <!-- end of Google Analytics-->
 
   <!-- Google Adsense -->
-  <script type="text/plain" data-cookie-consent="targeting" async
+  <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7607877614179487"
     crossorigin="anonymous"></script>
   <!-- end of Google Adsense-->
+
+  <script async src="https://fundingchoicesmessages.google.com/i/pub-7607877614179487?ers=1"></script><script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
 
   <noscript>Free cookie consent management tool by
     <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>

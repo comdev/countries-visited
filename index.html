@@ -65,123 +65,30 @@
 </head>
 
 <body>
-  <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
-  <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js"
-    charset="UTF-8"></script>
-  <script type="text/javascript" charset="UTF-8">
-    document.addEventListener("DOMContentLoaded", function () {
-      const BANNER_COUNTRIES = [
-        "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK", "NO", "IS", "LI", "GB"
-      ];
-
-      function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          if (cookie.startsWith(`${name}=`)) {
-            return cookie.split('=')[1];
-          }
-        }
-        return null;
-      }
-
-      function setCookie(name, value, days) {
-        const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        const expires = `expires=${date.toUTCString()}`;
-        document.cookie = `${name}=${value}; ${expires}; path=/`;
-      }
-      function runEUBanner() {
-        cookieconsent.run({
-          notice_banner_type: "interstitial",
-          consent_type: "express",
-          palette: "light",
-          language: "en",
-          page_load_consent_levels: ["strictly-necessary"],
-          notice_banner_reject_button_hide: false,
-          preferences_center_close_button_hide: false,
-          page_refresh_confirmation_buttons: false,
-          website_name: "Countries Visited",
-          website_privacy_policy_url: "https://countries-visited.com/privacy-policy.html",
-        });
-      }
-
-      function runNonEUBanner() {
-        cookieconsent.run({
-          consent_type: "express",
-          page_load_consent_levels: ["strictly-necessary", "functionality", "tracking", "targeting"],
-        });
-
-        const style = document.createElement("style");
-        style.innerHTML = `
-          .termsfeed-com---palette-light.termsfeed-com---nb {
-            visibility: hidden !important;
-            display: none !important;
-          }
-        `;
-        document.head.appendChild(style);
-      }
-
-      const isOutsideEU = getCookie('outside_eu');
-
-      if (isOutsideEU) {
-        runNonEUBanner();
-      } else {
-        fetch('https://ipinfo.io/json?token=60c37d874cf039')
-          .then(response => {
-            if (response.status === 429) {
-              // 429 Too Many Requests - showing EU banner
-              runEUBanner();
-              return;
-            }
-            return response.json();
-          })
-          .then(data => {
-            if (!data) return;
-            const userCountry = data.country;
-            if (BANNER_COUNTRIES.includes(userCountry)) {
-              runEUBanner();
-            } else {
-              setCookie('outside_eu', 'true', 1);
-              runNonEUBanner();
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching IP or handling user location:', error);
-            runNonEUBanner();
-          });
-      }
-    });
-
-
-  </script>
 
   <!-- Google Analytics -->
-  <script type="text/plain" data-cookie-consent="tracking" async
-    src="https://www.googletagmanager.com/gtag/js?id=G-ZC5NL66GC3"></script>
-  <script type="text/plain" data-cookie-consent="tracking">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZC5NL66GC3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-      gtag('config', 'G-ZC5NL66GC3');
-    </script>
+    gtag('config', 'G-ZC5NL66GC3');
+  </script>
   <!-- end of Google Analytics-->
 
   <!-- Google Adsense -->
-  <script type="text/plain" data-cookie-consent="targeting" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7607877614179487"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7607877614179487"
     crossorigin="anonymous"></script>
   <!-- end of Google Adsense-->
 
-  <noscript>Free cookie consent management tool by
-    <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
-  <!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
-
+  <script async src="https://fundingchoicesmessages.google.com/i/pub-7607877614179487?ers=1"></script>
+  <script>(function () { function signalGooglefcPresent() { if (!window.frames['googlefcPresent']) { if (document.body) { const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe); } else { setTimeout(signalGooglefcPresent, 0); } } } signalGooglefcPresent(); })();</script>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light box-shadow ">
       <div class="container d-flex justify-content-between">
-        <a href="https://countries-visited.com/" class="navbar-brand d-flex align-items-center" title="Countries Visited Startpage">
+        <a href="https://countries-visited.com/" class="navbar-brand d-flex align-items-center"
+          title="Countries Visited Startpage">
           <img src="img/countries_visited_icon.svg" width="30" class="header-icon bi me-2"
             alt="World with Country Marker" />
           <span class="fs-4">Countries Visited</span>
@@ -193,7 +100,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a href="https://countries-visited.com/" class="nav-link" title="Countries Map & Counter">Countries Map & Counter</a>
+              <a href="https://countries-visited.com/" class="nav-link" title="Countries Map & Counter">Countries Map &
+                Counter</a>
             </li>
             <li class="nav-item">
               <a href="states-visited.html" class="nav-link" title="States Map & Counter">States Map & Counter</a>
@@ -372,7 +280,7 @@
                   </svg>
                 </a>
                 <a id="copy-to-clipboard" href="#" class="btn btn-social" aria-label="Copy to clipboard"
-   onclick="event.preventDefault(); copyToClipboard();">
+                  onclick="event.preventDefault(); copyToClipboard();">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-link-45deg" viewBox="0 0 16 16">
                     <path
@@ -429,9 +337,13 @@
           countries you have already visited with a few simple mouse clicks.
           Whether it was a brief city excursion, an extensive vacation, or a
           phase of living abroad, you can capture and visualize those
-          experiences on this map. Interactive charts show the percentage of countries you've visited in each continent, giving you a clear overview of your global travel progress. If you're unable to locate the countries
+          experiences on this map. Interactive charts show the percentage of countries you've visited in each continent,
+          giving you a clear overview of your global travel progress. If you're unable to locate the countries
           you have visited on the map, the list beneath it is your guide.<br>
-          You can switch between two counting modes: the default mode includes 236 recognized countries and territories — such as Greenland, Kosovo, or Hong Kong — giving a broad picture of your travels. The UN mode, on the other hand, counts only the 193 UN member states for a stricter view based on international consensus. Toggle the setting to see your stats from both perspectives.
+          You can switch between two counting modes: the default mode includes 236 recognized countries and territories
+          — such as Greenland, Kosovo, or Hong Kong — giving a broad picture of your travels. The UN mode, on the other
+          hand, counts only the 193 UN member states for a stricter view based on international consensus. Toggle the
+          setting to see your stats from both perspectives.
         </p>
       </div>
 
@@ -1923,8 +1835,7 @@
                   </div>
                   <div class="col-md-3 mb-2">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="New Caledonia"
-                        id="checkboxNewCaledonia" />
+                      <input class="form-check-input" type="checkbox" value="New Caledonia" id="checkboxNewCaledonia" />
                       <label class="form-check-label" for="checkboxNewCaledonia">New Caledonia</label>
                     </div>
                   </div>
@@ -2018,7 +1929,7 @@
               </div>
             </div>
           </div>
-          
+
 
           <div class="accordion-item">
             <h3 class="accordion-header" id="headingThree">
@@ -2124,8 +2035,77 @@
 
 
       </div>
+      <!--
+      <div class="container py-5">
+        <h2>Frequently asked questions</h2>
+        <div class="accordion faq" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                How many countries have I visited?
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Log in to your <strong>Countries-Visited.com</strong> account to see an up-to-date count of all the countries you've marked as visited on your interactive world map.
+              </div>
+            </div>
+          </div>
+    
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                What percentage of the world have I seen?
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Our tool automatically calculates the percentage based on the total number of UN-recognized countries, giving you a clear metric of your global travels.
+              </div>
+            </div>
+          </div>
+    
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                How do I visualize countries I've been to?
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Use the interactive map: simply click or search for a country to mark it as visited, and watch your map update in real-time with colored highlights.
+              </div>
+            </div>
+          </div>
+    
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Can I share my map of visited countries on social media?
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Yes! Click the 'Share' button on your profile to generate a unique link or an image snapshot that you can post directly to Facebook, Twitter, or Instagram.
+              </div>
+            </div>
+          </div>
+    
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Is there a travel map generator I can embed on my blog?
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Absolutely. Go to 'Embed Map' in settings, copy the generated iframe code, and paste it into your blog or website to showcase your visited countries.
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-
+-->
 
   </main>
 
