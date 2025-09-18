@@ -338,7 +338,6 @@ footer p {
 .faq .accordion-button:not(.collapsed) {
   background-color: #dfdfdf;
   color: #000000;
-  font-weight: 600;
 }
 
 .accordion-button:focus {
@@ -362,7 +361,7 @@ footer p {
 }
 
 .faq .accordion-button {
-  font-weight: 400;
+  font-weight: bold;
 }
 
 .continent-counter {
